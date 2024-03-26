@@ -7,50 +7,52 @@
 // -----------------------------
 // -----------------------------
 
-import { useState } from "react";
+import { useState } from 'react';
 
-export default function registerForm() {
+const Register = ({ register }) => {
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
-async function handleSubmit(e) {
+const submit = async(e) => {
   e.preventDefault();
-  await registerNewUser({ username, password });
-  refetch();
-}
+  const credentials = {
+    newUsername,
+    newPassword
+  }
+  await register(credentials);
 
-return(
-  <>
-    <div className="register-form">
-      <h3> Register </h3>
-        <form onSubmit = {handleSubmit}>
-          <label className = "username">
-              Username or Email:
-              <input
-                type = "text"
-                name = "username"
-                id = "username"
-                placeholder = "Username or Email" 
-                value = {username}
-                onChange={(e) => setNewUsername(e.target.value)}
-              />
-          </label>
-          <label className = "password">
-              Password:
-              <input
-                type = "password"
-                name = "password"
-                id = "password"
-                placeholder = "Password" 
-                value = { password }
-                onChange={(e) => setNewPassword(e.target.value)}
-              />
-          </label>
-          <br/>
-          <button type = "submit">Register</button>
-        </form>
-    </div>
-  </>
-)
+};
 
-}
+  return (
+    <>
+      <div className="register-container">
+        <h3> Register </h3>
+          <form onSubmit = { submit }>
+            <label className = "username">
+                Username or Email:
+                <input
+                  name = "username"
+                  placeholder = "Username or Email" 
+                  value = { newUsername }
+                  onChange={(e) => setNewUsername(e.target.value)}
+                />
+            </label>
+            <label className = "password">
+                Password:
+                <input
+                  type = "password"
+                  name = "password"
+                  placeholder = "Password" 
+                  value = { newPassword }
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+            </label>
+            <br/>
+            <button type = "submit">Register</button>
+          </form>
+      </div>
+    </>
+  );
+};
+
+export default Register;
