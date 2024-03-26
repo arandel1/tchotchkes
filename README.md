@@ -12,4 +12,6 @@ https://trello.com/b/PNUsHDcf/capstone-project
 *Installed: *
 - Nodemon
 - Vite
+- React
+
 
