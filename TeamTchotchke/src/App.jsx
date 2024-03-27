@@ -1,7 +1,11 @@
 import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
+import ViewByCategory from "./components/ViewByCategory";
+import ViewAllItems from "./components/ViewAllItems";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Cart from "./components/Cart";
 import "./App.css";
 
 function App() {
@@ -9,23 +13,39 @@ function App() {
 
   return (
     <>
-      <NavBar>
-        <Routes>
-          <Route path="/" element={<button>Home</button>}>
-            Home
-          </Route>
-          <Route>Books</Route>
-          <Route>Decor</Route>
-          <Route>Electronics</Route>
-          <Route>Games & Toys</Route>
-          <Route>Housewares</Route>
-          <Route>Jewelry & Accessories</Route>
-          <Route>Miscellaneous</Route>
-          <Route>View All Items</Route>
-          <Route>View Cart</Route>
-        </Routes>
-      </NavBar>
-      Go Team Tchotchke!
+      <BrowserRouter>
+        <NavBar>
+          <Routes>
+            <Route path="/" element={<button>Home</button>}>
+              Home
+            </Route>
+            <Route path="/category" element={<ViewByCategory />}>
+              View by Category
+            </Route>
+            <Route>Books</Route>
+            <Route>Decor</Route>
+            <Route>Electronics</Route>
+            <Route>Games & Toys</Route>
+            <Route>Housewares</Route>
+            <Route>Jewelry & Accessories</Route>
+            <Route>Miscellaneous</Route>
+            {/* <Route path="/viewAllItems" element={<ViewAllItems />}>
+              View All Items
+            </Route> */}
+
+            <Route path="/login" element={<Login />}>
+              Login
+            </Route>
+            <Route path="/register" element={<Register />}>
+              Register
+            </Route>
+            <Route path="/cart" element={<Cart />}>
+              View Cart
+            </Route>
+          </Routes>
+        </NavBar>
+        Go Team Tchotchke!
+      </BrowserRouter>
     </>
   );
 }

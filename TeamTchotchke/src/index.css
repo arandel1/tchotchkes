@@ -67,3 +67,31 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+/* 
+#navBox {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+#searchBox {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 60vw;
+  margin-left: 0.5vw;
+
+  justify-content: flex-start;
+}
+
+#userBox {
+  position: fixed;
+  right: 0;
+  max-width: 30vw;
+  float: inline-end;
+  justify-content: flex-end;
+}
+
+#itemViews {
+  display: flex;
+  margin-top: 3vh;
+} */
