@@ -1,17 +1,53 @@
-import { useState } from 'react'
-import Login from '../components/login'
-import Register from '../components/register'
-
+import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NavBar from "../components/NavBar";
+import ViewByCategory from "../components/ViewByCategory";
+import ViewAllItems from "../../TeamTchotchke/src/components/ViewAllItems";
+import Login from "../../TeamTchotchke/src/components/Login";
+import Register from "../../TeamTchotchke/src/components/Register";
+import Cart from "../components/Cart";
+import "./App.css";
 
 function App() {
+  const [count, setCount] = useState(0);
 
   return (
     <>
-      <h1>Welcome to Tchotchkes, Knick Knacks, and Oddities</h1>
-      <Register register = { Register }/>
-      <Login login = { Login }/>
+      <BrowserRouter>
+        <NavBar>
+          <Routes>
+            <Route path="/" element={<button>Home</button>}>
+              Home
+            </Route>
+            <Route path="/category" element={<ViewByCategory />}>
+              View by Category
+            </Route>
+            <Route>Books</Route>
+            <Route>Decor</Route>
+            <Route>Electronics</Route>
+            <Route>Games & Toys</Route>
+            <Route>Housewares</Route>
+            <Route>Jewelry & Accessories</Route>
+            <Route>Miscellaneous</Route>
+            {/* <Route path="/viewAllItems" element={<ViewAllItems />}>
+              View All Items
+            </Route> */}
+
+            <Route path="/login" element={<Login />}>
+              Login
+            </Route>
+            <Route path="/register" element={<Register />}>
+              Register
+            </Route>
+            <Route path="/cart" element={<Cart />}>
+              View Cart
+            </Route>
+          </Routes>
+        </NavBar>
+        Go Team Tchotchke!
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
