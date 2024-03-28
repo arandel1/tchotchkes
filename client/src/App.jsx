@@ -5,6 +5,7 @@ import ViewByCategory from "./components/ViewByCategory";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Cart from "./components/Cart";
+import Products from "./components/Products";
 import "./App.css";
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
             </Route>
           </Routes>
         </NavBar>
+        <Products />
         Go Team Tchotchke!
       </BrowserRouter>
     </>
