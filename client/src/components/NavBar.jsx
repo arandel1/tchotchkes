@@ -67,7 +67,7 @@ export default function NavBar() {
             <img
               height="150px"
               margin="15px"
-              src="../src/assets/tchotchke.png"
+              src="../assets/tchotchke.png"
               alt="Tchotchke Home"
             />
           </Link>

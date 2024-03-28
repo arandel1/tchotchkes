@@ -1,17 +1,75 @@
 # Capstone.Tchotchke.GH2401
+
 Capstone Project
 Link to Trello Board:
 https://trello.com/b/PNUsHDcf/capstone-project
 
-*Scrum Master Lineup:*
+_Scrum Master Lineup:_
+
 - 3/21 - 3/31: Allison R.
 - 4/1 - 4/7: Katy B.
 - 4/8 - 4/14: Ali H.
-- 4/15 - 4/21: Kira L. 
+- 4/15 - 4/21: Kira L.
 
-*Installed: *
+_Installed: _
+
 - Nodemon
 - Vite
 - React
 
+# Setup
 
+- create database
+
+```
+createdb acme_talent_agency_db
+```
+
+- install dependencies
+
+```
+npm install && cd client && npm install
+```
+
+- start server in root directory of repository
+
+```
+npm run start:dev
+```
+
+- start vite server in client directory
+
+```
+npm run dev
+```
+
+- to test deployment
+
+```
+cd client && npm run build
+```
+
+browse to localhost:3000 (or whatever server port you used)
+
+- build script for deploy
+
+```
+npm install && cd client && npm run build
+
+```
+
+- start script for deploy
+
+```
+node server/index.js
+
+```
+
+- environment variables for deploy
+
+```
+JWT for jwt secret
+DATABASE_URL for postgres database
+```
+
+- environment variables for deployed site
