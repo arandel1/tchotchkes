@@ -2,9 +2,8 @@ import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import ViewByCategory from "./components/ViewByCategory";
-import ViewAllItems from "../../TeamTchotchke/src/components/ViewAllItems";
-import Login from "../../TeamTchotchke/src/components/Login";
-import Register from "../../TeamTchotchke/src/components/Register";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import Cart from "./components/Cart";
 import "./App.css";
 
