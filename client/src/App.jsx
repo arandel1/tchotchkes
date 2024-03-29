@@ -9,43 +9,39 @@ import Products from "./components/Products";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <BrowserRouter>
-        <NavBar>
-          <Routes>
-            <Route path="/" element={<button>Home</button>}>
-              Home
-            </Route>
-            <Route path="/category" element={<ViewByCategory />}>
-              View by Category
-            </Route>
-            <Route>Books</Route>
-            <Route>Decor</Route>
-            <Route>Electronics</Route>
-            <Route>Games & Toys</Route>
-            <Route>Housewares</Route>
-            <Route>Jewelry & Accessories</Route>
-            <Route>Miscellaneous</Route>
-            {/* <Route path="/viewAllItems" element={<ViewAllItems />}>
-              View All Items
-            </Route> */}
-
-            <Route path="/login" element={<Login />}>
-              Login
-            </Route>
-            <Route path="/register" element={<Register />}>
-              Register
-            </Route>
-            <Route path="/cart" element={<Cart />}>
-              View Cart
-            </Route>
-          </Routes>
-        </NavBar>
-        <Products />
+        <NavBar></NavBar>
+        {/* <Products /> */}
         Go Team Tchotchke!
+        <Routes>
+          <Route path="/" element={<button>Home</button>}>
+            Home
+          </Route>
+          <Route path="/category" element={<ViewByCategory />}>
+            View by Category
+          </Route>
+
+          <Route path="/all" element={<Products />}></Route>
+          <Route path="/books">Books</Route>
+          <Route path="/decor">Decor</Route>
+          <Route path="/electronics">Electronics</Route>
+          <Route path="/gamestoys">Games & Toys</Route>
+          <Route path="/housewares">Housewares</Route>
+          <Route path="/jewelryaccessories">Jewelry & Accessories</Route>
+          <Route path="/miscellaneous">Miscellaneous</Route>
+
+          <Route path="/login" element={<Login />}>
+            Login
+          </Route>
+          <Route path="/register" element={<Register />}>
+            Register
+          </Route>
+          <Route path="/cart" element={<Cart />}>
+            View Cart
+          </Route>
+        </Routes>
       </BrowserRouter>
     </>
   );
