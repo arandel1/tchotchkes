@@ -40,11 +40,6 @@ app.get("/", (req, res) => {
 // TODO - connect to sql
 app.get("/api/products", async (req, res, next) => {
   try {
-    // const SQL = `
-    // SELECT *
-    // FROM products
-    // `;
-    // const response = await client.query(SQL);
     const products = await prisma.products.findMany();
     // console.log(products);
     res.send(products);
@@ -79,7 +74,7 @@ app.patch("/api/products/:productId", async (req, res, next) => {
   }
 });
 
-//USER
+// USER
 // GET Existing Users - TESTED
 //TODO - connect sql and create fetchUsers()
 app.get("/api/users", async (req, res, next) => {
