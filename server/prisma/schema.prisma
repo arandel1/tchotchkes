@@ -20,7 +20,7 @@ model Products {
   imgURL        String
   price         Int
   category_name String
-  rating        Float
+  rating        String
   Orders        Orders[]
 }
 

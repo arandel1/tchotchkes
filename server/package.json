@@ -1,11 +1,13 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server",
-    "start:dev": "nodemon server"
+    "start": "node script.js",
+    "devStart": "nodemon script.js",
+    "seed": "node seed.js"
   },
   "keywords": [],
   "author": "",
