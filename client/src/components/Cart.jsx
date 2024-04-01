@@ -34,11 +34,9 @@ export default function Cart() {
     setCart((currItems) => [...currItems, product]);
   }
 
-  const priceArray = [cart.map((product) => product.price)];
+  const priceArray = cart.map((product) => product.price);
 
   const cartTotal = priceArray.reduce((total, price) => total + price);
-
-  console.log(cartTotal);
 
   return (
     <div className="container">

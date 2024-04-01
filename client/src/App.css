@@ -47,7 +47,7 @@
 
 .product {
   margin-top: 3vh;
-  display: flex;
+  display: grid;
   column-gap: 30px;
   justify-content: space-around;
   margin-bottom: 3vh;
