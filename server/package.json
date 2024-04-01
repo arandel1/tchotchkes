@@ -1,12 +1,14 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node script.js",
-    "devStart": "nodemon script.js",
+    "start": "node index.js",
+    "devStart": "nodemon index.js",
+    "seed": "node seed.js"
+  },
+  "prisma": {
     "seed": "node seed.js"
   },
   "keywords": [],

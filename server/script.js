@@ -314,8 +314,8 @@ async function main() {
   // console.log(products);
 
   // View all users query:
-  const users = await prisma.users.findMany();
-  console.log(users);
+  // const users = await prisma.users.findMany();
+  // console.log(users);
 
   // View all products query:
   // const products = await prisma.products.findMany();

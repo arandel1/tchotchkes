@@ -1,7 +1,7 @@
 const pg = require("pg");
 const client = new pg.Client(
   process.env.DATABASE_URL ||
-    "postgresql://postgres:stevie@localhost:5433/tchotchke_db"
+  "postgresql://alisonhager:bitnet5cry@localhost:5432/tchotchke_db"
 );
 
 const express = require("express");
@@ -9,6 +9,11 @@ const app = express();
 const path = require("path");
 const dummyProducts = require("./dummyProducts");
 const dummyUsers = require("./dummyUsers");
+const dummyOrder = require("./dummyOrder");
+
+// import { PrismaClient } from '@prisma/client'
+const {PrismaClient} = require('@prisma/client');
+const prisma = new PrismaClient()
 
 // TODO - check findUserByToken function
 const isLoggedIn = async (req, res, next) => {
@@ -30,9 +35,33 @@ app.get("/", (req, res) => {
   res.sendFile(rootPath);
 });
 
+// PRODUCTS
 // GET Products - TESTED
 // TODO - connect to sql
 app.get("/api/products", async (req, res, next) => {
+  try {
+    const products = await prisma.products.findMany();
+    // console.log(products);
+    res.send(products);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+app.get("/api/products/:productId", async (req, res, next) => {
+  try {
+    const SQL = `
+    SELECT *
+    FROM products
+    `;
+    const response = await client.query(SQL);
+    res.send(response.rows);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+app.patch("/api/products/:productId", async (req, res, next) => {
   try {
     // const SQL = `
     // SELECT *
@@ -45,18 +74,21 @@ app.get("/api/products", async (req, res, next) => {
   }
 });
 
+// USER
 // GET Existing Users - TESTED
 //TODO - connect sql and create fetchUsers()
 app.get("/api/users", async (req, res, next) => {
   try {
-    res.send(dummyUsers);
+    const users = await prisma.users.findMany();
+    console.log(users);
+    res.send(users);
   } catch (ex) {
     next(ex);
   }
 });
 
 // POST Authenticate Login
-app.post("/api/auth/login", async (req, res, next) => {
+app.post("/api/users/login", async (req, res, next) => {
   try {
     res.send(await authenticate(req.body));
   } catch (ex) {
@@ -65,7 +97,7 @@ app.post("/api/auth/login", async (req, res, next) => {
 });
 
 // POST Authenticate Register
-app.post("/api/auth/register", async (req, res, next) => {
+app.post("/api/users/register", async (req, res, next) => {
   try {
     res.send(await register(req.body));
   } catch (ex) {
@@ -73,9 +105,42 @@ app.post("/api/auth/register", async (req, res, next) => {
   }
 });
 
-app.get("/api/auth/me", async (req, res, next) => {
+//CART - not sure if this is right...
+app.get("/api/cart", async (req, res, next) => {
   try {
-    res.send(req.user);
+    // const SQL = `
+    // SELECT *
+    // FROM cart
+    // `;
+    // const response = await client.query(SQL);
+    res.send(dummyCart);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+app.delete("/api/cart/:cartId", async (req, res, next) => {
+  try {
+    // const SQL = `
+    // SELECT *
+    // FROM cart
+    // `;
+    // const response = await client.query(SQL);
+    res.send(dummyCart);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+//ORDER
+app.get("/api/order", async (req, res, next) => {
+  try {
+    // const SQL = `
+    // SELECT *
+    // FROM order
+    // `;
+    // const response = await client.query(SQL);
+    res.send(dummyOrder);
   } catch (ex) {
     next(ex);
   }
