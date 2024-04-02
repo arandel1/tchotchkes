@@ -1,78 +1,84 @@
-const pg = require("pg");
-const client = new pg.Client(
-  process.env.DATABASE_URL ||
-  "postgresql://alisonhager:bitnet5cry@localhost:5432/tchotchke_db"
-);
-
-const express = require("express");
-const app = express();
-const path = require("path");
-const dummyProducts = require("./dummyProducts");
-const dummyUsers = require("./dummyUsers");
-const dummyOrder = require("./dummyOrder");
+// const pg = require("pg");
+// const client = new pg.Client(
+//   process.env.DATABASE_URL ||
+//   "postgresql://alisonhager:bitnet5cry@localhost:5432/tchotchke_db"
+// );
 
 // import { PrismaClient } from '@prisma/client'
 const {PrismaClient} = require('@prisma/client');
+const express = require('express');
+
 const prisma = new PrismaClient()
+const app = express();
+app.use(express.json())
 
-// TODO - check findUserByToken function
-const isLoggedIn = async (req, res, next) => {
-  try {
-    req.user = await findUserByToken(req.headers.authorization);
-    next();
-  } catch (ex) {
-    next(ex);
-  }
-};
+// // const path = require("path");
+// const dummyProducts = require("./dummyProducts");
+// const dummyUsers = require("./dummyUsers");
+// const dummyOrder = require("./dummyOrder");
 
-// TODO - clarify what this does, update __dirname
-// const assetsFolder = path.join(__dirname, '../client/dist/assets');
-// app.use('/assets', express.static(assetsFolder));
+// // TODO - check findUserByToken function
+// const isLoggedIn = async (req, res, next) => {
+//   try {
+//     req.user = await findUserByToken(req.headers.authorization);
+//     next();
+//   } catch (ex) {
+//     next(ex);
+//   }
+// };
 
-// TODO - update __dirname
-app.get("/", (req, res) => {
-  const rootPath = path.join(__dirname, "../client/dist/index.html");
-  res.sendFile(rootPath);
-});
 
-// PRODUCTS
-// GET Products - TESTED
-// TODO - connect to sql
 app.get("/api/products", async (req, res, next) => {
   try {
     const products = await prisma.products.findMany();
-    // console.log(products);
     res.send(products);
   } catch (ex) {
     next(ex);
   }
 });
 
-app.get("/api/products/:productId", async (req, res, next) => {
+app.get("/api/products/:id", async (req, res, next) => {
   try {
-    const SQL = `
-    SELECT *
-    FROM products
-    `;
-    const response = await client.query(SQL);
-    res.send(response.rows);
+    const { id } = req.params;
+    const product = await prisma.products.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    })
+    res.send(product)
   } catch (ex) {
     next(ex);
   }
 });
 
-app.patch("/api/products/:productId", async (req, res, next) => {
-  try {
-    // const SQL = `
-    // SELECT *
-    // FROM products
-    // `;
-    // const response = await client.query(SQL);
-    res.send(dummyProducts);
-  } catch (ex) {
+// not sure what this does?
+// app.patch("/api/products/:id", async (req, res, next) => {
+//   try {
+//     res.send(dummyProducts);
+//   } catch (ex) {
+//     next(ex);
+//   }
+// });
+
+app.post("/api/products", async (req, res, next) => {
+  try{
+    const { name, desc, imgURL, price, category_name, rating } = req.body;
+    const newProduct = await prisma.product.create({
+      data: {
+        name,
+        desc,
+        imgURL,
+        price,
+        category_name,
+        rating
+      }
+    });
+    res.send(newProduct);
+  } catch(ex){
+    console.error('Error adding new product:');
     next(ex);
   }
-});
+})
 
 // USER
 // GET Existing Users - TESTED
@@ -108,11 +114,6 @@ app.post("/api/users/register", async (req, res, next) => {
 //CART - not sure if this is right...
 app.get("/api/cart", async (req, res, next) => {
   try {
-    // const SQL = `
-    // SELECT *
-    // FROM cart
-    // `;
-    // const response = await client.query(SQL);
     res.send(dummyCart);
   } catch (ex) {
     next(ex);
@@ -121,11 +122,6 @@ app.get("/api/cart", async (req, res, next) => {
 
 app.delete("/api/cart/:cartId", async (req, res, next) => {
   try {
-    // const SQL = `
-    // SELECT *
-    // FROM cart
-    // `;
-    // const response = await client.query(SQL);
     res.send(dummyCart);
   } catch (ex) {
     next(ex);
@@ -135,11 +131,6 @@ app.delete("/api/cart/:cartId", async (req, res, next) => {
 //ORDER
 app.get("/api/order", async (req, res, next) => {
   try {
-    // const SQL = `
-    // SELECT *
-    // FROM order
-    // `;
-    // const response = await client.query(SQL);
     res.send(dummyOrder);
   } catch (ex) {
     next(ex);
@@ -148,7 +139,7 @@ app.get("/api/order", async (req, res, next) => {
 
 const init = async () => {
   console.log("connecting to database");
-  await client.connect();
+  // await client.connect();
   console.log("connected to database");
 };
 init();
