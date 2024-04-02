@@ -1,7 +1,7 @@
 const pg = require("pg");
 const client = new pg.Client(
   process.env.DATABASE_URL ||
-  "postgresql://alisonhager:bitnet5cry@localhost:5432/tchotchke_db"
+    "postgresql://yourname:yourpassword@localhost:5432/tchotchke_db" // This should be filled in with your personal computer credentials in your .env file
 );
 
 const express = require("express");
@@ -12,8 +12,8 @@ const dummyUsers = require("./dummyUsers");
 const dummyOrder = require("./dummyOrder");
 
 // import { PrismaClient } from '@prisma/client'
-const {PrismaClient} = require('@prisma/client');
-const prisma = new PrismaClient()
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
 
 // TODO - check findUserByToken function
 const isLoggedIn = async (req, res, next) => {
