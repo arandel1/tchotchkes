@@ -14,13 +14,13 @@ datasource db {
 }
 
 model Products {
-  id            Int      @id @default(autoincrement())
+  id            Int      @id @default(autoincrement()) //change to uuid and string
   name          String
   desc          String
   imgURL        String
   price         Int
   category_name String
-  rating        String
+  rating        String?
   Orders        Orders[]
 }
 

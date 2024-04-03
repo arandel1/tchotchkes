@@ -1,32 +1,11 @@
-// const pg = require("pg");
-// const client = new pg.Client(
-//   process.env.DATABASE_URL ||
-//   "postgresql://alisonhager:bitnet5cry@localhost:5432/tchotchke_db"
-// );
-
 // import { PrismaClient } from '@prisma/client'
-const {PrismaClient} = require('@prisma/client');
-const express = require('express');
+const { PrismaClient } = require("@prisma/client");
+const { v4: uuidv4 } = require("uuid");
+const express = require("express");
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 const app = express();
-app.use(express.json())
-
-// // const path = require("path");
-// const dummyProducts = require("./dummyProducts");
-// const dummyUsers = require("./dummyUsers");
-// const dummyOrder = require("./dummyOrder");
-
-// // TODO - check findUserByToken function
-// const isLoggedIn = async (req, res, next) => {
-//   try {
-//     req.user = await findUserByToken(req.headers.authorization);
-//     next();
-//   } catch (ex) {
-//     next(ex);
-//   }
-// };
-
+app.use(express.json());
 
 app.get("/api/products", async (req, res, next) => {
   try {
@@ -44,94 +23,94 @@ app.get("/api/products/:id", async (req, res, next) => {
       where: {
         id: parseInt(id),
       },
-    })
-    res.send(product)
+    });
+    res.send(product);
   } catch (ex) {
     next(ex);
   }
 });
 
-// not sure what this does?
-// app.patch("/api/products/:id", async (req, res, next) => {
+// app.post("/api/products", async (req, res, next) => {
+//   const uuid = uuidv4();
 //   try {
-//     res.send(dummyProducts);
+//     const { id, name, desc, imgURL, price, category_name } = req.body;
+//     if (!name || !desc || !imgURL || !price || !category_name) {
+//       return res.status(400).send("Missing required fields");
+//     }
+//     const newProduct = await prisma.products.create({
+//       data: {
+//         id,
+//         name,
+//         desc,
+//         imgURL,
+//         price,
+//         category_name,
+//       },
+//     });
+//     res.send(newProduct);
 //   } catch (ex) {
+//     console.error("Error adding new product:");
 //     next(ex);
 //   }
 // });
 
-app.post("/api/products", async (req, res, next) => {
-  try{
-    const { name, desc, imgURL, price, category_name, rating } = req.body;
-    const newProduct = await prisma.product.create({
-      data: {
-        name,
-        desc,
-        imgURL,
-        price,
-        category_name,
-        rating
-      }
-    });
-    res.send(newProduct);
-  } catch(ex){
-    console.error('Error adding new product:');
-    next(ex);
-  }
-})
-
-// USER
-// GET Existing Users - TESTED
-//TODO - connect sql and create fetchUsers()
 app.get("/api/users", async (req, res, next) => {
   try {
     const users = await prisma.users.findMany();
-    console.log(users);
     res.send(users);
   } catch (ex) {
     next(ex);
   }
 });
 
-// POST Authenticate Login
-app.post("/api/users/login", async (req, res, next) => {
+//creating a new user
+app.post("/api/users", async (req, res, next) => {
   try {
-    res.send(await authenticate(req.body));
+    const { name, email, password } = req.body;
+    const newUser = await prisma.users.create({
+      data: {
+        name,
+        email,
+        password,
+        isAdmin: false
+      }
+    });
+    console.log(newUser);
+    res.send(newUser);
   } catch (ex) {
     next(ex);
   }
 });
 
-// POST Authenticate Register
-app.post("/api/users/register", async (req, res, next) => {
-  try {
-    res.send(await register(req.body));
-  } catch (ex) {
-    next(ex);
-  }
-});
+app.get("/login", (req, res) => {});
 
-//CART - not sure if this is right...
-app.get("/api/cart", async (req, res, next) => {
-  try {
-    res.send(dummyCart);
-  } catch (ex) {
-    next(ex);
-  }
-});
-
-app.delete("/api/cart/:cartId", async (req, res, next) => {
-  try {
-    res.send(dummyCart);
-  } catch (ex) {
-    next(ex);
-  }
-});
-
-//ORDER
 app.get("/api/order", async (req, res, next) => {
   try {
-    res.send(dummyOrder);
+    const orders = await prisma.orders.findMany();
+    res.send(orders);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+app.get("/api/cart", async (req, res, next) => {
+  try {
+    const cart = await prisma.cart.findMany();
+    res.send(cart);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+app.delete("/api/cart/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deleteCartItem = await prisma.cart.delete({
+      where: {
+        id: parseInt(id),
+      },
+    });
+    res.send(deleteCartItem);
   } catch (ex) {
     next(ex);
   }
