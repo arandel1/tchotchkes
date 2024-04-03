@@ -13,6 +13,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Users {
+  id       String   @id @default(uuid())
+  name     String
+  email    String   @unique
+  password String
+  isAdmin  Boolean  @default(false)
+  userId   String   @db.Uuid
+  Orders   Orders[]
+  Cart     Cart[]
+}
+
 model Products {
   id            Int      @id @default(autoincrement())
   name          String
@@ -20,24 +31,25 @@ model Products {
   imgURL        String
   price         Int
   category_name String
-  rating        String
   Orders        Orders[]
 }
 
-model Users {
-  id       Int      @id @default(autoincrement())
-  name     String
-  email    String
-  password String
-  Orders   Orders[]
+model Orders {
+  id           Int      @id @default(autoincrement())
+  userId       String   @unique
+  user         Users    @relation(fields: [userId], references: [id])
+  product      Products @relation(fields: [productsId], references: [id])
+  total        Int
+  purchaseDate DateTime
+  Cart         Cart[]
+  productsId   Int
 }
 
-model Orders {
-  id                   Int      @id @default(autoincrement())
-  customer             Users    @relation(fields: [usersId], references: [id])
-  item                 Products @relation(fields: [productsId], references: [id])
-  purchase_total       Int
-  purchase_create_date DateTime
-  usersId              Int
-  productsId           Int
+model Cart {
+  id       Int     @id @default(autoincrement())
+  userId   String  @unique
+  user     Users   @relation(fields: [userId], references: [id])
+  Orders   Orders? @relation(fields: [ordersId], references: [id])
+  ordersId Int?
+  usersId  String
 }
