@@ -15,7 +15,6 @@ function Products() {
 
   }, [])
 
-  
   // const products = [
   //   {
   //     id: 1,
@@ -320,7 +319,7 @@ function Products() {
                   console.log(product);
                 }}
               >
-                Add to Cart
+                View Details
               </a>
             </div>
           </div>

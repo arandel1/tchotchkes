@@ -60,6 +60,11 @@ button:focus-visible {
   align-items: center;
 }
 
+.card{
+  border: solid black 2px;
+  
+}
+
 form {
   display: flex;
   flex-direction: column;
