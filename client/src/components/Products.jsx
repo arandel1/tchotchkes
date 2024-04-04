@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-const baseUrl = 'http://localhost:8080/';
 
 async function Products() {
+  const baseUrl = 'http://localhost:8080/';
   const response = await fetch(`${baseUrl}api/products`);
   const products = await response.json();
+  
   console.log("this is products: ", products)
 
   
