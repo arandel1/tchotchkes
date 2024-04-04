@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Products() {
-  let products = [
+  const products = [
     {
       id: 1,
       name: "Aero Transistor Radio",
