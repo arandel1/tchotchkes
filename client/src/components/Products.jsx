@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-
-async function Products() {
-  const baseUrl = 'http://localhost:8080/';
-  const response = await fetch(`${baseUrl}api/products`);
-  const products = await response.json();
+function Products() {
   
-  console.log("this is products: ", products)
+
+  useEffect(()=> {
+    async function getProducts(){
+      const baseUrl = 'http://localhost:8080/';
+      const response = await fetch(`${baseUrl}api/products`);
+      const apiProducts = await response.json();
+      setProducts(apiProducts);
+    }
+
+    getProducts();
+
+  }, [])
 
   
   // const products = [
@@ -281,12 +288,14 @@ async function Products() {
   //     category_name: "Books",
   //   },
   // ];
-  // const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [products, setProducts] = useState([]);
 
   return (
     <>
       <h2>Product List</h2>
-      {/* {products.length === 0 && <p>No inventory</p>}
+      {products.length === 0 && <p>No inventory</p>}
 
       <div className="card" style={{ width: "18rem" }}>
         {products.map((product, index) => (
@@ -297,9 +306,9 @@ async function Products() {
               alt={product.name}
             ></img>
             <div className="card-body">
-              <h5 className="card-title">{product.name}</h5> */}
+              <h5 className="card-title">{product.name}</h5>
               {/* <p className="card-text">{product.desc}</p> */}
-              {/* <a
+              <a
                 href="#"
                 className={
                   selectedIndex === index
@@ -316,7 +325,7 @@ async function Products() {
             </div>
           </div>
         ))}
-      </div> */}
+      </div>
     </>
   );
 }
