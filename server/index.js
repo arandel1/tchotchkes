@@ -1,11 +1,19 @@
 // import { PrismaClient } from '@prisma/client'
 const { PrismaClient } = require("@prisma/client");
-const { v4: uuidv4 } = require("uuid");
-const express = require("express");
-
 const prisma = new PrismaClient();
+// const { v4: uuidv4 } = require("uuid");
+const express = require("express");
 const app = express();
 app.use(express.json());
+
+const dummyOrder = require("./dummyOrder")
+const dummyCart = require("./dummyCart")
+
+// const bcrypt = require('bcrypt');
+
+app.get('/', async(req, res)=>{
+  res.send('TODO - this will be our application');
+});
 
 app.get("/api/products", async (req, res, next) => {
   try {
@@ -56,14 +64,13 @@ app.get("/api/products/:id", async (req, res, next) => {
 
 app.get("/api/users", async (req, res, next) => {
   try {
-    const users = await prisma.users.findMany();
-    res.send(users);
+    const allUsers = await prisma.users.findMany();
+    res.status(200).json(allUsers);
   } catch (ex) {
     next(ex);
   }
 });
 
-//creating a new user
 app.post("/api/users", async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
@@ -71,23 +78,22 @@ app.post("/api/users", async (req, res, next) => {
       data: {
         name,
         email,
-        password,
-        isAdmin: false
+        password
       }
     });
     console.log(newUser);
-    res.send(newUser);
+    res.status(201).send(newUser);
   } catch (ex) {
     next(ex);
   }
 });
 
-app.get("/login", (req, res) => {});
+app.get("api/users/login", (req, res) => {});
 
 app.get("/api/order", async (req, res, next) => {
   try {
-    const orders = await prisma.orders.findMany();
-    res.send(orders);
+    // const orders = await prisma.orders.findMany();
+    res.send(dummyOrder);
   } catch (ex) {
     next(ex);
   }
@@ -95,8 +101,8 @@ app.get("/api/order", async (req, res, next) => {
 
 app.get("/api/cart", async (req, res, next) => {
   try {
-    const cart = await prisma.cart.findMany();
-    res.send(cart);
+    // const cart = await prisma.cart.findMany();
+    res.send(dummyCart);
   } catch (ex) {
     next(ex);
   }
@@ -118,7 +124,7 @@ app.delete("/api/cart/:id", async (req, res, next) => {
 
 const init = async () => {
   console.log("connecting to database");
-  // await client.connect();
+  // await prisma.connect();
   console.log("connected to database");
 };
 init();
@@ -126,5 +132,5 @@ init();
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
+  console.log(`REST API server ready at http://localhost:${PORT}`);
 });

@@ -31,4 +31,6 @@ const dummyOrder = [
     order_create_date: "2024-04-02",
     order_status: "Paid"
     }
-]
+];
+
+module.exports = dummyOrder
