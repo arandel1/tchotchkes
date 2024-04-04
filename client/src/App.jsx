@@ -44,6 +44,7 @@ function App() {
             </Route>
           </Routes>
         </NavBar>
+        <Login />
         <Products />
         Go Team Tchotchke!
       </BrowserRouter>
