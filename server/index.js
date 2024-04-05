@@ -6,13 +6,13 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
-const dummyOrder = require("./dummyOrder")
-const dummyCart = require("./dummyCart")
+const dummyOrder = require("./dummyOrder");
+const dummyCart = require("./dummyCart");
 
 // const bcrypt = require('bcrypt');
 
-app.get('/', async(req, res)=>{
-  res.send('TODO - this will be our application');
+app.get("/", async (req, res) => {
+  res.send("TODO - this will be our application");
 });
 
 app.get("/api/products", async (req, res, next) => {
@@ -71,15 +71,15 @@ app.get("/api/users", async (req, res, next) => {
   }
 });
 
-app.post("/api/users", async (req, res, next) => {
+app.post("/api/users/register", async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
     const newUser = await prisma.users.create({
       data: {
         name,
         email,
-        password
-      }
+        password,
+      },
     });
     console.log(newUser);
     res.status(201).send(newUser);
@@ -124,10 +124,17 @@ app.delete("/api/cart/:id", async (req, res, next) => {
 
 const init = async () => {
   console.log("connecting to database");
-  // await prisma.connect();
+  await prisma.$connect();
   console.log("connected to database");
 };
-init();
+
+init()
+  .catch((e) => {
+    console.error(e);
+  })
+  .finally(async () => {
+    await prisma.$disconnect;
+  });
 
 const PORT = process.env.PORT || 8080;
 
