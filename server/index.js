@@ -1,3 +1,7 @@
+// import { PrismaClient } from '@prisma/client'
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
+// const { v4: uuidv4 } = require("uuid");
 // ROUTES
 
 const pg = require("pg");
@@ -8,144 +12,122 @@ const client = new pg.Client(
 
 const express = require("express");
 const app = express();
-const path = require("path");
-const dummyProducts = require("./dummyProducts");
-const dummyUsers = require("./dummyUsers");
+app.use(express.json());
+
 const dummyOrder = require("./dummyOrder");
+const dummyCart = require("./dummyCart");
+
+// const bcrypt = require('bcrypt');
 const cors = require("cors");
 
 app.use(cors());
 
-// import { PrismaClient } from '@prisma/client'
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
-
-// TODO - check findUserByToken function
-const isLoggedIn = async (req, res, next) => {
-  try {
-    req.user = await findUserByToken(req.headers.authorization);
-    next();
-  } catch (ex) {
-    next(ex);
-  }
-};
-
-// TODO - clarify what this does, update __dirname
-// const assetsFolder = path.join(__dirname, '../client/dist/assets');
-// app.use('/assets', express.static(assetsFolder));
-
-// TODO - update __dirname
-app.get("/", (req, res) => {
-  const rootPath = path.join(__dirname, "../client/dist/index.html");
-  res.sendFile(rootPath);
+app.get("/", async (req, res) => {
+  res.send("TODO - this will be our application");
 });
 
-// PRODUCTS
-// GET Products - TESTED
-// TODO - connect to sql
 app.get("/api/products", async (req, res, next) => {
   try {
     const products = await prisma.products.findMany();
-    // console.log(products);
     res.send(products);
   } catch (ex) {
     next(ex);
   }
 });
 
-app.get("/api/products/:productId", async (req, res, next) => {
+app.get("/api/products/:id", async (req, res, next) => {
   try {
-    const SQL = `
-    SELECT *
-    FROM products
-    `;
-    const response = await client.query(SQL);
-    res.send(response.rows);
+    const { id } = req.params;
+    const product = await prisma.products.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    });
+    res.send(product);
   } catch (ex) {
     next(ex);
   }
 });
 
-app.patch("/api/products/:productId", async (req, res, next) => {
-  try {
-    // const SQL = `
-    // SELECT *
-    // FROM products
-    // `;
-    // const response = await client.query(SQL);
-    res.send(dummyProducts);
-  } catch (ex) {
-    next(ex);
-  }
-});
+// app.post("/api/products", async (req, res, next) => {
+//   const uuid = uuidv4();
+//   try {
+//     const { id, name, desc, imgURL, price, category_name } = req.body;
+//     if (!name || !desc || !imgURL || !price || !category_name) {
+//       return res.status(400).send("Missing required fields");
+//     }
+//     const newProduct = await prisma.products.create({
+//       data: {
+//         id,
+//         name,
+//         desc,
+//         imgURL,
+//         price,
+//         category_name,
+//       },
+//     });
+//     res.send(newProduct);
+//   } catch (ex) {
+//     console.error("Error adding new product:");
+//     next(ex);
+//   }
+// });
 
-// USER
-// GET Existing Users - TESTED
-//TODO - connect sql and create fetchUsers()
 app.get("/api/users", async (req, res, next) => {
   try {
-    const users = await prisma.users.findMany();
-    console.log(users);
-    res.send(users);
+    const allUsers = await prisma.users.findMany();
+    res.status(200).json(allUsers);
   } catch (ex) {
     next(ex);
   }
 });
 
-// POST Authenticate Login
-app.post("/api/users/login", async (req, res, next) => {
-  try {
-    res.send(await authenticate(req.body));
-  } catch (ex) {
-    next(ex);
-  }
-});
-
-// POST Authenticate Register
 app.post("/api/users/register", async (req, res, next) => {
   try {
-    res.send(await register(req.body));
+    const { name, email, password } = req.body;
+    const newUser = await prisma.users.create({
+      data: {
+        name,
+        email,
+        password,
+      },
+    });
+    console.log(newUser);
+    res.status(201).send(newUser);
   } catch (ex) {
     next(ex);
   }
 });
 
-//CART - not sure if this is right...
-app.get("/api/cart", async (req, res, next) => {
-  try {
-    // const SQL = `
-    // SELECT *
-    // FROM cart
-    // `;
-    // const response = await client.query(SQL);
-    res.send(dummyCart);
-  } catch (ex) {
-    next(ex);
-  }
-});
+app.get("api/users/login", (req, res) => {});
 
-app.delete("/api/cart/:cartId", async (req, res, next) => {
-  try {
-    // const SQL = `
-    // SELECT *
-    // FROM cart
-    // `;
-    // const response = await client.query(SQL);
-    res.send(dummyCart);
-  } catch (ex) {
-    next(ex);
-  }
-});
-
-//ORDER
 app.get("/api/order", async (req, res, next) => {
   try {
-    // const SQL = `
-    // SELECT *
-    // FROM order
-    // `;
-    // const response = await client.query(SQL);
+    // const orders = await prisma.orders.findMany();
     res.send(dummyOrder);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+app.get("/api/cart", async (req, res, next) => {
+  try {
+    // const cart = await prisma.cart.findMany();
+    res.send(dummyCart);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+app.delete("/api/cart/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deleteCartItem = await prisma.cart.delete({
+      where: {
+        id: parseInt(id),
+      },
+    });
+    res.send(deleteCartItem);
   } catch (ex) {
     next(ex);
   }
@@ -153,13 +135,20 @@ app.get("/api/order", async (req, res, next) => {
 
 const init = async () => {
   console.log("connecting to database");
-  await client.connect();
+  await prisma.$connect();
   console.log("connected to database");
 };
-init();
+
+init()
+  .catch((e) => {
+    console.error(e);
+  })
+  .finally(async () => {
+    await prisma.$disconnect;
+  });
 
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
+  console.log(`REST API server ready at http://localhost:${PORT}`);
 });
