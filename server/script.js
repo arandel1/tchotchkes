@@ -1,10 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
 async function main() {
   // Prisma Client queries go here
-
   // Add user query:
   // const users = await prisma.users.createMany({
   //   data: [
@@ -35,7 +34,6 @@ async function main() {
   //   ],
   // });
   // console.log(users);
-
   //Add products query:
   // const products = await prisma.products.createMany({
   //   data: [
@@ -312,11 +310,9 @@ async function main() {
   //   ],
   // });
   // console.log(products);
-
   // View all users query:
   // const users = await prisma.users.findMany();
   // console.log(users);
-
   // View all products query:
   // const products = await prisma.products.findMany();
   // console.log(products);

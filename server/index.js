@@ -2,6 +2,14 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 // const { v4: uuidv4 } = require("uuid");
+// ROUTES
+
+const pg = require("pg");
+const client = new pg.Client(
+  process.env.DATABASE_URL ||
+    "postgresql://yourname:yourpassword@localhost:5433/tchotchke_db" // This should be filled in with your personal computer credentials in your .env file
+);
+
 const express = require("express");
 const app = express();
 app.use(express.json());
@@ -10,6 +18,9 @@ const dummyOrder = require("./dummyOrder");
 const dummyCart = require("./dummyCart");
 
 // const bcrypt = require('bcrypt');
+const cors = require("cors");
+
+app.use(cors());
 
 app.get("/", async (req, res) => {
   res.send("TODO - this will be our application");
