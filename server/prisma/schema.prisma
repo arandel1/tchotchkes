@@ -36,12 +36,12 @@ model Users {
 model Orders {
   id           String   @id @default(uuid())
   userId       String   @db.Uuid
+  productsId   Int
   Users        Users    @relation(fields: [userId], references: [id])
   product      Products @relation(fields: [productsId], references: [id])
   total        Int
   purchaseDate DateTime
   Cart         Cart[]
-  productsId   Int
 }
 
 model Cart {

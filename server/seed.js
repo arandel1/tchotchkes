@@ -3,30 +3,30 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 async function seedDatabase() {
-  const users = await prisma.users.createMany({
-    data: [
-      {
-        name: "Tony Soprano",
-        email: "tony@badabing.com",
-        password: "bakedziti",
-      },
-      {
-        name: "Beyonce Knowles",
-        email: "beyonce@beyonce.com",
-        password: "texas",
-      },
-      {
-        name: "Wednesday Addams",
-        email: "wednesday@addams.com",
-        password: "gothgirl",
-      },
-      {
-        name: "Walter White",
-        email: "walter@white.com",
-        password: "heisenberg",
-      },
-    ],
-  });
+  // const users = await prisma.users.createMany({
+  //   data: [
+  //     {
+  //       name: "Tony Soprano",
+  //       email: "tony@badabing.com",
+  //       password: "bakedziti",
+  //     },
+  //     {
+  //       name: "Beyonce Knowles",
+  //       email: "beyonce@beyonce.com",
+  //       password: "texas",
+  //     },
+  //     {
+  //       name: "Wednesday Addams",
+  //       email: "wednesday@addams.com",
+  //       password: "gothgirl",
+  //     },
+  //     {
+  //       name: "Walter White",
+  //       email: "walter@white.com",
+  //       password: "heisenberg",
+  //     },
+  //   ],
+  // });
 
   // const products = await prisma.products.createMany({
   //   data: [
@@ -273,8 +273,20 @@ async function seedDatabase() {
   //   ],
   // });
 
-  console.log("Seed data created successfully");
+  const orders = await prisma.orders.create({
+    data: {
+      userId: "662ce925-2d82-4e6b-b194-a3b380a7d3b2",
+      productsId: 1,
+      total: 75,
+      purchaseDate: new Date("2024-04-04T16:38:15.577Z"),
+    },
+  });
+  console.log(productsId);
+
+  console.log(orders);
 }
+
+console.log("Seed data created successfully");
 
 seedDatabase()
   .catch((error) => {
