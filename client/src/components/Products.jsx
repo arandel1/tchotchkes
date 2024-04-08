@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
 
 function Products() {
-  
-
-  useEffect(()=> {
-    async function getProducts(){
-      const baseUrl = 'http://localhost:8080/';
+  useEffect(() => {
+    async function getProducts() {
+      const baseUrl = "http://localhost:8080/";
       const response = await fetch(`${baseUrl}api/products`);
       const apiProducts = await response.json();
       setProducts(apiProducts);
     }
 
     getProducts();
-
-  }, [])
+  }, []);
 
   // const products = [
   //   {

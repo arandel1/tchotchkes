@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 const pg = require("pg");
 const client = new pg.Client(
   process.env.DATABASE_URL ||
-    "postgresql://yourname:yourpassword@localhost:5433/tchotchke_db" // This should be filled in with your personal computer credentials in your .env file
+    "postgresql://alisonhager:bitnet5cry@localhost:5433/tchotchke_db" // This should be filled in with your personal computer credentials in your .env file
 );
 
 const express = require("express");
@@ -19,14 +19,13 @@ const dummyCart = require("./dummyCart");
 
 // const bcrypt = require('bcrypt');
 const cors = require("cors");
-
 app.use(cors());
 
 app.get("/", async (req, res) => {
   res.send("TODO - this will be our application");
 });
 
-app.get("/api/products", async (req, res, next) => {
+app.get("/products", async (req, res, next) => {
   try {
     const products = await prisma.products.findMany();
     res.send(products);
@@ -35,7 +34,7 @@ app.get("/api/products", async (req, res, next) => {
   }
 });
 
-app.get("/api/products/:id", async (req, res, next) => {
+app.get("/products/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const product = await prisma.products.findUnique({
@@ -49,7 +48,7 @@ app.get("/api/products/:id", async (req, res, next) => {
   }
 });
 
-// app.post("/api/products", async (req, res, next) => {
+// app.post("/products", async (req, res, next) => {
 //   const uuid = uuidv4();
 //   try {
 //     const { id, name, desc, imgURL, price, category_name } = req.body;
@@ -68,12 +67,12 @@ app.get("/api/products/:id", async (req, res, next) => {
 //     });
 //     res.send(newProduct);
 //   } catch (ex) {
-//     console.error("Error adding new product:");
+//     console.error("Error adding new product");
 //     next(ex);
 //   }
 // });
 
-app.get("/api/users", async (req, res, next) => {
+app.get("/users", async (req, res, next) => {
   try {
     const allUsers = await prisma.users.findMany();
     res.status(200).json(allUsers);
@@ -82,26 +81,35 @@ app.get("/api/users", async (req, res, next) => {
   }
 });
 
-app.post("/api/users/register", async (req, res, next) => {
+app.post("/users/register", async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
+    if (!name || !email || !password) {
+      return res.status(400).send("Missing required fields");
+    }
+
     const newUser = await prisma.users.create({
       data: {
         name,
         email,
-        password,
+        password
       },
     });
     console.log(newUser);
     res.status(201).send(newUser);
-  } catch (ex) {
-    next(ex);
+
+  } catch (error) {
+    if (error.code === 'P2002' && error.meta.target.includes('email')){
+      return res.status(400).send("Email already exists");
+    }
+    console.error('Error registering user:', error);
+    res.status(500).send('Internal Server Error');
   }
 });
 
-app.get("api/users/login", (req, res) => {});
+app.get("/users/login", (req, res) => {});
 
-app.get("/api/order", async (req, res, next) => {
+app.get("/order", async (req, res, next) => {
   try {
     // const orders = await prisma.orders.findMany();
     res.send(dummyOrder);
@@ -110,7 +118,7 @@ app.get("/api/order", async (req, res, next) => {
   }
 });
 
-app.get("/api/cart", async (req, res, next) => {
+app.get("/cart", async (req, res, next) => {
   try {
     // const cart = await prisma.cart.findMany();
     res.send(dummyCart);
@@ -119,15 +127,66 @@ app.get("/api/cart", async (req, res, next) => {
   }
 });
 
-app.delete("/api/cart/:id", async (req, res, next) => {
+app.post("/cart/add", async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const deleteCartItem = await prisma.cart.delete({
+    const { productId, userId } = req.body;
+    if (!productId || !userId) {
+      return res.status(400).send("Invalid request data to cart");
+    }
+    const product = await prisma.product.findUnique({
+      where: { id: productId },
+    });
+    if (!product) {
+      return res.send(404).send("Product not found");
+    }
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+    const cartItem = await prisma.cartItem.create({
+      data: {
+        productId: productId,
+        userId: userId,
+        },
+      });
+    res.status(201).json(cartItem);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+app.delete("/cart/remove", async (req, res, next) => {
+  try {
+    const { productId, userId } = req.body;
+    if (!productId || !userId){
+      return res.status(400).send('Invalid request data to remove product from cart')
+    }
+
+    const user = await prisma.user.findUnique({
+      where: {id: userId}
+    });
+    if(!user){
+      return res.status(404).send('User not found');
+    }
+
+    const cartItem = await prisma.cartItem.findFirst({
+      where:{
+        userId: userId,
+        productId: productId
+      }
+    });
+    if(!cartItem){
+      return res.status(404).send('Product not found in user cart');
+    }
+
+    await prisma.cart.delete({
       where: {
-        id: parseInt(id),
+        id: cartItem.id
       },
     });
-    res.send(deleteCartItem);
+    res.status(200).send('Product removed from user cart');
   } catch (ex) {
     next(ex);
   }
