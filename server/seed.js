@@ -275,13 +275,12 @@ async function seedDatabase() {
 
   const orders = await prisma.orders.create({
     data: {
-      userId: "662ce925-2d82-4e6b-b194-a3b380a7d3b2",
-      productsId: 1,
-      total: 75,
+      usersId: 2,
+      productsId: 10,
+      total: 50,
       purchaseDate: new Date("2024-04-04T16:38:15.577Z"),
     },
   });
-  console.log(productsId);
 
   console.log(orders);
 }
