@@ -107,9 +107,13 @@ app.post("/users/register", async (req, res, next) => {
   }
 });
 
+<<<<<<< HEAD
 app.post("/users/login", (req, res) => {
   
 });
+=======
+app.get("/users/login", (req, res) => {});
+>>>>>>> de82ad9 (Added initial implementation of login route)
 
 app.get("/order", async (req, res, next) => {
   try {
