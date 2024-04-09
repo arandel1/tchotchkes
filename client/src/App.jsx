@@ -13,7 +13,7 @@ import "./App.css";
 function App() {
   const [products, setProducts] = useState([]);
 
-
+// GET ALL PRODUCTS FROM API
   useEffect(()=> {
     async function getProducts(){
       const baseUrl = 'http://localhost:8080/';
