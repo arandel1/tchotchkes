@@ -40,7 +40,7 @@ function App() {
             <Route path="/" element={<button>Home</button>}>
               Home
             </Route>
-            <Route path="/api/products" element = {<Products/>}>View All</Route>
+            <Route path="/products" element = {<Products/>}>View All</Route>
             <Route path="/category" element={<ViewByCategory />}>
               View by Category
             </Route>
@@ -64,26 +64,26 @@ function App() {
             <Route path="/cart" element={<Cart />}>
               View Cart
             </Route>
-            <Route path="/api/products" element = {<Products/>}>View All</Route>
+            {/* <Route path="/products" element = {<Products/>}>View All</Route> */}
           </Routes>
         </NavBar>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h3>:::Carousel of "new" items placeholder:::</h3>
        
-        <Login />
-        <Routes>        
-          <Route path="product/:productId" element={<ViewDetails products={products} />} /> 
-        </Routes>
-        <Products products={products}/>
+        {/* <Login /> */}
+        {/* <Products products={products}/> */}
+        {/* <Products /> */}
+        {/* Go Team Tchotchke! */}
 
-        <Products />
-        Go Team Tchotchke!
         <Routes>
-          <Route path="/" element={<button>Home</button>}>
-            Home
-          </Route>
-          <Route path="/category" element={<ViewByCategory />}>
-            View by Category
-          </Route>
-
+          <Route path="/" element={<button>Home</button>}> Home </Route>
+          <Route path="/category" element={<ViewByCategory />}> View by Category </Route>
           <Route path="/all" element={<Products />}></Route>
           <Route path="/books">Books</Route>
           <Route path="/decor">Decor</Route>
@@ -92,18 +92,14 @@ function App() {
           <Route path="/housewares">Housewares</Route>
           <Route path="/jewelryaccessories">Jewelry & Accessories</Route>
           <Route path="/miscellaneous">Miscellaneous</Route>
-
-          <Route path="/login" element={<Login />}>
-            Login
-          </Route>
-          <Route path="/register" element={<Register />}>
-            Register
-          </Route>
-          <Route path="/cart" element={<Cart />}>
-            View Cart
-          </Route>
+          <Route path="/login" element={<Login />}> Login </Route>
+          <Route path="/register" element={<Register />}> Register </Route>
+          <Route path="/cart" element={<Cart />}> View Cart </Route>
+          <Route path="/products" element={<Products />}> View All </Route>
+          <Route path="products/:productId" element={<ViewDetails products={products} />} /> 
         </Routes>
       </BrowserRouter>
+
     </>
   );
 }

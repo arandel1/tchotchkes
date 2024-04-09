@@ -92,22 +92,25 @@ export default function NavBar() {
               </div>
             </div>
           </Box>
+          
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Button component={Link} to="/products" style={{ color: "white" }}>
+              View All
+            </Button>
             <Button component={Link} to="/login" style={{ color: "white" }}>
               Login
             </Button>
-            <Link to="/register">
-              <button>Register</button>
-            </Link>
-            <Link to="/cart">
-              <button>
+            <Button component={Link} to="/register" style={{ color: "white" }}>
+              Register
+            </Button>
+            
+            <Button component={Link} to="/cart" style={{ color: "white" }}>
                 View Cart{" "}
                 <ShoppingCartIcon
                   sx={{ marginLeft: "5px", fontSize: "medium" }}
                 />
-              </button>
-            </Link>
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
