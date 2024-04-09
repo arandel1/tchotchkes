@@ -6,6 +6,8 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import Button from "@mui/material/Button";
+
 import ViewByCategory from "./ViewByCategory";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
@@ -92,22 +94,20 @@ export default function NavBar() {
           </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <div id="userBox">
-              <Link to="/login">
-                <button>Login</button>
-              </Link>
-              <Link to="/register">
-                <button>Register</button>
-              </Link>
-              <Link to="/cart">
-                <button>
-                  View Cart{" "}
-                  <ShoppingCartIcon
-                    sx={{ marginLeft: "5px", fontSize: "medium" }}
-                  />
-                </button>
-              </Link>
-            </div>
+            <Button component={Link} to="/login" style={{ color: "white" }}>
+              Login
+            </Button>
+            <Link to="/register">
+              <button>Register</button>
+            </Link>
+            <Link to="/cart">
+              <button>
+                View Cart{" "}
+                <ShoppingCartIcon
+                  sx={{ marginLeft: "5px", fontSize: "medium" }}
+                />
+              </button>
+            </Link>
           </Box>
         </Toolbar>
       </AppBar>

@@ -74,6 +74,35 @@ function App() {
         </Routes>
         <Products products={products}/>
 
+        <Products />
+        Go Team Tchotchke!
+        <Routes>
+          <Route path="/" element={<button>Home</button>}>
+            Home
+          </Route>
+          <Route path="/category" element={<ViewByCategory />}>
+            View by Category
+          </Route>
+
+          <Route path="/all" element={<Products />}></Route>
+          <Route path="/books">Books</Route>
+          <Route path="/decor">Decor</Route>
+          <Route path="/electronics">Electronics</Route>
+          <Route path="/gamestoys">Games & Toys</Route>
+          <Route path="/housewares">Housewares</Route>
+          <Route path="/jewelryaccessories">Jewelry & Accessories</Route>
+          <Route path="/miscellaneous">Miscellaneous</Route>
+
+          <Route path="/login" element={<Login />}>
+            Login
+          </Route>
+          <Route path="/register" element={<Register />}>
+            Register
+          </Route>
+          <Route path="/cart" element={<Cart />}>
+            View Cart
+          </Route>
+        </Routes>
       </BrowserRouter>
     </>
   );

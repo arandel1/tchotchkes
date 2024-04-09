@@ -41,3 +41,19 @@
   color: #888;
 }
 
+
+.container {
+  margin-top: 25vh;
+}
+
+.product {
+  margin-top: 3vh;
+  display: grid;
+  column-gap: 30px;
+  justify-content: space-around;
+  margin-bottom: 3vh;
+}
+
+h4 {
+}
+
