@@ -2,21 +2,21 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 const ViewDetails = ({ products }) => {
+  const navigate = useNavigate();
   const params = useParams();
   const id = +params.productId;
   const product = products.find(product => product.id === id);
   if(!product){
     return <div>Product not found</div>;
   }
-  
-  const navigate = useNavigate();
+
 
   return(
     <>
-      <div classname='single-product-container'>
+      <div className='single-product-container'>
         <h2>{product.name}</h2>
         <p>{product.desc}</p>
-        <img classname = 'product-image' src={product.imgURL} alt = 'product image'/>
+        <img className = 'product-image' src={product.imgURL} alt = 'product image'/>
         <button onClick = {() => navigate(`/products`)}>Back to All Products</button>
         <button onClick={()=> navigate(`/order`)}>Order</button>
       </div>

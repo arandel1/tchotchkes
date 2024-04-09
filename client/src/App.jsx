@@ -40,6 +40,7 @@ function App() {
             <Route path="/" element={<button>Home</button>}>
               Home
             </Route>
+            <Route path="/api/products" element = {<Products/>}>View All</Route>
             <Route path="/category" element={<ViewByCategory />}>
               View by Category
             </Route>
@@ -63,14 +64,22 @@ function App() {
             <Route path="/cart" element={<Cart />}>
               View Cart
             </Route>
-            
+            <Route path="/api/products" element = {<Products/>}>View All</Route>
           </Routes>
         </NavBar>
+       
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        
         <Login />
         <Routes>        
           <Route path="product/:productId" element={<ViewDetails products={products} />} /> 
         </Routes>
         <Products products={products}/>
+
       </BrowserRouter>
     </>
   );

@@ -66,6 +66,12 @@ form {
   border: solid black 2px;
 }
 
+.product-image{
+  max-width: 100px;
+}
+
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
