@@ -91,6 +91,17 @@ function App() {
           <Route path="products/:productId" element={<ViewDetails products={products} />} /> 
         </Routes>
       </BrowserRouter>
+
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <h1>Welcome to Tchotchkes!</h1>
+      <h2>What's New: </h2>
+      <br/>
+      <h3>:::Carousel of "new" items placeholder:::</h3>
     </>
   );
 }
