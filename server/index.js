@@ -1,81 +1,133 @@
+// import { PrismaClient } from '@prisma/client'
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
+// const { v4: uuidv4 } = require("uuid");
+// ROUTES
+
 const pg = require("pg");
 const client = new pg.Client(
   process.env.DATABASE_URL ||
-    "postgresql://postgres:stevie@localhost:5433/tchotchke_db"
+    "postgresql://yourname:yourpassword@localhost:5433/tchotchke_db" // This should be filled in with your personal computer credentials in your .env file
 );
 
 const express = require("express");
 const app = express();
-const path = require("path");
-const dummyProducts = require("./dummyProducts");
-const dummyUsers = require("./dummyUsers");
+app.use(express.json());
 
-// TODO - check findUserByToken function
-const isLoggedIn = async (req, res, next) => {
-  try {
-    req.user = await findUserByToken(req.headers.authorization);
-    next();
-  } catch (ex) {
-    next(ex);
-  }
-};
+const dummyOrder = require("./dummyOrder");
+const dummyCart = require("./dummyCart");
 
-// TODO - clarify what this does, update __dirname
-// const assetsFolder = path.join(__dirname, '../client/dist/assets');
-// app.use('/assets', express.static(assetsFolder));
+// const bcrypt = require('bcrypt');
+const cors = require("cors");
 
-// TODO - update __dirname
-app.get("/", (req, res) => {
-  const rootPath = path.join(__dirname, "../client/dist/index.html");
-  res.sendFile(rootPath);
+app.use(cors());
+
+app.get("/", async (req, res) => {
+  res.send("TODO - this will be our application");
 });
 
-// GET Products - TESTED
-// TODO - connect to sql
 app.get("/api/products", async (req, res, next) => {
   try {
-    // const SQL = `
-    // SELECT *
-    // FROM products
-    // `;
-    // const response = await client.query(SQL);
-    res.send(dummyProducts);
+    const products = await prisma.products.findMany();
+    res.send(products);
   } catch (ex) {
     next(ex);
   }
 });
 
-// GET Existing Users - TESTED
-//TODO - connect sql and create fetchUsers()
+app.get("/api/products/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const product = await prisma.products.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+    });
+    res.send(product);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+// app.post("/api/products", async (req, res, next) => {
+//   const uuid = uuidv4();
+//   try {
+//     const { id, name, desc, imgURL, price, category_name } = req.body;
+//     if (!name || !desc || !imgURL || !price || !category_name) {
+//       return res.status(400).send("Missing required fields");
+//     }
+//     const newProduct = await prisma.products.create({
+//       data: {
+//         id,
+//         name,
+//         desc,
+//         imgURL,
+//         price,
+//         category_name,
+//       },
+//     });
+//     res.send(newProduct);
+//   } catch (ex) {
+//     console.error("Error adding new product:");
+//     next(ex);
+//   }
+// });
+
 app.get("/api/users", async (req, res, next) => {
   try {
-    res.send(dummyUsers);
+    const allUsers = await prisma.users.findMany();
+    res.status(200).json(allUsers);
   } catch (ex) {
     next(ex);
   }
 });
 
-// POST Authenticate Login
-app.post("/api/auth/login", async (req, res, next) => {
+app.post("/api/users/register", async (req, res, next) => {
   try {
-    res.send(await authenticate(req.body));
+    const { name, email, password } = req.body;
+    const newUser = await prisma.users.create({
+      data: {
+        name,
+        email,
+        password,
+      },
+    });
+    console.log(newUser);
+    res.status(201).send(newUser);
   } catch (ex) {
     next(ex);
   }
 });
 
-// POST Authenticate Register
-app.post("/api/auth/register", async (req, res, next) => {
+app.get("api/users/login", (req, res) => {});
+
+app.get("/api/order", async (req, res, next) => {
   try {
-    res.send(await register(req.body));
+    // const orders = await prisma.orders.findMany();
+    res.send(dummyOrder);
   } catch (ex) {
     next(ex);
   }
 });
 
-app.get("/api/auth/me", async (req, res, next) => {
+app.get("/api/cart", async (req, res, next) => {
   try {
-    res.send(req.user);
+    // const cart = await prisma.cart.findMany();
+    res.send(dummyCart);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
+app.delete("/api/cart/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deleteCartItem = await prisma.cart.delete({
+      where: {
+        id: parseInt(id),
+      },
+    });
+    res.send(deleteCartItem);
   } catch (ex) {
     next(ex);
   }
@@ -83,13 +135,20 @@ app.get("/api/auth/me", async (req, res, next) => {
 
 const init = async () => {
   console.log("connecting to database");
-  await client.connect();
+  await prisma.$connect();
   console.log("connected to database");
 };
-init();
+
+init()
+  .catch((e) => {
+    console.error(e);
+  })
+  .finally(async () => {
+    await prisma.$disconnect;
+  });
 
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
+  console.log(`REST API server ready at http://localhost:${PORT}`);
 });

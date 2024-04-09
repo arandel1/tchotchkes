@@ -12,8 +12,38 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavBar></NavBar>
-        {/* <Products /> */}
+        <NavBar>
+          <Routes>
+            <Route path="/" element={<button>Home</button>}>
+              Home
+            </Route>
+            <Route path="/category" element={<ViewByCategory />}>
+              View by Category
+            </Route>
+            <Route>Books</Route>
+            <Route>Decor</Route>
+            <Route>Electronics</Route>
+            <Route>Games & Toys</Route>
+            <Route>Housewares</Route>
+            <Route>Jewelry & Accessories</Route>
+            <Route>Miscellaneous</Route>
+            {/* <Route path="/viewAllItems" element={<ViewAllItems />}>
+              View All Items
+            </Route> */}
+
+            <Route path="/login" element={<Login />}>
+              Login
+            </Route>
+            <Route path="/register" element={<Register />}>
+              Register
+            </Route>
+            <Route path="/cart" element={<Cart />}>
+              View Cart
+            </Route>
+          </Routes>
+        </NavBar>
+        <Login />
+        <Products />
         Go Team Tchotchke!
         <Routes>
           <Route path="/" element={<button>Home</button>}>
