@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 const pg = require("pg");
 const client = new pg.Client(
   process.env.DATABASE_URL ||
-    "postgresql://yourname:yourpassword@localhost:5433/tchotchke_db" // This should be filled in with your personal computer credentials in your .env file
+    "postgresql://allisonrandel:howdy123@localhost:5432/tchotchke_db" // This should be filled in with your personal computer credentials in your .env file
 );
 
 const express = require("express");
