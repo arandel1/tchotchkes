@@ -342,7 +342,7 @@ const handleViewDetails = (productId) => {
 
   return (
     <>
-      <h2>All Itemst</h2>
+      <h2>All Items</h2>
       {products.length === 0 && <p>No inventory</p>}
 
       <div className="card-container">

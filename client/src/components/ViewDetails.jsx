@@ -20,7 +20,7 @@ const ViewDetails = ({ products }) => {
 
         <img className = 'product-image' src={product.imgURL} alt = 'product image'/>
         <button onClick = {() => navigate(`/products`)}>Back to All</button>
-        <button onClick={()=> navigate(`/order`)}>Order</button>
+        <button onClick={()=> navigate(`/cart`)}>Add to Order</button>
       </div>
     </>
   )

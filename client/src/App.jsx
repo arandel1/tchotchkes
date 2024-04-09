@@ -67,6 +67,14 @@ function App() {
             {/* <Route path="/products" element = {<Products/>}>View All</Route> */}
           </Routes>
         </NavBar>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h3>:::Carousel of "new" items placeholder:::</h3>
        
         {/* <Login /> */}
         {/* <Products products={products}/> */}
@@ -92,16 +100,6 @@ function App() {
         </Routes>
       </BrowserRouter>
 
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <h1>Welcome to Tchotchkes!</h1>
-      <h2>What's New: </h2>
-      <br/>
-      <h3>:::Carousel of "new" items placeholder:::</h3>
     </>
   );
 }
