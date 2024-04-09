@@ -23,7 +23,7 @@ function Products() {
   }, [])
 
 const handleViewDetails = (productId) => {
-  window.location.href = `/product/${productId}`;
+  window.location.href = `/products/${productId}`;
 };
   // const products = [
   //   {
@@ -342,7 +342,7 @@ const handleViewDetails = (productId) => {
 
   return (
     <>
-      <h2>Product List</h2>
+      <h2>All Itemst</h2>
       {products.length === 0 && <p>No inventory</p>}
 
       <div className="card-container">
