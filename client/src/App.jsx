@@ -68,12 +68,6 @@ function App() {
           </Routes>
         </NavBar>
        
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        
         <Login />
         <Routes>        
           <Route path="product/:productId" element={<ViewDetails products={products} />} /> 
