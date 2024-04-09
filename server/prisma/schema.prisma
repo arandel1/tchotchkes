@@ -18,7 +18,7 @@ model Users {
 }
 
 model Products {
-  id            Int      @id @default(autoincrement()) //change to uuid and string
+  id            Int      @id @default(autoincrement())
   name          String
   desc          String
   imgURL        String

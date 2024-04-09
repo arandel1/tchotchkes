@@ -1,23 +1,14 @@
-// import { PrismaClient } from '@prisma/client'
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-// const { v4: uuidv4 } = require("uuid");
-// ROUTES
-
 const pg = require("pg");
 const client = new pg.Client(
   process.env.DATABASE_URL ||
     "postgresql://alisonhager:bitnet5cry@localhost:5433/tchotchke_db" // This should be filled in with your personal computer credentials in your .env file
 );
-
 const express = require("express");
 const app = express();
 app.use(express.json());
-
-const dummyOrder = require("./dummyOrder");
-const dummyCart = require("./dummyCart");
-
-// const bcrypt = require('bcrypt');
+const dummyCart = require("./dummyData/dummyCart");
 const cors = require("cors");
 app.use(cors());
 
@@ -48,29 +39,28 @@ app.get("/products/:id", async (req, res, next) => {
   }
 });
 
-// app.post("/products", async (req, res, next) => {
-//   const uuid = uuidv4();
-//   try {
-//     const { id, name, desc, imgURL, price, category_name } = req.body;
-//     if (!name || !desc || !imgURL || !price || !category_name) {
-//       return res.status(400).send("Missing required fields");
-//     }
-//     const newProduct = await prisma.products.create({
-//       data: {
-//         id,
-//         name,
-//         desc,
-//         imgURL,
-//         price,
-//         category_name,
-//       },
-//     });
-//     res.send(newProduct);
-//   } catch (ex) {
-//     console.error("Error adding new product");
-//     next(ex);
-//   }
-// });
+app.post("/products", async (req, res, next) => {
+  try {
+    const { id, name, desc, imgURL, price, category_name } = req.body;
+    if (!name || !desc || !imgURL || !price || !category_name) {
+      return res.status(400).send("Missing required fields");
+    }
+    const newProduct = await prisma.products.create({
+      data: {
+        id,
+        name,
+        desc,
+        imgURL,
+        price,
+        category_name,
+      },
+    });
+    res.send(newProduct);
+  } catch (ex) {
+    console.error("Error adding new product");
+    next(ex);
+  }
+});
 
 app.get("/users", async (req, res, next) => {
   try {
@@ -108,17 +98,21 @@ app.post("/users/register", async (req, res, next) => {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 app.post("/users/login", (req, res) => {
   
 });
 =======
 app.get("/users/login", (req, res) => {});
 >>>>>>> de82ad9 (Added initial implementation of login route)
+=======
+// app.post("/users/login", (req, res) => {});
+>>>>>>> 50a17b5 (created dummyData folder)
 
-app.get("/order", async (req, res, next) => {
+app.get("/orders", async (req, res, next) => {
   try {
-    // const orders = await prisma.orders.findMany();
-    res.send(dummyOrder);
+    const orders = await prisma.orders.findMany();
+    res.json(orders);
   } catch (ex) {
     next(ex);
   }
