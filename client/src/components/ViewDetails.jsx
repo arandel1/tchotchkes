@@ -45,4 +45,3 @@ export default ViewDetails;
 // }
 
 // export default ViewDetails();
-
