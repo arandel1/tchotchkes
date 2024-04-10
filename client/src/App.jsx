@@ -16,9 +16,9 @@ function App() {
 // GET ALL PRODUCTS FROM API
   useEffect(()=> {
     async function getProducts(){
-      const baseUrl = 'http://localhost:8080/';
+      const baseUrl = 'http://localhost:8080/tchotchke';
       try{
-      const response = await fetch(`${baseUrl}api/products`);
+      const response = await fetch(`${baseUrl}/products`);
       if(!response.ok){
         throw new Error('Failed to fetch products');
       }
