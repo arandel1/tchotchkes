@@ -1,17 +1,29 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Products() {
-  useEffect(() => {
-    async function getProducts() {
-      const baseUrl = "http://localhost:8080/";
+  const [products, setProducts] = useState([]);
+  
+  useEffect(()=> {
+    async function getProducts(){
+      const baseUrl = 'http://localhost:8080/';
+      try{
       const response = await fetch(`${baseUrl}api/products`);
+      if(!response.ok){
+        throw new Error('Failed to fetch products');
+      }
       const apiProducts = await response.json();
       setProducts(apiProducts);
+    } catch (error){
+      console.error('Error fetching products:', error);
     }
-
+  }
     getProducts();
   }, []);
 
+const handleViewDetails = (productId) => {
+  window.location.href = `/products/${productId}`;
+};
   // const products = [
   //   {
   //     id: 1,
@@ -286,38 +298,69 @@ function Products() {
   // ];
 
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
+
+  // return (
+  //   <>
+  //     <h2>Product List</h2>
+  //     {products.length === 0 && <p>No inventory</p>}
+
+  //     <div className="card" style={{ width: "18rem" }}>
+  //       {products.map((product, index) => (
+  //         <div key={product.id}>
+  //           <img
+  //             src={product.imgURL}
+  //             className="card-img-top"
+  //             alt={product.name}
+  //           ></img>
+  //           <div className="card-body">
+  //             <h5 className="card-title">{product.name}</h5>
+  //             {/* <p className="card-text">{product.desc}</p> */}
+  //             <a
+  //               href="#"
+  //               className={
+  //                 selectedIndex === index
+  //                   ? "btn btn-primary active"
+  //                   : "btn btn-primary"
+  //               }
+  //               onClick={() => {
+  //                 setSelectedIndex(index);
+  //                 console.log(product);
+  //                 navigate (`/api/products/${product.id}`);
+
+  //               }}
+  //             >
+  //               View Details
+  //             </a>
+  //           </div>
+  //         </div>
+  //       ))}
+  //     </div>
+  //   </>
+  // );
 
   return (
     <>
-      <h2>Product List</h2>
+      <h2>All Items</h2>
       {products.length === 0 && <p>No inventory</p>}
 
-      <div className="card" style={{ width: "18rem" }}>
-        {products.map((product, index) => (
-          <div key={product.id}>
+      <div className="card-container">
+        {products.map(product => (
+          <div key={product.id} className="card" style={{ width: "18rem" }}>
             <img
               src={product.imgURL}
               className="card-img-top"
               alt={product.name}
-            ></img>
+            />
             <div className="card-body">
               <h5 className="card-title">{product.name}</h5>
-              {/* <p className="card-text">{product.desc}</p> */}
-              <a
-                href="#"
-                className={
-                  selectedIndex === index
-                    ? "btn btn-primary active"
-                    : "btn btn-primary"
-                }
-                onClick={() => {
-                  setSelectedIndex(index);
-                  console.log(product);
-                }}
+              <p className="card-text">Price: ${product.price}</p>
+              <button
+                className="btn btn-primary"
+                onClick={() => handleViewDetails(product.id)}
               >
                 View Details
-              </a>
+              </button>
             </div>
           </div>
         ))}
@@ -325,4 +368,7 @@ function Products() {
     </>
   );
 }
+
 export default Products;
+
+
