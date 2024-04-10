@@ -29,6 +29,6 @@ userRouter.post("/register", async (req, res, next) => {
   }
 });
 
-// userRouter.get("/login", (req, res) => {});
+// userRouter.post("/login", (req, res) => {});
 
 module.exports = userRouter

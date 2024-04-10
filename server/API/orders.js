@@ -41,7 +41,7 @@ orderRouter.post("/:id/add", async (req, res, next) => {
   }
 });
 
-orderRouter.delete("/:id", async (req, res, next) => {
+orderRouter.delete("/:id/remove", async (req, res, next) => {
   try {
     const { id } = req.params;
     const deleteCartItem = await prisma.cart.delete({
