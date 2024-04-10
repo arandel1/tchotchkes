@@ -19,8 +19,7 @@ function Products() {
     }
   }
     getProducts();
-
-  }, [])
+  }, []);
 
 const handleViewDetails = (productId) => {
   window.location.href = `/products/${productId}`;
