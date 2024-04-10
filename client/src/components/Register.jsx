@@ -9,7 +9,7 @@
 
 import { useState } from "react";
 
-export default function Register() {
+function Register() {
   // const Register = ({ register }) => {
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -20,13 +20,13 @@ export default function Register() {
       newUsername,
       newPassword,
     };
-    await register(credentials);
+    await Register(credentials);
   };
 
   return (
     <>
       <div className="container">
-        <h3> Register </h3>
+        <h3> Sign Up </h3>
         <form onSubmit={submit}>
           <label className="username">
             Username or Email:
@@ -49,11 +49,11 @@ export default function Register() {
             />
           </label>
           <br />
-          <button type="submit">Register</button>
+          <button type="submit">Sign Up</button>
         </form>
       </div>
     </>
   );
 }
 
-// export default Register;
+export default Register;
