@@ -9,9 +9,14 @@ import Products from "./components/Products";
 import ViewDetails from "./components/ViewDetails";
 import "./App.css";
 
+const baseUrl = 'http://localhost:8080/tchotchke';
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [auth, setAuth] = useState({});
+  const [order, setOrder] = useState([]);
+
+
 
 // GET ALL PRODUCTS FROM API
   useEffect(()=> {
@@ -76,10 +81,12 @@ function App() {
         <br/>
         <h3>:::Carousel of "new" items placeholder:::</h3>
        
-        {/* <Login /> */}
+        {/* <Login login = { login }/> */}
         {/* <Products products={products}/> */}
         {/* <Products /> */}
         {/* Go Team Tchotchke! */}
+        
+        {/* <Register register = {Register}/> */}
 
         <Routes>
           <Route path="/" element={<button>Home</button>}> Home </Route>
@@ -99,6 +106,7 @@ function App() {
           <Route path="products/:productId" element={<ViewDetails products={products} />} /> 
         </Routes>
       </BrowserRouter>
+
 
     </>
   );
