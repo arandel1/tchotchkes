@@ -27,7 +27,7 @@ productRouter.get("/:id", async (req, res, next) => {
   }
 });
 
-productRouter.post("/add", async (req, res, next) => {
+productRouter.post("/", async (req, res, next) => {
   try {
     const { id, name, desc, imgURL, price, category_name } = req.body;
     if (!name || !desc || !imgURL || !price || !category_name) {
