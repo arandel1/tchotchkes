@@ -42,7 +42,7 @@ function Login() {
     }
     catch (error){
       console.error('Error:', error); 
-      setErrorMessage('Incorrect password.');
+      setErrorMessage('Login failed. Check your username or password.');
     }
   };
 
