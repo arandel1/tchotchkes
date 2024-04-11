@@ -15,7 +15,7 @@ userRouter.get("/", async (req, res, next) => {
 userRouter.post("/register", async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
-    const newUser = await prisma.users.create({
+    const register = await prisma.users.create({
       data: {
         name,
         email,
@@ -23,12 +23,26 @@ userRouter.post("/register", async (req, res, next) => {
       },
     });
     console.log(newUser);
-    res.status(201).send(newUser);
+    res.status(201).send(register);
   } catch (ex) {
     next(ex);
   }
 });
 
-// userRouter.post("/login", (req, res) => {});
+userRouter.post("/login", async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    const login = await prisma.users.findUnique({
+      where: {
+        email: email,
+        password: password
+      },
+    });
+    // console.log(login);
+    res.status(201).send(login);
+  } catch (ex) {
+    next(ex);
+  }
+});
 
 module.exports = userRouter
