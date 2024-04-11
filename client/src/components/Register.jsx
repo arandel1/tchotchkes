@@ -46,7 +46,7 @@ function Register() {
      }
     catch (error){
       console.error('Error:', error);
-      setErrorMessage('An error occurred. Please try again later!');
+      setErrorMessage('An error occurred. Please try again later.');
     }
   };
 
@@ -81,7 +81,7 @@ function Register() {
               name="password"
               placeholder="Password"
               value={formData.password}
-              onChange={ handleChange}  
+              onChange={ handleChange }  
             />
           <br />
 

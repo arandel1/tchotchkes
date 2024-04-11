@@ -34,7 +34,7 @@ async function main() {
   //   ],
   // });
   // console.log(users);
-  //Add products query:
+  // Add products query:
   // const products = await prisma.products.createMany({
   //   data: [
   //     {

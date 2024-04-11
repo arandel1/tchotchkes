@@ -22,7 +22,7 @@ userRouter.post("/register", async (req, res, next) => {
         password,
       },
     });
-    console.log(newUser);
+    console.log(register);
     res.status(201).send(register);
   } catch (ex) {
     next(ex);
