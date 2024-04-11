@@ -1,14 +1,6 @@
-  // GET USERS
-  // const login = async(credentials) => {
-  //   const response = await fetch(`${baseUrl}/users`,{
-  //     method: 'POST',
-  //   });
-  //   const json = await response.json();
-  //   console.log(json);
-  // }
-
 import React from 'react';
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 const baseUrl = 'http://localhost:8080/tchotchke/users'
 
@@ -17,6 +9,8 @@ function Login() {
     email:'', 
     password:''
   });
+
+  const navigate = useNavigate();
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
@@ -28,6 +22,7 @@ function Login() {
   const handleSubmit = async(e)=> {
     e.preventDefault();
   
+
     try {
       const response = await fetch(`${baseUrl}/login`, {
         method: 'POST', 
@@ -37,8 +32,9 @@ function Login() {
 
       if(response.ok){
         const user = await response.json();
-        setSuccessMessage('Logged in!');
+        setSuccessMessage("You're logged in!");
         setFormData({ email: formData.email, password:'' })
+        // navigate('/products');
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message || 'Login failed. Please try again.')
@@ -46,7 +42,7 @@ function Login() {
     }
     catch (error){
       console.error('Error:', error); 
-      setErrorMessage('An error occurred. Please try again later.');
+      setErrorMessage('Incorrect password.');
     }
   };
 
