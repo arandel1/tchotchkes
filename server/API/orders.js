@@ -56,8 +56,9 @@ orderRouter.post("/", async (req, res, next) => {
 })
 
 // User can delete from order
-orderRouter.delete("/:userId", async (req, res, next) => {
+orderRouter.delete("/:id", async (req, res, next) => {
   try {
+    const {id} = req.params;
     const deleteOrder = await prisma.orders.delete({
       where: {
         id: parseInt(id),
