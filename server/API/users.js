@@ -32,6 +32,11 @@ userRouter.post("/register", async (req, res, next) => {
 userRouter.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
+
+    // if (!email) {
+    //   return res.status(400).send(`No user found for email ${email}`);
+    // }
+
     const login = await prisma.users.findUnique({
       where: {
         email: email,
