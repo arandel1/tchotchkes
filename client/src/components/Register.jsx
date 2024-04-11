@@ -6,54 +6,93 @@
 
 // -----------------------------
 // -----------------------------
-
+import React from "react";
 import { useState } from "react";
 
-export default function Register() {
-  // const Register = ({ register }) => {
-  const [newUsername, setNewUsername] = useState("");
-  const [newPassword, setNewPassword] = useState("");
+const baseUrl = 'http://localhost:8080/tchotchke/users'
 
-  const submit = async (e) => {
+function Register() {
+  const [formData, setFormData] = useState({
+    name:'',
+    email:'',
+    password:'',
+  });
+
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.name]: e.target.value});
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const credentials = {
-      newUsername,
-      newPassword,
-    };
-    await register(credentials);
+  
+    try {
+      const response = await fetch(`${baseUrl}/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      
+      if(response.ok){
+        const newUser = await response.json();
+        setSuccessMessage('Account created successfully!');
+        setFormData({ name: '', email: '', password: '' })
+      } else {
+        const errorData = await response.json();
+        setErrorMessage(errorData.message || 'Registration failed.')
+      }
+     }
+    catch (error){
+      console.error('Error:', error);
+      setErrorMessage('An error occurred. Please try again later!');
+    }
   };
 
   return (
     <>
       <div className="container">
-        <h3> Register </h3>
-        <form onSubmit={submit}>
-          <label className="username">
-            Username or Email:
+        <h3> Sign Up </h3>
+        <form onSubmit={ handleSubmit }>
+          <label className="name">Name:</label>
             <input
-              name="username"
-              placeholder="Username or Email"
-              value={newUsername}
-              onChange={(e) => setNewUsername(e.target.value)}
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={formData.name}
+              onChange={ handleChange }
             />
-          </label>
+
+          <br/>
+          <label className="email">Email:</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={ handleChange }
+            />
           <br />
-          <label className="password">
-            Password:
+
+          <label className="password">Password:</label>
             <input
               type="password"
               name="password"
               placeholder="Password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
+              value={formData.password}
+              onChange={ handleChange}  
             />
-          </label>
           <br />
-          <button type="submit">Register</button>
+
+          <button type="submit">Sign Up</button>
+
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          {successMessage && <p className="success-message">{successMessage}</p>}
         </form>
       </div>
     </>
   );
 }
 
-// export default Register;
+export default Register;
