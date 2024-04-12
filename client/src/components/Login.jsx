@@ -4,13 +4,13 @@ import {useNavigate} from 'react-router-dom';
 
 const baseUrl = 'http://localhost:8080/tchotchke/users'
 
-function Login() {
+function Login( {auth} ) {
   const [formData, setFormData] = useState({
     email:'', 
     password:''
   });
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
@@ -21,13 +21,12 @@ function Login() {
 
   const handleSubmit = async(e)=> {
     e.preventDefault();
-  
-
-    try {
+    // await login(formData)
+     try {
       const response = await fetch(`${baseUrl}/login`, {
         method: 'POST', 
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },    
+        body: JSON.stringify(formData)
       });
 
       if(response.ok){
@@ -35,6 +34,13 @@ function Login() {
         setSuccessMessage("You're logged in!");
         setFormData({ email: formData.email, password:'' })
         // navigate('/products');
+        // console.log(formData)
+        // console.log(response)
+        // console.log(user)
+        const token = user.token;
+        // console.log(token)
+        auth(user)
+
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message || 'Login failed. Please try again.')

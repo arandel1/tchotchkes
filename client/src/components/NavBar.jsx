@@ -60,7 +60,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar() {
+export default function NavBar({auth}) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
@@ -105,12 +105,12 @@ export default function NavBar() {
               Register
             </Button>
             
-            <Button component={Link} to="/cart" style={{ color: "white" }}>
+            {auth.token && <Button component={Link} to="/cart" style={{ color: "white" }}>
                 View Cart{" "}
                 <ShoppingCartIcon
                   sx={{ marginLeft: "5px", fontSize: "medium" }}
                 />
-            </Button>
+            </Button>}
           </Box>
         </Toolbar>
       </AppBar>

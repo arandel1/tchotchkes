@@ -50,7 +50,7 @@ userRouter.post("/login", async (req, res, next) => {
         email: req.body.email,
       },
     });
-    const passwordValid = bcrypt.compare(user.password, req.body.password)
+    const passwordValid = await bcrypt.compare(req.body.password, user.password)
     if(!passwordValid || !user){
       res.status(400).send('Not Authorized')
     }
