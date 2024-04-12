@@ -41,10 +41,6 @@ userRouter.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    // if (!email) {
-    //   return res.status(400).send(`No user found for email ${email}`);
-    // }
-
     const user = await prisma.users.findUnique({
       where: {
         email: req.body.email,
@@ -52,7 +48,7 @@ userRouter.post("/login", async (req, res, next) => {
     });
     const passwordValid = bcrypt.compare(user.password, req.body.password)
     if(!passwordValid || !user){
-      res.status(400).send('Not Authorized')
+      res.status(401).send('Not Authorized')
     }
     else{
       const token = JWT.sign(user.id, defaultJWT)
