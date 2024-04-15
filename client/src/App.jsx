@@ -13,7 +13,7 @@ const baseUrl = "http://localhost:8080/tchotchke";
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState(localStorage.getItem("auth") || {});
   const [order, setOrder] = useState([]);
 
   // const login = async(formData) => {
@@ -30,6 +30,10 @@ function App() {
 
   // GET ALL PRODUCTS FROM API
   useEffect(() => {
+    if (typeof auth === "string"){
+      setAuth(JSON.parse(auth))
+    } 
+
     async function getProducts() {
       const baseUrl = "http://localhost:8080/tchotchke";
       try {
@@ -130,7 +134,7 @@ function App() {
           </Route>
           <Route
             path="products/:productId"
-            element={<ViewDetails products={products} />}
+            element={<ViewDetails products={products} user={auth} />}
           />
         </Routes>
       </BrowserRouter>
