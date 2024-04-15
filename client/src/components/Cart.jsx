@@ -27,12 +27,12 @@ export default function Cart({ products }) {
     },
   ]);
 
-  function addToCart(product) {
-    setCartItems((currItems) => [
-      ...currItems,
-      <ViewDetails id={product.id} />,
-    ]);
-  }
+  // function addToCart(product) {
+  //   setCartItems((currItems) => [
+  //     ...currItems,
+  //     <ViewDetails id={product.id} />,
+  //   ]);
+  // }
 
   function removeProduct(product) {
     const removeIndex = cartItems.findIndex(product);

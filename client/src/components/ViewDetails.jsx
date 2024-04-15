@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Cart from "./Cart";
+import { useState } from "react";
 
-const ViewDetails = ({ products }) => {
+const baseUrl = 'http://localhost:8080/tchotchke'
+
+// const [cartItems, setCartItems] = useState();
+
+function ViewDetails ({ products, user }) {
   const navigate = useNavigate();
   const params = useParams();
   const id = +params.productId;
@@ -14,10 +19,32 @@ const ViewDetails = ({ products }) => {
   // function setCartItems() {
   //   <Cart setCartItems />;
   // }
-  function handleAddToCart(newProduct) {
-    setCartItems(newProduct);
-    navigate(`/cart`);
-  }
+
+
+  const handleAddToCart = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`${baseUrl}/orders`, {
+        method: 'POST',
+        headers: { 'Content-Type' : 'application/json' },
+        body: JSON.stringify({productsId: product.id, usersId: user.id}),
+      });
+      if (response.ok) {
+        const newOrder = await response.json();
+        setSuccessMessage('Item added to cart!')
+        // setCartItems(newOrder);
+      } else {
+        const errorData = await response.json();
+        setErrorMessage(errorData.message || 'Item not added to cart.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setErrorMessage('An error occurred. Please try again later.');
+    }
+  };
+  
+  // navigate(`/cart`);
 
   return (
     <>
@@ -33,7 +60,7 @@ const ViewDetails = ({ products }) => {
         />
         <button onClick={() => navigate(`/products/`)}>Back to All</button>
         <button
-        // onClick={() => handleAddToCart({ product })}
+        onClick={(e) => handleAddToCart(e)}
         >
           Add to Order
         </button>

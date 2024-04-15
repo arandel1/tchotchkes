@@ -40,6 +40,7 @@ function Login( {auth} ) {
         const token = user.token;
         // console.log(token)
         auth(user)
+        localStorage.setItem("auth", JSON.stringify(user))
 
       } else {
         const errorData = await response.json();
