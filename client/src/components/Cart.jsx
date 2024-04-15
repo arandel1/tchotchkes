@@ -7,24 +7,24 @@ export default function Cart({ products }) {
   const navigate = useNavigate();
 
   const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Aero Transistor Radio",
-      desc: "Vintage Aero Transistor Radio, AM Band Only, Made In Hong Kong, Circa 1960s",
-      imgURL:
-        "https://upload.wikimedia.org/wikipedia/commons/7/70/Vintage_Aero_Transistor_Radio%2C_No_Model_Number%2C_AM_Band_Only%2C_6_Transistors%2C_Made_In_Hong_Kong%2C_Circa_1960s_%287721623244%29.jpg",
-      price: 75,
-      category_name: "Electronics",
-    },
-    {
-      id: 7,
-      name: "Purple Perfume Bottle",
-      desc: "Perfume set from Soviet Union, circa 1965",
-      imgURL:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Perfume_set_from_Sovjetunio_cca_1965.jpg/1200px-Perfume_set_from_Sovjetunio_cca_1965.jpg?20100417190340",
-      price: 40,
-      category_name: "Miscellaneous Collectibles",
-    },
+    // {
+    //   id: 1,
+    //   name: "Aero Transistor Radio",
+    //   desc: "Vintage Aero Transistor Radio, AM Band Only, Made In Hong Kong, Circa 1960s",
+    //   imgURL:
+    //     "https://upload.wikimedia.org/wikipedia/commons/7/70/Vintage_Aero_Transistor_Radio%2C_No_Model_Number%2C_AM_Band_Only%2C_6_Transistors%2C_Made_In_Hong_Kong%2C_Circa_1960s_%287721623244%29.jpg",
+    //   price: 75,
+    //   category_name: "Electronics",
+    // },
+    // {
+    //   id: 7,
+    //   name: "Purple Perfume Bottle",
+    //   desc: "Perfume set from Soviet Union, circa 1965",
+    //   imgURL:
+    //     "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Perfume_set_from_Sovjetunio_cca_1965.jpg/1200px-Perfume_set_from_Sovjetunio_cca_1965.jpg?20100417190340",
+    //   price: 40,
+    //   category_name: "Miscellaneous Collectibles",
+    // },
   ]);
 
   function addToCart(product) {

@@ -19,7 +19,6 @@ const Root = styled("div")(
 
 const Label = styled("label")`
   padding: 10px;
-
   line-height: 1.5;
   display: block;
 `;
@@ -162,7 +161,7 @@ const Listbox = styled("ul")(
 
 //
 
-const [selectedCategory, setSelectedCategory] = useState("");
+// const [selectedCategory, setSelectedCategory] = useState("");
 const [filteredProdList, setFilteredProdList] = useState("");
 
 function getFilteredCategory() {

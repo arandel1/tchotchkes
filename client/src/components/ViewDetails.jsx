@@ -14,10 +14,31 @@ const ViewDetails = ({ products }) => {
   // function setCartItems() {
   //   <Cart setCartItems />;
   // }
-  function handleAddToCart(newProduct) {
-    setCartItems(newProduct);
-    navigate(`/cart`);
-  }
+  const handleAddToCart = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(`${baseUrl}/orders`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(),
+      });
+
+      if (response.ok) {
+        const newOrder = await response.json();
+        setSuccessMessage("Item added to cart!");
+      } else {
+        const errorData = await response.json();
+        setErrorMessage(errorData.message || "Item not added to cart.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setErrorMessage("An error occurred. Please try again later.");
+    }
+  };
+
+  // setCartItems(newProduct);
+  // navigate(`/cart`);
 
   return (
     <>
@@ -32,9 +53,7 @@ const ViewDetails = ({ products }) => {
           alt="product image"
         />
         <button onClick={() => navigate(`/products/`)}>Back to All</button>
-        <button onClick={() => handleAddToCart({ product })}>
-          Add to Order
-        </button>
+        <button onSubmit={handleAddToCart}>Add to Order</button>
       </div>
     </>
   );
