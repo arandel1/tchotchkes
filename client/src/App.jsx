@@ -9,16 +9,31 @@ import Products from "./components/Products";
 import ViewDetails from "./components/ViewDetails";
 import "./App.css";
 
+const baseUrl = 'http://localhost:8080/tchotchke';
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [auth, setAuth] = useState({});
+  const [order, setOrder] = useState([]);
+
+  // const login = async(formData) => {
+  //   const response = await fetch(`${baseUrl}/users/login`, {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(formData)
+      
+  //   })
+  //   const json = await response.json();
+  //   console.log(response);
+  //   console.log(json)
+  // }
 
 // GET ALL PRODUCTS FROM API
   useEffect(()=> {
     async function getProducts(){
-      const baseUrl = 'http://localhost:8080/';
+      const baseUrl = 'http://localhost:8080/tchotchke';
       try{
-      const response = await fetch(`${baseUrl}api/products`);
+      const response = await fetch(`${baseUrl}/products`);
       if(!response.ok){
         throw new Error('Failed to fetch products');
       }
@@ -35,7 +50,9 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavBar>
+
+        <NavBar auth={auth}>
+
           <Routes>
             <Route path="/" element={<button>Home</button>}>
               Home
@@ -76,10 +93,7 @@ function App() {
         <br/>
         <h3>:::Carousel of "new" items placeholder:::</h3>
        
-        {/* <Login /> */}
-        {/* <Products products={products}/> */}
-        {/* <Products /> */}
-        {/* Go Team Tchotchke! */}
+       {/* { auth.token ? <button>Welcome {auth.name}</button> : <Login login = { login } />} */}
 
         <Routes>
           <Route path="/" element={<button>Home</button>}> Home </Route>
@@ -92,13 +106,16 @@ function App() {
           <Route path="/housewares">Housewares</Route>
           <Route path="/jewelryaccessories">Jewelry & Accessories</Route>
           <Route path="/miscellaneous">Miscellaneous</Route>
-          <Route path="/login" element={<Login />}> Login </Route>
+
+          <Route path="/login" element={<Login auth = {setAuth} />}> Login </Route>
+
           <Route path="/register" element={<Register />}> Register </Route>
           <Route path="/cart" element={<Cart />}> View Cart </Route>
           <Route path="/products" element={<Products />}> View All </Route>
           <Route path="products/:productId" element={<ViewDetails products={products} />} /> 
         </Routes>
       </BrowserRouter>
+
 
     </>
   );
