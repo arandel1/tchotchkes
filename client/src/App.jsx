@@ -7,7 +7,7 @@ import Register from "./components/Register";
 import Cart from "./components/Cart";
 import Products from "./components/Products";
 import ViewDetails from "./components/ViewDetails";
-import OrderPreview from "./components/OrderPreview";
+import Stripe from "./components/Stripe";
 import "./App.css";
 
 const baseUrl = "http://localhost:8080/tchotchke";
@@ -133,7 +133,7 @@ function App() {
             path="products/:productId"
             element={<ViewDetails products={products} />}
           />
-          <Route path="/checkout" element={<OrderPreview />} />
+          <Route path="/checkout" element={<Stripe />} />
         </Routes>
       </BrowserRouter>
     </>
