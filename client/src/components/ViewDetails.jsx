@@ -32,7 +32,9 @@ const ViewDetails = ({ products }) => {
           alt="product image"
         />
         <button onClick={() => navigate(`/products/`)}>Back to All</button>
-        <button onClick={() => handleAddToCart({ product })}>
+        <button
+        // onClick={() => handleAddToCart({ product })}
+        >
           Add to Order
         </button>
       </div>
