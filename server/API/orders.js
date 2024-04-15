@@ -3,6 +3,7 @@ const orderRouter = express.Router()
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+// All Orders - WORKING
 orderRouter.get("/", async (req, res, next) => {
   try {
     const orders = await prisma.orders.findMany();
@@ -12,44 +13,58 @@ orderRouter.get("/", async (req, res, next) => {
   }
 });
 
-orderRouter.get("/:id", async (req, res, next) => {
+// One user order - WORKING
+orderRouter.get("/:userId", async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const userCart = await prisma.orders.delete({
+    const { userId } = req.params;
+    const userOrder = await prisma.orders.findMany({
       where: {
-        id: parseInt(id),
+        usersId: parseInt(userId), //comparing data from API to the data the user sends in
       },
     });
-    res.send(userCart);
+    const products = await Promise.all(userOrder.map(order=>{
+      return prisma.products.findUnique({
+        where: {
+          id: parseInt(order.productsId),
+        },
+      });
+    }))
+    // console.log(products);
+    res.send(userOrder);
   } catch (ex) {
     next(ex);
   }
 });
 
-orderRouter.post("/:id/add", async (req, res, next) => {
+// User can add to order - WORKING
+orderRouter.post("/", async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const addToCart = await prisma.orders.create({
+    const {productsId, usersId} = req.body
+    const newOrder = await prisma.orders.create({
       data: {
-        productsId: parseInt(id),
-        usersId: parseInt(id)
-      },
-    });
-    res.send(addToCart);
-  } catch (ex) {
-    next(ex);
+        productsId: parseInt(productsId),
+        usersId: parseInt(usersId),
+        purchaseDate: new Date(),
+        total: 0
+      }
+    })
+    console.log(newOrder)
+    res.send(newOrder)
+  } catch (err) {
+    console.error(err.message);
   }
-});
+})
 
-orderRouter.delete("/:id/remove", async (req, res, next) => {
+// User can delete from order
+orderRouter.delete("/:id", async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const deleteCartItem = await prisma.cart.delete({
+    const {id} = req.params;
+    const deleteOrder = await prisma.orders.delete({
       where: {
         id: parseInt(id),
       },
     });
-    res.send(deleteCartItem);
+    res.send(deleteOrder);
   } catch (ex) {
     next(ex);
   }

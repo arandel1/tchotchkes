@@ -27,15 +27,14 @@ productRouter.get("/:id", async (req, res, next) => {
   }
 });
 
-productRouter.post("/add", async (req, res, next) => {
+productRouter.post("/", async (req, res, next) => {
   try {
-    const { id, name, desc, imgURL, price, category_name } = req.body;
+    const { name, desc, imgURL, price, category_name } = req.body;
     if (!name || !desc || !imgURL || !price || !category_name) {
       return res.status(400).send("Missing required fields");
     }
     const newProduct = await prisma.products.create({
       data: {
-        id,
         name,
         desc,
         imgURL,

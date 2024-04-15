@@ -3,27 +3,27 @@ import { useNavigate } from "react-router-dom";
 
 function Products() {
   const [products, setProducts] = useState([]);
-  
-  useEffect(()=> {
-    async function getProducts(){
-      const baseUrl = 'http://localhost:8080/';
-      try{
-      const response = await fetch(`${baseUrl}api/products`);
-      if(!response.ok){
-        throw new Error('Failed to fetch products');
+
+  useEffect(() => {
+    async function getProducts() {
+      const baseUrl = "http://localhost:8080/tchotchke";
+      try {
+        const response = await fetch(`${baseUrl}/products`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        const apiProducts = await response.json();
+        setProducts(apiProducts);
+      } catch (error) {
+        console.error("Error fetching products:", error);
       }
-      const apiProducts = await response.json();
-      setProducts(apiProducts);
-    } catch (error){
-      console.error('Error fetching products:', error);
     }
-  }
     getProducts();
   }, []);
 
-const handleViewDetails = (productId) => {
-  window.location.href = `/products/${productId}`;
-};
+  const handleViewDetails = (productId) => {
+    window.location.href = `/products/${productId}`;
+  };
   // const products = [
   //   {
   //     id: 1,
@@ -345,7 +345,7 @@ const handleViewDetails = (productId) => {
       {products.length === 0 && <p>No inventory</p>}
 
       <div className="card-container">
-        {products.map(product => (
+        {products.map((product) => (
           <div key={product.id} className="card" style={{ width: "18rem" }}>
             <img
               src={product.imgURL}
@@ -370,5 +370,3 @@ const handleViewDetails = (productId) => {
 }
 
 export default Products;
-
-
