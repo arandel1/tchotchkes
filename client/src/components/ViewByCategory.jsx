@@ -5,6 +5,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import { styled } from "@mui/material/styles";
 import { autocompleteClasses } from "@mui/material/Autocomplete";
+import Products from "./Products";
 
 const Root = styled("div")(
   ({ theme }) => `
@@ -159,6 +160,24 @@ const Listbox = styled("ul")(
 `
 );
 
+//
+
+const [selectedCategory, setSelectedCategory] = useState("");
+const [filteredProdList, setFilteredProdList] = useState("");
+
+function getFilteredCategory() {
+  let filteredProdList = products;
+  if (selectedCategory) {
+    filteredProdList = products.filter(
+      (products) => products.category_name === selectedCategory
+    );
+  }
+}
+
+function handleCategoryChange(categories) {
+  setSelectedCategory(categories);
+}
+
 export default function ViewByCategory() {
   const {
     getRootProps,
@@ -183,22 +202,30 @@ export default function ViewByCategory() {
       <div {...getRootProps()}>
         <Label {...getInputLabelProps()}></Label>
         <InputWrapper ref={setAnchorEl} className={focused ? "focused" : ""}>
-          {value.map((option, index) => (
-            <StyledTag label={option} {...getTagProps({ index })} />
+          {value.map((categories, index) => (
+            <StyledTag label={categories} {...getTagProps({ index })} />
           ))}
           <input {...getInputProps()} />
         </InputWrapper>
       </div>
-      {groupedOptions.length > 0 ? (
-        <Listbox {...getListboxProps()}>
-          {groupedOptions.map((option, index) => (
-            <li {...getOptionProps({ option, index })}>
-              <span>{option}</span>
-              <CheckIcon fontSize="small" />
-            </li>
-          ))}
-        </Listbox>
-      ) : null}
+      {groupedOptions.length > 0
+        ? ((
+            <Listbox {...getListboxProps()}>
+              {groupedOptions.map((categories, index) => (
+                <li {...getOptionProps({ categories, index })}>
+                  <span>{categories}</span>
+                  <CheckIcon fontSize="small" />
+                  <input
+                    type="checkbox"
+                    checked={selectedCategory === ""}
+                    onChange={() => setSelectedCategory({ categories })}
+                  ></input>
+                </li>
+              ))}
+            </Listbox>
+          ),
+          (<Products />))
+        : null}
     </Root>
   );
 }

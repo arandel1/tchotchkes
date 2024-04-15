@@ -1,15 +1,12 @@
 import { useState } from "react";
 
-export default function Cart() {
-  // const [cart, setCart] = useState([]);
+import { useNavigate } from "react-router-dom";
+import ViewDetails from "./ViewDetails";
 
-  // function removeProduct(id) {
-  //   const removeIndex = cart.findIndex(id);
-  //   const updatedCart = cart.splice(removeIndex.valueOf());
-  //   return setCart(updatedCart);
-  // }
+export default function Cart({ products }) {
+  const navigate = useNavigate();
 
-  const cart = [
+  const [cartItems, setCartItems] = useState([
     {
       id: 1,
       name: "Aero Transistor Radio",
@@ -20,39 +17,51 @@ export default function Cart() {
       category_name: "Electronics",
     },
     {
-      id: 2,
-      name: "Philco Transistor Radio",
-      desc: "Vintage Philco 6-Transistor Radio, Model T76-124, Leather Case, Circa 1958",
+      id: 7,
+      name: "Purple Perfume Bottle",
+      desc: "Perfume set from Soviet Union, circa 1965",
       imgURL:
-        "https://upload.wikimedia.org/wikipedia/commons/b/b6/Vintage_Philco_6-Transistor_Radio%2C_Model_T76-124%2C_1958%2C_Leather_Case_%288385122630%29.jpg",
-      price: 50,
-      category_name: "Electronics",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Perfume_set_from_Sovjetunio_cca_1965.jpg/1200px-Perfume_set_from_Sovjetunio_cca_1965.jpg?20100417190340",
+      price: 40,
+      category_name: "Miscellaneous Collectibles",
     },
-  ];
+  ]);
 
   function addToCart(product) {
-    setCart((currItems) => [...currItems, product]);
+    setCartItems((currItems) => [
+      ...currItems,
+      <ViewDetails id={product.id} />,
+    ]);
   }
 
-  const priceArray = cart.map((product) => product.price);
+  function removeProduct(product) {
+    const removeIndex = cartItems.findIndex(product);
+    const removeItem = cartItems.splice(removeIndex.valueOf());
+    return removeItem(), setCart(cartItems);
+  }
+
+  const priceArray = cartItems.map((product) => product.price);
+  if (cartItems.length === 0) {
+    return <h4>Cart is empty.</h4>;
+  }
 
   const cartTotal = priceArray.reduce((total, price) => total + price);
 
   return (
     <div className="container">
       <h2>Your Cart</h2>
-      {cart.map((product) => (
+      {cartItems.map((product) => (
         <div key={product.id} className="product">
-          <img height="50px" src={product.imgURL} alt="thumbnail"></img>
+          <img height="100px" src={product.imgURL} alt="thumbnail"></img>
           <h5>{product.name}</h5>
-          <h5>{product.price}</h5>
-          <button>View Details</button>
-          <button>Remove</button>
+          <h5>${product.price}</h5>
+          <button onClick={() => navigate(`/products/${product.id}`)}>
+            View Details
+          </button>
+          <button onClick={() => removeProduct(id)}>Remove</button>
         </div>
       ))}
       <h4>Cart Total: ${cartTotal}</h4>
     </div>
   );
 }
-
-// onClick={removeProduct(product.id)}
