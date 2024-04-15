@@ -117,7 +117,6 @@ export default function NavBar() {
             src="../assets/fleurdetchotchke-nobg.png"
             alt="Tchotchke Home"
             height="150px"
-            // margin="15px"
           />
         </Link>
         <button
