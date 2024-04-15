@@ -21,9 +21,9 @@ function Products() {
     getProducts();
   }, []);
 
-  // const handleViewDetails = (productId) => {
-  //   window.location.href = `/products/${productId}`;
-  // };
+  const handleViewDetails = (productId) => {
+    window.location.href = `/products/${productId}`;
+  };
   // const products = [
   //   {
   //     id: 1,

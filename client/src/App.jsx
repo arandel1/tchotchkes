@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import ViewByCategory from "./components/ViewByCategory";
+// import ViewByCategory from "./components/ViewByCategory";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Cart from "./components/Cart";
@@ -99,10 +99,10 @@ function App() {
             {" "}
             Home{" "}
           </Route>
-          <Route path="/category" element={<ViewByCategory />}>
+          {/* <Route path="/category" element={<ViewByCategory />}>
             {" "}
             View by Category{" "}
-          </Route>
+          </Route> */}
           <Route path="/all" element={<Products />}></Route>
           <Route path="/books">Books</Route>
           <Route path="/decor">Decor</Route>

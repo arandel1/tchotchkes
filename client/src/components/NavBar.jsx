@@ -8,7 +8,7 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
 
-import ViewByCategory from "./ViewByCategory";
+// import ViewByCategory from "./ViewByCategory";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const Search = styled("div")(({ theme }) => ({
@@ -84,12 +84,12 @@ export default function NavBar({auth}) {
                   inputProps={{ "aria-label": "search" }}
                 />
               </Search>
-              <div id="itemViews">
+              {/* <div id="itemViews">
                 <ViewByCategory></ViewByCategory>
-                {/* <Link to="/viewAllItems">
+                <Link to="/viewAllItems">
                   <button>View All Items</button>
-                </Link> */}
-              </div>
+                </Link>
+              </div> */}
             </div>
           </Box>
           
