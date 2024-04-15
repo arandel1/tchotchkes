@@ -8,6 +8,7 @@ import Cart from "./components/Cart";
 import Products from "./components/Products";
 import ViewDetails from "./components/ViewDetails";
 import Home from "./components/Home";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
 const baseUrl = "http://localhost:8080/tchotchke";
