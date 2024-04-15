@@ -110,14 +110,14 @@ import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top py-2">
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top py-0">
       <div className="container-fluid">
         <Link to="/" className="navbar-brand">
           <img
-            src="../assets/tchotchke.png"
+            src="../assets/fleurdetchotchke-nobg.png"
             alt="Tchotchke Home"
-            height="125px"
-            margin="15px"
+            height="150px"
+            // margin="15px"
           />
         </Link>
         <button
