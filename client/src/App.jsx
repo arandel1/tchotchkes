@@ -7,6 +7,7 @@ import Register from "./components/Register";
 import Cart from "./components/Cart";
 import Products from "./components/Products";
 import ViewDetails from "./components/ViewDetails";
+import Home from "./components/Home";
 import "./App.css";
 
 const baseUrl = "http://localhost:8080/tchotchke";
@@ -55,7 +56,7 @@ function App() {
       <BrowserRouter>
         <NavBar auth={auth}>
           <Routes>
-            <Route path="/" element={<button>Home</button>}>
+            <Route path="/" element={<Home />}>
               Home
             </Route>
             <Route path="/products" element={<Products />}>
@@ -94,15 +95,13 @@ function App() {
         <br />
         <br />
         <br />
-        <h3>:::Carousel of "new" items placeholder:::</h3>
 
         {/* { auth.token ? <button>Welcome {auth.name}</button> : <Login login = { login } />} */}
 
         <Routes>
-          <Route path="/" element={<button>Home</button>}>
+          <Route path="/" element={<Home />}></Route>
             {" "}
             Home{" "}
-          </Route>
           {/* <Route path="/category" element={<ViewByCategory />}>
             {" "}
             View by Category{" "}
