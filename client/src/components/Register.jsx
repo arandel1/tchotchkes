@@ -1,11 +1,3 @@
-// TO-DO:
-
-// import any queries from slices we create, if needed
-// Review specific inputs (lines 27-33 and lines 39-44) once we are aligned on those values / keys
-// This can all be changed later on, but starting with just requesting a username/email and password
-
-// -----------------------------
-// -----------------------------
 import React from "react";
 import { useState } from "react";
 
