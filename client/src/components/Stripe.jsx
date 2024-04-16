@@ -1,4 +1,4 @@
-// notes: https://docs.stripe.com/checkout/quickstart
+// notes: https://docs.stripe.com/checkout/quickstart && https://www.npmjs.com/package/react-stripe-checkout
 
 import React, { useState, useEffect } from "react";
 import StripeCheckout from "react-stripe-checkout";
@@ -48,7 +48,7 @@ export default class TakeMoney extends React.Component {
         <ProductDisplay />
         <StripeCheckout
           token={this.onToken}
-          stripeKey="my_PUBLISHABLE_stripekey"
+          stripeKey="pk_test_51P5rYeKu8FwGD361m1RWer38xTSA4O4QOR3ousHgNIoCnNAa98ERfHW0CodfivDNtCiQjMDTJf4SwyU9lF2lTDCD00LwlZe2ce"
         />
       </div>
     );
