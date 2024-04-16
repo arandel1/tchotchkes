@@ -162,7 +162,7 @@ async function seedDatabase() {
         name: "Neon Route 66 Sign",
         desc: "Vintage Neon Sign from historic U.S. Route 66, circa 1950s",
         imgURL:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/19-03-001-coca-cola.jpg/1514px-19-03-001-coca-cola.jpg?20190208000122",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Route_66_neon_sign%2C_part_of_a_display_of_vintage_and_neon_from_historic_U.S._Route_66_on_the_median_strip_of_Santa_Monica_Boulevard_in_West_Hollywood%2C_California_LCCN2013631565.tif/lossy-page1-1600px-thumbnail.tif.jpg?20160902190314",
         price: 150,
         category_name: "Decor",
       },
