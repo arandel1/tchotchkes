@@ -7,8 +7,9 @@ import Register from "./components/Register";
 import Cart from "./components/Cart";
 import Products from "./components/Products";
 import ViewDetails from "./components/ViewDetails";
+import Stripe from "./components/Stripe";
 import Home from "./components/Home";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 const baseUrl = "http://localhost:8080/tchotchke";
@@ -32,9 +33,9 @@ function App() {
 
   // GET ALL PRODUCTS FROM API
   useEffect(() => {
-    if (typeof auth === "string"){
-      setAuth(JSON.parse(auth))
-    } 
+    if (typeof auth === "string") {
+      setAuth(JSON.parse(auth));
+    }
 
     async function getProducts() {
       const baseUrl = "http://localhost:8080/tchotchke";
@@ -100,9 +101,7 @@ function App() {
         {/* { auth.token ? <button>Welcome {auth.name}</button> : <Login login = { login } />} */}
 
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-            {" "}
-            Home{" "}
+          <Route path="/" element={<Home />}></Route> Home{" "}
           {/* <Route path="/category" element={<ViewByCategory />}>
             {" "}
             View by Category{" "}
@@ -115,7 +114,6 @@ function App() {
           <Route path="/housewares">Housewares</Route>
           <Route path="/jewelryaccessories">Jewelry & Accessories</Route>
           <Route path="/miscellaneous">Miscellaneous</Route>
-
           <Route path="/login" element={<Login auth={setAuth} />}>
             {" "}
             Login{" "}
@@ -136,6 +134,7 @@ function App() {
             path="products/:productId"
             element={<ViewDetails products={products} user={auth} />}
           />
+          <Route path="/checkout" element={<Stripe />} />
         </Routes>
       </BrowserRouter>
     </>

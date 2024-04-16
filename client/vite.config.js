@@ -11,5 +11,11 @@ export default defineConfig({
   },
   server: {
     port: 3002,
+    proxy: {
+      '/tchotchke': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      }
+    }
   },
 });
