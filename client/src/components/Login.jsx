@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Logout } from "./Logout";
 
 const baseUrl = "http://localhost:8080/tchotchke/users";
 
@@ -54,6 +53,11 @@ function Login({ auth }) {
       console.error("Error:", error);
       setErrorMessage("Login failed. Check your username or password.");
     }
+  };
+
+  const Logout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
   };
 
   return (
