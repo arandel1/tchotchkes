@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ViewDetails from "./ViewDetails";
 
-export default function Cart({ usersId }) {
+export default function Cart({ usersId, products}) {
   console.log(usersId)
+  console.log(products)
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {

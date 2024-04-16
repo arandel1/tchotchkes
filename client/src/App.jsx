@@ -42,7 +42,7 @@ function App() {
     }
     getProducts();
   }, []);
-  
+
 console.log(userId, "App.jsx")
   return (
     <>
@@ -118,7 +118,7 @@ console.log(userId, "App.jsx")
             {" "}
             Register{" "}
           </Route>
-          <Route path="/cart" element={<Cart usersId={userId} />}>
+          <Route path="/cart" element={<Cart usersId={userId} products = {products}/>}>
             {" "}
             View Cart{" "}
           </Route>
