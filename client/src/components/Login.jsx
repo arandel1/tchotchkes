@@ -57,7 +57,7 @@ function Login({ auth }) {
 
   const Logout = () => {
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   return (

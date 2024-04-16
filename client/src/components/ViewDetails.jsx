@@ -3,11 +3,9 @@ import { useParams } from "react-router-dom";
 import Cart from "./Cart";
 import { useState } from "react";
 
-const baseUrl = 'http://localhost:8080/tchotchke'
+const baseUrl = "http://localhost:8080/tchotchke";
 
-// const [cartItems, setCartItems] = useState();
-
-function ViewDetails ({ products, user }) {
+function ViewDetails({ products, user }) {
   const navigate = useNavigate();
   const params = useParams();
   const id = +params.productId;
@@ -16,35 +14,28 @@ function ViewDetails ({ products, user }) {
     return <div>Product not found</div>;
   }
 
-  // function setCartItems() {
-  //   <Cart setCartItems />;
-  // }
-
-
   const handleAddToCart = async (e) => {
     e.preventDefault();
 
     try {
       const response = await fetch(`${baseUrl}/orders`, {
-        method: 'POST',
-        headers: { 'Content-Type' : 'application/json' },
-        body: JSON.stringify({productsId: product.id, usersId: user.id}),
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productsId: product.id, usersId: user.id }),
       });
       if (response.ok) {
         const newOrder = await response.json();
-        setSuccessMessage('Item added to cart!')
+        setSuccessMessage("Item added to cart!");
         // setCartItems(newOrder);
       } else {
         const errorData = await response.json();
-        setErrorMessage(errorData.message || 'Item not added to cart.');
+        setErrorMessage(errorData.message || "Item not added to cart.");
       }
     } catch (error) {
-      console.error('Error:', error);
-      setErrorMessage('An error occurred. Please try again later.');
+      console.error("Error:", error);
+      setErrorMessage("An error occurred. Please try again later.");
     }
   };
-  
-  // navigate(`/cart`);
 
   return (
     <>
@@ -59,15 +50,11 @@ function ViewDetails ({ products, user }) {
           alt="product image"
         />
         <button onClick={() => navigate(`/products/`)}>Back to All</button>
-        <button
-        onClick={(e) => handleAddToCart(e)}
-        >
-          Add to Order
-        </button>
+        <button onClick={(e) => handleAddToCart(e)}>Add to Order</button>
       </div>
     </>
   );
-};
+}
 
 export default ViewDetails;
 
