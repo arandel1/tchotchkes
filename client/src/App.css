@@ -42,7 +42,7 @@ body {
 }
 
 .custom-carousel {
-  background-color: antiquewhite;
+  background-color: lightblue;
   border: 1px solid;
   border-radius: 5px;
   padding: 50px;
@@ -55,22 +55,8 @@ body {
   text-align: center;
 }
 
-/* .card {
-  padding: 2em;
+.card {
+  padding: .5em;
+  margin: .5em;
 }
 
-.read-the-docs {
-  color: #888;
-}
-
-.container {
-  margin-top: 5vh;
-}
-
-.product {
-  margin-top: 3vh;
-  display: grid;
-  column-gap: 30px;
-  justify-content: space-around;
-  margin-bottom: 3vh;
-} */
