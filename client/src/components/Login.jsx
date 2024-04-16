@@ -42,7 +42,7 @@ function Login({ auth }) {
         // console.log(response)
         // console.log(user)
         const token = user.token;
-        // console.log(token)
+        console.log(token);
         auth(user);
         localStorage.setItem("auth", JSON.stringify(user));
       } else {
@@ -55,9 +55,11 @@ function Login({ auth }) {
     }
   };
 
-  const Logout = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/";
+  const Logout = (token) => {
+    localStorage.removeItem(token);
+    console.log(token);
+    // window.location.href = "/";
+    setSuccessMessage("You're logged out!");
   };
 
   return (
