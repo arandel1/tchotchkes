@@ -39,7 +39,7 @@ function Login( {auth, updateUserId} ) {
         auth(user)
         localStorage.setItem("auth", JSON.stringify(user))
         updateUserId(userId)
-        console.log("login.jsx", userId)
+        console.log("userId:", userId, "sourced from Login.jsx")
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message || 'Login failed. Please try again.')

@@ -19,9 +19,6 @@ export default function Cart({ usersId, products}) {
           throw new Error("Failed to fetch order.");
         }
         const apiOrders = await response.json();
-
-        //console.log('Fetched Orders:', apiOrders);
-       
         const userOrders = apiOrders.filter((order) => order.usersId === usersId);
         console.log(userOrders, "userOrders");
         setCartItems(userOrders);      
@@ -31,6 +28,11 @@ export default function Cart({ usersId, products}) {
     }
     getOrder();
   }, []);
+
+  // function removeItemFromCart() {
+    
+  // }
+
 
   // function removeProduct(product) {
   //   const removeIndex = cartItems.findIndex(product);
@@ -60,10 +62,10 @@ export default function Cart({ usersId, products}) {
               <img height = "100px" src = {product.imgURL} alt = "thumbnail"></img>
               <h5>{product.name}</h5>
               <h5>${product.price}</h5>
-              {/* <button onClick={() => navigate(`/products/${product.id}`)}>
-                View Details
-              </button> */}
-              {/* <button onClick={() => removeProduct(id)}>Remove</button> */}
+              <button
+              // onClick={() => removeProduct(id)}
+              >Remove Item from Cart
+              </button>
             </div>
           ))
         )}
