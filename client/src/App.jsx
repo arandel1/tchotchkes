@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, React } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
 // import ViewByCategory from "./components/ViewByCategory";
@@ -8,13 +8,15 @@ import Cart from "./components/Cart";
 import Products from "./components/Products";
 import ViewDetails from "./components/ViewDetails";
 import Stripe from "./components/Stripe";
+import Home from "./components/Home";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 const baseUrl = "http://localhost:8080/tchotchke";
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState(localStorage.getItem("auth") || {});
   const [order, setOrder] = useState([]);
 
   // const login = async(formData) => {
@@ -31,6 +33,10 @@ function App() {
 
   // GET ALL PRODUCTS FROM API
   useEffect(() => {
+    if (typeof auth === "string") {
+      setAuth(JSON.parse(auth));
+    }
+
     async function getProducts() {
       const baseUrl = "http://localhost:8080/tchotchke";
       try {
@@ -52,7 +58,7 @@ function App() {
       <BrowserRouter>
         <NavBar auth={auth}>
           <Routes>
-            <Route path="/" element={<button>Home</button>}>
+            <Route path="/" element={<Home />}>
               Home
             </Route>
             <Route path="/products" element={<Products />}>
@@ -91,15 +97,11 @@ function App() {
         <br />
         <br />
         <br />
-        <h3>:::Carousel of "new" items placeholder:::</h3>
 
         {/* { auth.token ? <button>Welcome {auth.name}</button> : <Login login = { login } />} */}
 
         <Routes>
-          <Route path="/" element={<button>Home</button>}>
-            {" "}
-            Home{" "}
-          </Route>
+          <Route path="/" element={<Home />}></Route> Home{" "}
           {/* <Route path="/category" element={<ViewByCategory />}>
             {" "}
             View by Category{" "}
@@ -112,7 +114,6 @@ function App() {
           <Route path="/housewares">Housewares</Route>
           <Route path="/jewelryaccessories">Jewelry & Accessories</Route>
           <Route path="/miscellaneous">Miscellaneous</Route>
-
           <Route path="/login" element={<Login auth={setAuth} />}>
             {" "}
             Login{" "}
@@ -131,7 +132,7 @@ function App() {
           </Route>
           <Route
             path="products/:productId"
-            element={<ViewDetails products={products} />}
+            element={<ViewDetails products={products} user={auth} />}
           />
           <Route path="/checkout" element={<Stripe />} />
         </Routes>

@@ -5,6 +5,14 @@
   text-align: center;
 }
 
+body {
+  background-image: url('./assets/magicalneutralbackground.jpg'); 
+  background-repeat: repeat; 
+  background-size: cover; 
+  background-position: center; 
+  height: 100vh; 
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -33,7 +41,7 @@
   }
 }
 
-.card {
+/* .card {
   padding: 2em;
 }
 
@@ -51,4 +59,4 @@
   column-gap: 30px;
   justify-content: space-around;
   margin-bottom: 3vh;
-}
+} */

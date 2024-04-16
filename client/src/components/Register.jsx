@@ -37,6 +37,7 @@ function Register() {
       
       if(response.ok){
         const newUser = await response.json();
+        localStorage.setItem("auth", JSON.stringify(newUser))
         setSuccessMessage('Account created successfully!');
         setFormData({ name: '', email: '', password: '' })
       } else {
