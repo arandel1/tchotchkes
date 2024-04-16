@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Cart from "./Cart";
+import { useState } from "react";
 
-const ViewDetails = ({ products }) => {
+const baseUrl = "http://localhost:8080/tchotchke";
+
+// const [cartItems, setCartItems] = useState();
+
+function ViewDetails({ products, user }) {
   const navigate = useNavigate();
   const params = useParams();
   const id = +params.productId;
@@ -14,6 +19,7 @@ const ViewDetails = ({ products }) => {
   // function setCartItems() {
   //   <Cart setCartItems />;
   // }
+
   const handleAddToCart = async (e) => {
     e.preventDefault();
 
@@ -21,12 +27,12 @@ const ViewDetails = ({ products }) => {
       const response = await fetch(`${baseUrl}/orders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(),
+        body: JSON.stringify({ productsId: product.id, usersId: user.id }),
       });
-
       if (response.ok) {
         const newOrder = await response.json();
         setSuccessMessage("Item added to cart!");
+        // setCartItems(newOrder);
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message || "Item not added to cart.");
@@ -37,7 +43,6 @@ const ViewDetails = ({ products }) => {
     }
   };
 
-  // setCartItems(newProduct);
   // navigate(`/cart`);
 
   return (
@@ -57,7 +62,7 @@ const ViewDetails = ({ products }) => {
       </div>
     </>
   );
-};
+}
 
 export default ViewDetails;
 

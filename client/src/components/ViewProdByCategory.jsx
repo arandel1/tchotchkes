@@ -39,7 +39,7 @@ export default function ViewProdByCategory(products, category) {
 
   categories.forEach((category) => category_name === category);
 
-  products.filter((product) => );
+  products.filter((product) => product.category_name);
 }
 return;
 <div>

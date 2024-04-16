@@ -48,7 +48,7 @@ orderRouter.post("/", async (req, res, next) => {
         total: 0
       }
     })
-    // console.log(newOrder)
+    console.log(newOrder)
     res.send(newOrder)
   } catch (err) {
     console.error(err.message);
