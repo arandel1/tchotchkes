@@ -40,6 +40,7 @@ function Login({ auth, updateUserId }) {
         setSuccessMessage("You're logged in!");
         setFormData({ email: formData.email, password: "" });
         const token = user.token;
+        console.log(token);
         auth(user);
         localStorage.setItem("auth", JSON.stringify(user));
         updateUserId(userId);
