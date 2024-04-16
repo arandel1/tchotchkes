@@ -177,7 +177,7 @@
 // function handleCategoryChange(categories) {
 //   setSelectedCategory(categories);
 // }
-
+// jello
 // export default function ViewByCategory() {
 //   const {
 //     getRootProps,
