@@ -31,6 +31,10 @@ function Login( {auth} ) {
 
       if(response.ok){
         const user = await response.json();
+        const userId = user.id;
+        localStorage.setItem("auth", JSON.stringify({...user}));
+        auth(user);
+        navigate('/products')
         setSuccessMessage("You're logged in!");
         setFormData({ email: formData.email, password:'' })
         // navigate('/products');

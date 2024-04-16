@@ -15,18 +15,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [auth, setAuth] = useState(localStorage.getItem("auth") || {});
   const [order, setOrder] = useState([]);
-
-  // const login = async(formData) => {
-  //   const response = await fetch(`${baseUrl}/users/login`, {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(formData)
-
-  //   })
-  //   const json = await response.json();
-  //   console.log(response);
-  //   console.log(json)
-  // }
+  const [userId, setUserId] = useState(null);
 
   // GET ALL PRODUCTS FROM API
   useEffect(() => {
@@ -124,7 +113,7 @@ function App() {
             {" "}
             Register{" "}
           </Route>
-          <Route path="/cart" element={<Cart products={products} />}>
+          <Route path="/cart" element={<Cart userId={userId} />}>
             {" "}
             View Cart{" "}
           </Route>
