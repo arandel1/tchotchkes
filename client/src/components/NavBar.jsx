@@ -1,5 +1,8 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 // OLD NAVBAR CODE COMMENTED OUT BELOW
 // const Search = styled("div")(({ theme }) => ({
@@ -110,7 +113,7 @@ import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top py-0">
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top py-0 d-flex flex-wrap">
       <div className="container-fluid">
         <Link to="/" className="navbar-brand">
           <img
