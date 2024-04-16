@@ -1,45 +1,55 @@
 ﻿import React from "react";
 import { Carousel } from "react-bootstrap";
+import AeroTransistorRadio from '../assets/Carousel-Images/AeroTransistorRadio.png';
+import AlladinTableLamp from '../assets/Carousel-Images/AlladinTableLamp.png';
+import BeatrixPotterBook from '../assets/Carousel-Images/BeatrixPotterBook.png';
+import Cameo from '../assets/Carousel-Images/Cameo.png';
+import PollyGasNeon from '../assets/Carousel-Images/PollyGasNeon.png';
+
+
+
 
 export default function Home () {
   return (
     <div>
       <h2>Carousel of Featured Products</h2>
-      <Carousel>
+      <Carousel data-bs-theme="dark">
         <Carousel.Item>
-          <img
-            className="d-block max-w-50 max-h-25"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Custom_Lego_Chess_Set.jpg/1600px-Custom_Lego_Chess_Set.jpg?20201229212027"
-            alt="First slide"
-          />
+          <img className="d-block w-100" src={AeroTransistorRadio} alt="Transistor Radio" />
           <Carousel.Caption>
-            <h3>Slide 1</h3>
-            <p>Lego Chess Set</p>
+            <h3>Aero Transistor Radio</h3>
+            <p>Vintage Aero Transistor Radio, circa 1960s</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img
-            className="d-block max-w-50 max-h-25"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Perfume_set_from_Sovjetunio_cca_1965.jpg/1200px-Perfume_set_from_Sovjetunio_cca_1965.jpg?20100417190340"
-            alt="Second slide"
-          />
+          <img className="d-block w-100" src={AlladinTableLamp} alt="Lamp Shaped Table Lighter" />
           <Carousel.Caption>
-            <h3>Slide 2</h3>
-            <p>Purple Perfume Bottle</p>
+            <h3>Alladin Lamp Table Lighter</h3>
+            <p>Vintage Aladdin Table Lamp-Style Cigarette Lighter, Made In Japan</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <img
-            className="d-block max-w-50 max-h-25"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Victorian_Style_Steampunk_lamp.jpg/920px-Victorian_Style_Steampunk_lamp.jpg?20180814155821"
-            alt="Third slide"
-          />
+          <img className="d-block w-100" src={BeatrixPotterBook} alt="Vintage Book of Nursery Rhymes" />
           <Carousel.Caption>
-            <h3>Slide 3</h3>
-            <p>Steampunk Lamp</p>
+            <h3>Cecily Parsley's Nursery Rhymes Book</h3>
+            <p>By Beatrix Potter, First Edition, circa 1922</p>
           </Carousel.Caption>
         </Carousel.Item>
-      </Carousel>
+        <Carousel.Item>
+          <img className="d-block w-100" src={Cameo} alt="Cameo Brooch" />
+          <Carousel.Caption>
+            <h3>Perfume Brooch</h3>
+            <p>Vintage "Perfume" Cameo in Original Box</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src={PollyGasNeon} alt="Neon Parrot Sign" />
+          <Carousel.Caption>
+            <h3>Neon Polly Gas Sign</h3>
+            <p>Vintage Polly Gas Parrot Sign, circa 1950s</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+    </Carousel>
     </div>
   );
 }
