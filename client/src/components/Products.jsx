@@ -97,7 +97,7 @@ function Products() {
   return (
     <>
       <div className="container" style={{ backgroundColor: 'lightblue', padding: '20px' }}>
-        <h2>All Items</h2>
+        <h2 className="all-items-header text-uppercase">All Items</h2>
         {products.length === 0 && <p>No inventory</p>}
 
         <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4" style={{ display: 'flex', flexWrap: 'wrap' }}>  {/* Responsive grid for 3 cards */}

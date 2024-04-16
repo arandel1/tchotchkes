@@ -47,16 +47,40 @@ body {
   border-radius: 5px;
   padding: 50px;
   margin: 75px;
+  font-family: "Miltonian Tattoo", serif;
+  font-weight: 400;
+  font-style: normal;
 }
+
 #carouselHeading {
   padding: 20px;
-  margin: 20px;
-  border-radius: 25px;
+  border-radius: 1px;
   text-align: center;
+  font-family: "Miltonian Tattoo", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 46px;
 }
+
+
 
 .card {
   padding: .5em;
   margin: .5em;
+  font-family: "Miltonian Tattoo", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: medium;
 }
 
+.all-items-header {
+  font-family: "Miltonian Tattoo", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 46px;
+}
+
+.navbar {
+  font-family: "Miltonian Tattoo", serif;
+  font-size: 16px;
+}

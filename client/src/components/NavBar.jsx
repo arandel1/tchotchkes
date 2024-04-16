@@ -137,7 +137,7 @@ export default function NavBar() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link to="/products" className="nav-link">
-                View All
+                View All Products
               </Link>
             </li>
             <li className="nav-item">
