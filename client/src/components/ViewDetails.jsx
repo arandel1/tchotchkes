@@ -5,9 +5,14 @@ import { useState } from "react";
 
 const baseUrl = 'http://localhost:8080/tchotchke'
 
+
 // const [cartItems, setCartItems] = useState();
 
 function ViewDetails ({ products, user }) {
+
+const [successMessage, setSuccessMessage] = useState();
+const [errorMessage, setErrorMessage] = useState();
+
   const navigate = useNavigate();
   const params = useParams();
   const id = +params.productId;
@@ -33,7 +38,6 @@ function ViewDetails ({ products, user }) {
       if (response.ok) {
         const newOrder = await response.json();
         setSuccessMessage('Item added to cart!')
-        // setCartItems(newOrder);
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message || 'Item not added to cart.');
@@ -52,6 +56,8 @@ function ViewDetails ({ products, user }) {
         <h2>{product.name}</h2>
         <h2>${product.price}</h2>
         <p>{product.desc}</p>
+        {errorMessage && <p className='error-message'>{errorMessage}</p>}
+        {successMessage && <p className='success-message'>{successMessage}</p>}
 
         <img
           className="product-image"
@@ -64,7 +70,9 @@ function ViewDetails ({ products, user }) {
         >
           Add to Order
         </button>
+        
       </div>
+      
     </>
   );
 };

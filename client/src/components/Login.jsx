@@ -1,27 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 
 const baseUrl = 'http://localhost:8080/tchotchke/users'
 
-function Login( {auth} ) {
+function Login( {auth, updateUserId} ) {
   const [formData, setFormData] = useState({
     email:'', 
     password:''
   });
 
-  // const navigate = useNavigate();
-
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
-
+  const [userId, setUserId] = useState();
+  
   const handleChange = (e) => {
     setFormData({...formData, [e.target.name]: e.target.value});
   };
 
   const handleSubmit = async(e)=> {
     e.preventDefault();
-    // await login(formData)
      try {
       const response = await fetch(`${baseUrl}/login`, {
         method: 'POST', 
@@ -31,17 +29,17 @@ function Login( {auth} ) {
 
       if(response.ok){
         const user = await response.json();
+        const userId = user.id;
+        localStorage.setItem("auth", JSON.stringify({...user}));
+        auth(user);
+        // navigate('/products')
         setSuccessMessage("You're logged in!");
         setFormData({ email: formData.email, password:'' })
-        // navigate('/products');
-        // console.log(formData)
-        // console.log(response)
-        // console.log(user)
         const token = user.token;
-        // console.log(token)
         auth(user)
         localStorage.setItem("auth", JSON.stringify(user))
-
+        updateUserId(userId)
+        console.log("userId:", userId, "sourced from Login.jsx")
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message || 'Login failed. Please try again.')
