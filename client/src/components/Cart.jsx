@@ -29,7 +29,6 @@ export default function Cart({ usersId }) {
       }
     }
     getOrder();
-
   }, []);
 
   // function removeProduct(product) {

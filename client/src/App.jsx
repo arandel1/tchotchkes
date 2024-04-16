@@ -42,6 +42,7 @@ function App() {
     }
     getProducts();
   }, []);
+  
 console.log(userId, "App.jsx")
   return (
     <>
