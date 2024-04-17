@@ -19,9 +19,12 @@ export default function Cart({ usersId, products}) {
           throw new Error("Failed to fetch order.");
         }
         const apiOrders = await response.json();
-        const userOrders = apiOrders.filter((order) => order.usersId === usersId);
-        console.log(userOrders, "userOrders");
-        setCartItems(userOrders);      
+
+        const getProductDetails = apiOrders.filter(order => products.some(product => product.id === order.productsId)).map(order => products.find(product=> product.id === order.productsId))
+
+        console.log(getProductDetails)
+        // console.log(userOrders, "userOrders");
+        setCartItems(getProductDetails);      
        } catch (error) {
         console.error("Error fetching order:", error);
       }
@@ -46,6 +49,18 @@ export default function Cart({ usersId, products}) {
   // }
 
   // const cartTotal = priceArray.reduce((total, price) => total + price);
+
+
+  // Match correct id for product in the Orders model with the correct id of the same product in the Products model
+
+  // extract the ids from the models
+
+  // productsId === product.id
+  // Products contains id
+  // userOrders contains productsId
+  // I need those two values to match -- if the Products id === userOrders productsId, then display the product object (the image, name, description, and price)
+
+  
 
   return (
     <div className="container">
