@@ -1,7 +1,7 @@
 import { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
 import ViewDetails from "./ViewDetails";
+import OrderTotal from "./OrderTotal";
 
 export default function Cart({ products }) {
   const navigate = useNavigate();
@@ -26,13 +26,6 @@ export default function Cart({ products }) {
     //   category_name: "Miscellaneous Collectibles",
     // },
   ]);
-
-  // function addToCart(product) {
-  //   setCartItems((currItems) => [
-  //     ...currItems,
-  //     <ViewDetails id={product.id} />,
-  //   ]);
-  // }
 
   function removeProduct(product) {
     const removeIndex = cartItems.findIndex(product);
@@ -61,7 +54,7 @@ export default function Cart({ products }) {
           <button onClick={() => removeProduct(id)}>Remove</button>
         </div>
       ))}
-      <h4>Cart Total: ${cartTotal}</h4>
+      <h4>{/* Cart Total: $<OrderTotal /> */}</h4>
     </div>
   );
 }
