@@ -24,8 +24,8 @@ function ViewDetails({ products, user }) {
 
     try {
       const response = await fetch(`${baseUrl}/orders`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ productsId: product.id, usersId: user.id }),
       });
       if (response.ok) {
