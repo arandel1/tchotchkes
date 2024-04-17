@@ -23,7 +23,6 @@ export default function Cart({ usersId, products}) {
         const getProductDetails = apiOrders.filter(order => products.some(product => product.id === order.productsId)).map(order => products.find(product=> product.id === order.productsId))
 
         console.log(getProductDetails)
-        // console.log(userOrders, "userOrders");
         setCartItems(getProductDetails);      
        } catch (error) {
         console.error("Error fetching order:", error);
@@ -74,7 +73,7 @@ export default function Cart({ usersId, products}) {
 
           cartItems.map((product) => (
             <div key = {product.id} className="product">
-              <img height = "100px" src = {product.imgURL} alt = "thumbnail"></img>
+              <img height = "100px" src = {product.imgURL} alt = {product.name}></img>
               <h5>{product.name}</h5>
               <h5>${product.price}</h5>
               <button
