@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: "Playfair Display", serif;
 }
 
 body {
@@ -27,7 +28,6 @@ body {
   border-radius: 5px;
   padding: 25px;
   margin: 15px;
-  font-family: "Playfair Display", serif;
   font-weight: 500;
   font-style: normal;
 }
@@ -36,7 +36,6 @@ body {
   padding: 20px;
   border-radius: 1px;
   text-align: center;
-  font-family: "Playfair Display", serif;
   font-weight: 800;
   font-style: normal;
   font-size: 42px;
@@ -47,14 +46,12 @@ body {
   margin: .5em;
   border: 1px solid;
   border-radius: 1px;
-  font-family: "Playfair Display", serif;
   font-weight: 400;
   font-style: normal;
   font-size: medium;
 }
 
 .all-items-header {
-  font-family: "Playfair Display", serif;
   font-weight: 700;
   font-style: normal;
   font-size: 46px;
@@ -67,9 +64,73 @@ body {
   margin: 15px;
 }
 
+.single-product-container {
+  justify-content: center;
+  align-items: center;
+  background-color: lightblue;
+  border: 3px solid;
+  border-radius: 5px;
+  padding: 25px;
+  margin: 15px;
+}
+
+.small-product-card {
+  justify-content: center;
+  background-color: white;
+  max-height: max-content;
+  padding: .5em;
+  margin: .5em;
+  border: 2px solid;
+  border-radius: 3px;
+  font-weight: 400;
+  font-style: normal;
+  font-size: normal;
+}
+
+.card-body .d-flex .btn {
+  margin-right: 50px; /* Adjust margin as needed */
+  margin-left: 50px;
+}
+
+.card-img-top {
+  object-fit: cover;
+  border: 2px solid black; /* Adjust border style and color */
+  border-radius: 0.25rem; /* Optional rounded corners */
+  max-width: 800px; /* Adjust max-width as needed */
+}
+
+@media (max-width: 768px) {
+  /* Styles for screens smaller than 768px (e.g., phones) */
+  .card-img-top {
+    max-width: 100%; /* Allow full width on smaller screens */
+  }
+}
+
 .navbar {
   font-family: "Playfair Display", serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 100;
+}
+
+.login-form-container {
+  justify-content: center;
+  align-items: center;
+  background-color: lightblue;
+  border: 3px solid;
+  border-radius: 5px;
+  padding: 25px;
+  margin: 15px;
+  text-align: left;
+}
+
+.register-form-container {
+  justify-content: center;
+  align-items: center;
+  background-color: lightblue;
+  border: 3px solid;
+  border-radius: 5px;
+  padding: 25px;
+  margin: 15px;
+  text-align: left;
 }
