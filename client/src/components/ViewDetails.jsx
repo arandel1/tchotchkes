@@ -63,9 +63,9 @@ function ViewDetails({ products, user }) {
           <div className="col-md-6">
             <div className="small-product-card"> {/* Wrap content in card */}
               <img
-                className="card-img-top img-fluid border rounded"  
+                className="card-img-top img-fluid product-image rounded border" 
                 src={product.imgURL}
-                style={{ objectFit: 'contain' }}
+                style={{ objectFit: 'cover' }} 
                 alt="product image"
               />
               <div className="card-body">

@@ -80,14 +80,34 @@ body {
 .small-product-card {
   justify-content: center;
   background-color: white;
+  max-height: max-content;
   padding: .5em;
   margin: .5em;
-  border: 1px solid;
+  border: 2px solid;
   border-radius: 3px;
   font-family: "Playfair Display", serif;
   font-weight: 400;
   font-style: normal;
-  font-size: small;
+  font-size: normal;
+}
+
+.card-body .d-flex .btn {
+  margin-right: 50px; /* Adjust margin as needed */
+  margin-left: 50px;
+}
+
+.card-img-top {
+  object-fit: cover;
+  border: 2px solid black; /* Adjust border style and color */
+  border-radius: 0.25rem; /* Optional rounded corners */
+  max-width: 800px; /* Adjust max-width as needed */
+}
+
+@media (max-width: 768px) {
+  /* Styles for screens smaller than 768px (e.g., phones) */
+  .card-img-top {
+    max-width: 100%; /* Allow full width on smaller screens */
+  }
 }
 
 .navbar {
