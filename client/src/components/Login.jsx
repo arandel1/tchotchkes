@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const baseUrl = "http://localhost:8080/tchotchke/users";
 
@@ -12,7 +10,6 @@ function Login({ auth, updateUserId }) {
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
-  const [userId, setUserId] = useState();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -36,7 +33,6 @@ function Login({ auth, updateUserId }) {
         const userId = user.id;
         localStorage.setItem("auth", JSON.stringify({ ...user }));
         auth(user);
-        // navigate('/products')
         setSuccessMessage("You're logged in!");
         setFormData({ email: formData.email, password: "" });
         const token = user.token;
@@ -56,9 +52,8 @@ function Login({ auth, updateUserId }) {
   };
 
   const Logout = (token) => {
-    localStorage.removeItem(token);
+    localStorage.removeItem("auth");
     console.log(token);
-    // window.location.href = "/";
     setSuccessMessage("You're logged out!");
   };
 

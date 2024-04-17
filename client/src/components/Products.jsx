@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
-<<<<<<< Updated upstream
 import Card from 'react-bootstrap/Card'
-import { useNavigate } from "react-router-dom";
-=======
 import { useNavigate, useSearchParams } from "react-router-dom";
->>>>>>> Stashed changes
 
 
 function Products() {
@@ -45,9 +41,8 @@ function Products() {
       {/* <h2>All Items</h2>
       {products.length === 0 && <p>No inventory</p>} */}
 
-<<<<<<< Updated upstream
       {/* <div className="card-container">
-=======
+
   //               }}
   //             >
   //               View Details
@@ -65,7 +60,6 @@ function Products() {
       {products.length === 0 && <p>No inventory</p>}
 
       <div className="card-container">
->>>>>>> Stashed changes
         {products.map((product) => (
           <div key={product.id} className="card" style={{ width: "18rem" }}>
             <img

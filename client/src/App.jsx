@@ -19,7 +19,6 @@ function App() {
   const [products, setProducts] = useState([]);
   const [auth, setAuth] = useState(localStorage.getItem("auth") || {});
   const [order, setOrder] = useState([]);
-  const [userId, setUserId] = useState('');
 
   const updateUserId = (value) => {
     setUserId(value);
@@ -47,7 +46,7 @@ function App() {
     getProducts();
   }, []);
 
-console.log(userId, "App.jsx")
+console.log(auth, "App.jsx")
   return (
     <>
       <BrowserRouter>
@@ -118,7 +117,7 @@ console.log(userId, "App.jsx")
             {" "}
             Register{" "}
           </Route>
-          <Route path="/cart" element={<Cart usersId={userId} products = {products}/>}>
+          <Route path="/cart" element={<Cart auth={auth} products = {products}/>}>
             {" "}
             View Cart{" "}
           </Route>
