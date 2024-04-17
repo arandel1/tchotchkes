@@ -13,13 +13,19 @@ body {
   height: 100vh; 
 }
 
+.custom-carousel-container {
+  background-color: lightblue;
+  padding: 5px;
+  margin: 5px;
+}
 
 .custom-carousel {
-  width: 85%;
+  /* width: 50%; */
+  height: fit-content;
   margin: 0 auto;
   border: 3px solid;
   border-radius: 5px;
-  padding: 20px;
+  padding: 25px;
   margin: 15px;
   font-family: "Playfair Display", serif;
   font-weight: 500;
@@ -33,12 +39,14 @@ body {
   font-family: "Playfair Display", serif;
   font-weight: 800;
   font-style: normal;
-  font-size: 46px;
+  font-size: 42px;
 }
 
 .card {
   padding: .5em;
   margin: .5em;
+  border: 1px solid;
+  border-radius: 1px;
   font-family: "Playfair Display", serif;
   font-weight: 400;
   font-style: normal;
@@ -50,6 +58,13 @@ body {
   font-weight: 700;
   font-style: normal;
   font-size: 46px;
+}
+
+.all-items-container {
+  border: 3px solid;
+  border-radius: 5px;
+  padding: 25px;
+  margin: 15px;
 }
 
 .navbar {

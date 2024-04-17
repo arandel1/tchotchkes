@@ -12,11 +12,11 @@ import PollyGasNeon from '../assets/Carousel-Images/PollyGasNeon.png';
 export default function Home () {
   return (
     <> 
-      <div className="container" style={{ backgroundColor: 'lightblue', padding: '5px', margin: '5px' }}>
+      <div className="container custom-carousel-container" style={{ backgroundColor: 'lightblue', padding: '5px', margin: '5px' }}>
         <h2 id="carouselHeading" className="carousel-heading text-uppercase">Featured Items</h2>
         <Carousel className="custom-carousel" data-bs-theme="dark" style={{ display: 'flex', justifyContent: 'center', width: '70%', margin: '0 auto' }}> 
             <CarouselItem>
-              <img className="d-block w-100 py-3 px-3 mb-3 mt-0" 
+              <img className="d-block w-100 img-fluid py-3 px-3 mb-3 mt-0" 
               src={AeroTransistorRadio} 
               alt="Transistor Radio" />
               <CarouselCaption className="carousel-caption d-block text-dark w-75 py-2 mt-3 mb-2 px-3 d-md-block d-none" style={{ position: 'absolute', bottom: '10px', left: '50%', transform: 'translateX(-50%)' }}>
