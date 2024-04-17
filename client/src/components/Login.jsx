@@ -56,9 +56,8 @@ function Login({ auth, updateUserId }) {
   };
 
   const Logout = (token) => {
-    localStorage.removeItem(token);
+    localStorage.removeItem("auth");
     console.log(token);
-    // window.location.href = "/";
     setSuccessMessage("You're logged out!");
   };
 

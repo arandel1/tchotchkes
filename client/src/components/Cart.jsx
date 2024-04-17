@@ -4,26 +4,29 @@ import ViewDetails from "./ViewDetails";
 
 export default function Cart({ auth, products}) {
   console.log(auth)
-  console.log(products)
   const [cartItems, setCartItems] = useState([]);
+  // const [cartAuth, setCartAuth] = useState();
 
   useEffect(() => {
     async function getOrder() {
       const baseUrl = "http://localhost:8080/tchotchke";
       try {
 
+        const cartAuth = !auth.id ? JSON.parse(auth) : 
+        (auth)
+        ;
+        console.log(cartAuth)
         console.log("Fetching orders...")
 
-        const response = await fetch(`${baseUrl}/orders/${auth.id}`);
+        const response = await fetch(`${baseUrl}/orders/${cartAuth.id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch order.");
         }
         const apiOrders = await response.json();
         console.log(apiOrders)
-        const getProductDetails = apiOrders.filter(order => products.some(product => product.id === order.productsId)).map(order => products.find(product=> product.id === order.productsId))
 
-        console.log(getProductDetails)
-        setCartItems(getProductDetails);      
+        setCartItems(apiOrders);    
+
        } catch (error) {
         console.error("Error fetching order:", error);
       }
@@ -32,24 +35,6 @@ export default function Cart({ auth, products}) {
   }, []);
 
 
-  // const priceArray = cartItems.map((product) => product.price);
-  // if (cartItems.length === 0) {
-  //   return <h4>Your cart is EMPTY.</h4>;
-  // }
-
-  // const cartTotal = priceArray.reduce((total, price) => total + price);
-
-
-  // Match correct id for product in the Orders model with the correct id of the same product in the Products model
-
-  // extract the ids from the models
-
-  // productsId === product.id
-  // Products contains id
-  // userOrders contains productsId
-  // I need those two values to match -- if the Products id === userOrders productsId, then display the product object (the image, name, description, and price)
-
-  
 
   return (
     <div className="container">
