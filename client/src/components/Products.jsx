@@ -100,7 +100,7 @@ function Products() {
         <h2 className="all-items-header text-uppercase">All Items</h2>
         {products.length === 0 && <p>No inventory</p>}
 
-        <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4" style={{ display: 'flex', flexWrap: 'wrap' }}>  {/* Responsive grid for 3 cards */}
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5" style={{ display: 'flex', flexWrap: 'wrap' }}>  {/* Responsive grid for 3 cards */}
           {products.map((product) => (
             <div key={product.id} className="col">
               <div className="card" style={{ aspectRatio: '16/9' }}>
