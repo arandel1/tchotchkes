@@ -13,13 +13,10 @@ body {
   height: 100vh; 
 }
 
-@media (max-width: 768px) {
-  .custom-carousel {
-    height: 300px; /* Adjust height for smaller screens */
-  }
-}
 
 .custom-carousel {
+  width: 85%;
+  margin: 0 auto;
   border: 3px solid;
   border-radius: 5px;
   padding: 20px;
@@ -38,8 +35,6 @@ body {
   font-style: normal;
   font-size: 46px;
 }
-
-
 
 .card {
   padding: .5em;
