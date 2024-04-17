@@ -1,16 +1,26 @@
 import { useEffect, useState } from "react";
+<<<<<<< Updated upstream
 import Card from 'react-bootstrap/Card'
 import { useNavigate } from "react-router-dom";
+=======
+import { useNavigate, useSearchParams } from "react-router-dom";
+>>>>>>> Stashed changes
 
 
 function Products() {
   const [products, setProducts] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const category = searchParams.get("category");
 
   useEffect(() => {
-    async function getProducts() {
+    async function getProducts(category) {
       const baseUrl = "http://localhost:8080/tchotchke";
       try {
-        const response = await fetch(`${baseUrl}/products`);
+        const query = category
+          ? `category=${encodeURIComponent(category)}`
+          : "";
+
+        const response = await fetch(`${baseUrl}/products?${query}`);
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
@@ -20,8 +30,8 @@ function Products() {
         console.error("Error fetching products:", error);
       }
     }
-    getProducts();
-  }, []);
+    getProducts(category);
+  }, [category]);
 
   const handleViewDetails = (productId) => {
     window.location.href = `/products/${productId}`;
@@ -35,7 +45,27 @@ function Products() {
       {/* <h2>All Items</h2>
       {products.length === 0 && <p>No inventory</p>} */}
 
+<<<<<<< Updated upstream
       {/* <div className="card-container">
+=======
+  //               }}
+  //             >
+  //               View Details
+  //             </a>
+  //           </div>
+  //         </div>
+  //       ))}
+  //     </div>
+  //   </>
+  // );
+
+  return (
+    <>
+      <h2>{category ? decodeURIComponent(category) : "All Items"}</h2>
+      {products.length === 0 && <p>No inventory</p>}
+
+      <div className="card-container">
+>>>>>>> Stashed changes
         {products.map((product) => (
           <div key={product.id} className="card" style={{ width: "18rem" }}>
             <img

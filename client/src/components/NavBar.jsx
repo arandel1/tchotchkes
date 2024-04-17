@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import CategoryDropdown from "./CategoryDropdown";
 
 // OLD NAVBAR CODE COMMENTED OUT BELOW
 // const Search = styled("div")(({ theme }) => ({
@@ -54,62 +54,61 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 //   },
 // }));
 
+// return (
+// <Box sx={{ flexGrow: 1 }}>
+//   <AppBar position="fixed">
+//     <Toolbar>
+//       <Link to="/">
+//         <img
+//           height="150px"
+//           margin="15px"
+//           src="../assets/tchotchke.png"
+//           alt="Tchotchke Home"
+//         />
+//       </Link>
+//       <Box display="flex">
+//         <div id="searchBox">
+//           <Search>
+//             <SearchIconWrapper>
+//               <SearchIcon></SearchIcon>
+//             </SearchIconWrapper>
+//             <StyledInputBase
+//               placeholder="Search…"
+//               inputProps={{ "aria-label": "search" }}
+//             />
+//           </Search>
+//           <div id="itemViews">
+//             <ViewByCategory></ViewByCategory>
+//             {/* <Link to="/viewAllItems">
+//               <button>View All Items</button>
+//             </Link> */}
+//           </div>
+//         </div>
+//       </Box>
 
-  // return (
-    // <Box sx={{ flexGrow: 1 }}>
-    //   <AppBar position="fixed">
-    //     <Toolbar>
-    //       <Link to="/">
-    //         <img
-    //           height="150px"
-    //           margin="15px"
-    //           src="../assets/tchotchke.png"
-    //           alt="Tchotchke Home"
-    //         />
-    //       </Link>
-    //       <Box display="flex">
-    //         <div id="searchBox">
-    //           <Search>
-    //             <SearchIconWrapper>
-    //               <SearchIcon></SearchIcon>
-    //             </SearchIconWrapper>
-    //             <StyledInputBase
-    //               placeholder="Search…"
-    //               inputProps={{ "aria-label": "search" }}
-    //             />
-    //           </Search>
-    //           <div id="itemViews">
-    //             <ViewByCategory></ViewByCategory>
-    //             {/* <Link to="/viewAllItems">
-    //               <button>View All Items</button>
-    //             </Link> */}
-    //           </div>
-    //         </div>
-    //       </Box>
-          
-    //       <Box sx={{ flexGrow: 1 }} />
-    //       <Box sx={{ display: { xs: "none", md: "flex" } }}>
-    //       <Button component={Link} to="/products" style={{ color: "white" }}>
-    //           View All
-    //         </Button>
-    //         <Button component={Link} to="/login" style={{ color: "white" }}>
-    //           Login
-    //         </Button>
-    //         <Button component={Link} to="/register" style={{ color: "white" }}>
-    //           Register
-    //         </Button>
-            
-    //         <Button component={Link} to="/cart" style={{ color: "white" }}>
-    //             View Cart{" "}
-    //             <ShoppingCartIcon
-    //               sx={{ marginLeft: "5px", fontSize: "medium" }}
-    //             />
-    //         </Button>
-    //       </Box>
-    //     </Toolbar>
-    //   </AppBar>
-    // </Box>
-  // );
+//       <Box sx={{ flexGrow: 1 }} />
+//       <Box sx={{ display: { xs: "none", md: "flex" } }}>
+//       <Button component={Link} to="/products" style={{ color: "white" }}>
+//           View All
+//         </Button>
+//         <Button component={Link} to="/login" style={{ color: "white" }}>
+//           Login
+//         </Button>
+//         <Button component={Link} to="/register" style={{ color: "white" }}>
+//           Register
+//         </Button>
+
+//         <Button component={Link} to="/cart" style={{ color: "white" }}>
+//             View Cart{" "}
+//             <ShoppingCartIcon
+//               sx={{ marginLeft: "5px", fontSize: "medium" }}
+//             />
+//         </Button>
+//       </Box>
+//     </Toolbar>
+//   </AppBar>
+// </Box>
+// );
 
 export default function NavBar() {
   return (
@@ -141,10 +140,10 @@ export default function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/search" className="nav-link">
-                {/* Search functionality goes here */}
-                <span className="fas fa-search"></span> Search
-              </Link>
+              {/* <Link to="/search" className="nav-link"> */}
+              <CategoryDropdown />
+              <span className="fas fa-search"></span> Search
+              {/* </Link> */}
             </li>
             {/* Add more navigation links here */}
           </ul>
@@ -161,8 +160,7 @@ export default function NavBar() {
             </li>
             <li className="nav-item">
               <Link to="/cart" className="nav-link">
-                View Cart{" "}
-                <i className="fas fa-shopping-cart"></i>
+                View Cart <i className="fas fa-shopping-cart"></i>
               </Link>
             </li>
           </ul>
