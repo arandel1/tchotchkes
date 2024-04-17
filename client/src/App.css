@@ -123,3 +123,14 @@ body {
   margin: 15px;
   text-align: left;
 }
+
+.register-form-container {
+  justify-content: center;
+  align-items: center;
+  background-color: lightblue;
+  border: 3px solid;
+  border-radius: 5px;
+  padding: 25px;
+  margin: 15px;
+  text-align: left;
+}
