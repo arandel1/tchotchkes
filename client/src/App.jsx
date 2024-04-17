@@ -10,6 +10,7 @@ import ViewDetails from "./components/ViewDetails";
 import Stripe from "./components/Stripe";
 import Home from "./components/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles.scss";
 import "./App.css";
 
 const baseUrl = "http://localhost:8080/tchotchke";
@@ -18,19 +19,12 @@ function App() {
   const [products, setProducts] = useState([]);
   const [auth, setAuth] = useState(localStorage.getItem("auth") || {});
   const [order, setOrder] = useState([]);
+  const [userId, setUserId] = useState('');
 
-  // const login = async(formData) => {
-  //   const response = await fetch(`${baseUrl}/users/login`, {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(formData)
-
-  //   })
-  //   const json = await response.json();
-  //   console.log(response);
-  //   console.log(json)
-  // }
-
+  const updateUserId = (value) => {
+    setUserId(value);
+  };
+  
   // GET ALL PRODUCTS FROM API
   useEffect(() => {
     if (typeof auth === "string") {
@@ -53,6 +47,7 @@ function App() {
     getProducts();
   }, []);
 
+console.log(userId, "App.jsx")
   return (
     <>
       <BrowserRouter>
@@ -84,9 +79,9 @@ function App() {
             <Route path="/register" element={<Register />}>
               Register
             </Route>
-            <Route path="/cart" element={<Cart></Cart>}>
+            {/* <Route path="/cart" element={<Cart />}>
               View Cart
-            </Route>
+            </Route> */}
             {/* <Route path="/products" element = {<Products/>}>View All</Route> */}
           </Routes>
         </NavBar>
@@ -114,7 +109,8 @@ function App() {
           <Route path="/housewares">Housewares</Route>
           <Route path="/jewelryaccessories">Jewelry & Accessories</Route>
           <Route path="/miscellaneous">Miscellaneous</Route>
-          <Route path="/login" element={<Login auth={setAuth} />}>
+
+          <Route path="/login" element={<Login auth={setAuth} updateUserId={updateUserId}/>}>
             {" "}
             Login{" "}
           </Route>
@@ -122,7 +118,7 @@ function App() {
             {" "}
             Register{" "}
           </Route>
-          <Route path="/cart" element={<Cart products={products} />}>
+          <Route path="/cart" element={<Cart usersId={userId} products = {products}/>}>
             {" "}
             View Cart{" "}
           </Route>
