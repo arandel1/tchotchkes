@@ -62,32 +62,72 @@ function Login({ auth, updateUserId }) {
     setSuccessMessage("You're logged out!");
   };
 
+  //OLD FORM CODE BELOW
+      // <div className="container">
+    //   <h3>Login</h3>
+    //   <form onSubmit={handleSubmit}>
+    //     <label className="email">Email:</label>
+    //     <input
+    //       type="email"
+    //       name="email"
+    //       placeholder="Email"
+    //       value={formData.email}
+    //       onChange={handleChange}
+    //     />
+    //     <br />
+
+    //     <label className="password">Password:</label>
+    //     <input
+    //       type="password"
+    //       name="password"
+    //       placeholder="Password"
+    //       value={formData.password}
+    //       onChange={handleChange}
+    //     />
+    //     <br />
+
+    //     <button type="submit">Login</button>
+    //     <button onClick={handleLogout}>Logout</button>
+
+    //     {errorMessage && <p className="error-message">{errorMessage}</p>}
+    //     {successMessage && <p className="success-message">{successMessage}</p>}
+    //   </form>
+    // </div>
+
   return (
-    <div className="container">
-      <h3>Login</h3>
-      <form onSubmit={handleSubmit}>
-        <label className="email">Email:</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <br />
+    <div className="login-form-container">
+      <h3 class="text-center text-uppercase">Login Form</h3>
+      <form className="form mx-auto" onSubmit={handleSubmit}>
+        <div className="mb-3"> {/* Add margin-bottom for spacing */}
+          <label for="email" className="form-label">Email:</label>
+          <input
+            type="email"
+            className="form-control"
+            id="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
 
-        <label className="password">Password:</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <br />
+        <div className="mb-3"> {/* Add margin-bottom for spacing */}
+          <label for="password" className="form-label">Password:</label>
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            name="password"
+            placeholder="Password"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
 
-        <button type="submit">Login</button>
-        <button onClick={handleLogout}>Logout</button>
+        <div className="d-flex justify-content-between"> {/* Flexbox for buttons */}
+          <button type="submit" className="btn btn-dark">Login</button>
+          <button onClick={handleLogout} className="btn btn-dark">Logout</button>
+        </div>
 
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         {successMessage && <p className="success-message">{successMessage}</p>}
