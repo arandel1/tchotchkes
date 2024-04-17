@@ -29,8 +29,8 @@ orderRouter.get("/:userId", async (req, res, next) => {
         },
       });
     }))
-    // console.log(products);
-    res.send(userOrder);
+    console.log(products);
+    res.send(products);
   } catch (ex) {
     next(ex);
   }
