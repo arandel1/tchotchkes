@@ -67,6 +67,29 @@ body {
   margin: 15px;
 }
 
+.single-product-container {
+  justify-content: center;
+  align-items: center;
+  background-color: lightblue;
+  border: 3px solid;
+  border-radius: 5px;
+  padding: 25px;
+  margin: 15px;
+}
+
+.small-product-card {
+  justify-content: center;
+  background-color: white;
+  padding: .5em;
+  margin: .5em;
+  border: 1px solid;
+  border-radius: 3px;
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: small;
+}
+
 .navbar {
   font-family: "Playfair Display", serif;
   font-size: 16px;
