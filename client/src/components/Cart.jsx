@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import ViewDetails from "./ViewDetails";
 
-export default function Cart({ usersId, products}) {
-  console.log(usersId)
+export default function Cart({ auth, products}) {
+  console.log(auth)
   console.log(products)
   const [cartItems, setCartItems] = useState([]);
 
@@ -14,12 +14,12 @@ export default function Cart({ usersId, products}) {
 
         console.log("Fetching orders...")
 
-        const response = await fetch(`${baseUrl}/orders`);
+        const response = await fetch(`${baseUrl}/orders/${auth.id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch order.");
         }
         const apiOrders = await response.json();
-
+        console.log(apiOrders)
         const getProductDetails = apiOrders.filter(order => products.some(product => product.id === order.productsId)).map(order => products.find(product=> product.id === order.productsId))
 
         console.log(getProductDetails)
@@ -31,16 +31,6 @@ export default function Cart({ usersId, products}) {
     getOrder();
   }, []);
 
-  // function removeItemFromCart() {
-    
-  // }
-
-
-  // function removeProduct(product) {
-  //   const removeIndex = cartItems.findIndex(product);
-  //   const removeItem = cartItems.splice(removeIndex.valueOf());
-  //   return removeItem(), setCart(cartItems);
-  // }
 
   // const priceArray = cartItems.map((product) => product.price);
   // if (cartItems.length === 0) {
@@ -76,10 +66,7 @@ export default function Cart({ usersId, products}) {
               <img height = "100px" src = {product.imgURL} alt = {product.name}></img>
               <h5>{product.name}</h5>
               <h5>${product.price}</h5>
-              <button
-              // onClick={() => removeProduct(id)}
-              >Remove Item from Cart
-              </button>
+              <button>Remove Item from Cart</button>
             </div>
           ))
         )}
