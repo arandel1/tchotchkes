@@ -1,88 +1,99 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
-import {useNavigate} from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const baseUrl = 'http://localhost:8080/tchotchke/users'
+const baseUrl = "http://localhost:8080/tchotchke/users";
 
-function Login( {auth, updateUserId} ) {
+function Login({ auth, updateUserId }) {
   const [formData, setFormData] = useState({
-    email:'', 
-    password:''
+    email: "",
+    password: "",
   });
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const [userId, setUserId] = useState();
-  
+
   const handleChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value});
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async(e)=> {
+  const handleLogout = () => {
+    Logout();
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-     try {
+    try {
       const response = await fetch(`${baseUrl}/login`, {
-        method: 'POST', 
-        headers: { 'Content-Type': 'application/json' },    
-        body: JSON.stringify(formData)
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
 
-      if(response.ok){
+      if (response.ok) {
         const user = await response.json();
         const userId = user.id;
-        localStorage.setItem("auth", JSON.stringify({...user}));
+        localStorage.setItem("auth", JSON.stringify({ ...user }));
         auth(user);
         // navigate('/products')
         setSuccessMessage("You're logged in!");
-        setFormData({ email: formData.email, password:'' })
+        setFormData({ email: formData.email, password: "" });
         const token = user.token;
-        auth(user)
-        localStorage.setItem("auth", JSON.stringify(user))
-        updateUserId(userId)
-        console.log("userId:", userId, "sourced from Login.jsx")
+        console.log(token);
+        auth(user);
+        localStorage.setItem("auth", JSON.stringify(user));
+        updateUserId(userId);
+        console.log("userId:", userId, "sourced from Login.jsx");
       } else {
         const errorData = await response.json();
-        setErrorMessage(errorData.message || 'Login failed. Please try again.')
+        setErrorMessage(errorData.message || "Login failed. Please try again.");
       }
-    }
-    catch (error){
-      console.error('Error:', error); 
-      setErrorMessage('Login failed. Check your username or password.');
+    } catch (error) {
+      console.error("Error:", error);
+      setErrorMessage("Login failed. Check your username or password.");
     }
   };
 
+  const Logout = (token) => {
+    localStorage.removeItem(token);
+    console.log(token);
+    // window.location.href = "/";
+    setSuccessMessage("You're logged out!");
+  };
+
   return (
-    <div className = 'container'>
+    <div className="container">
       <h3>Login</h3>
-      <form onSubmit = { handleSubmit }>
-        <label
-        className='email'>Email:</label>
-          <input 
-            type='email'
-            name='email'
-            placeholder = 'Email'
-            value = { formData.email }
-            onChange = { handleChange }
-          />
+      <form onSubmit={handleSubmit}>
+        <label className="email">Email:</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+        />
         <br />
 
         <label className="password">Password:</label>
-            <input
-              type='password'
-              name='password'
-              placeholder='Password'
-              value={formData.password}
-              onChange={ handleChange }  
-            />
-          <br />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+        <br />
 
-        <button type='submit'>Login</button>
+        <button type="submit">Login</button>
+        <button onClick={handleLogout}>Logout</button>
 
-        {errorMessage && <p className='error-message'>{errorMessage}</p>}
-        {successMessage && <p className='success-message'>{successMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        {successMessage && <p className="success-message">{successMessage}</p>}
       </form>
     </div>
   );
-};
+}
 
 export default Login;

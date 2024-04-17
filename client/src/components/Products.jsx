@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Card from 'react-bootstrap/Card'
 import { useNavigate } from "react-router-dom";
 
+
 function Products() {
   const [products, setProducts] = useState([]);
 
@@ -26,47 +27,9 @@ function Products() {
     window.location.href = `/products/${productId}`;
   };
 
+
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  // const [products, setProducts] = useState([]);
 
-  // return (
-  //   <>
-  //     <h2>Product List</h2>
-  //     {products.length === 0 && <p>No inventory</p>}
-
-  //     <div className="card" style={{ width: "18rem" }}>
-  //       {products.map((product, index) => (
-  //         <div key={product.id}>
-  //           <img
-  //             src={product.imgURL}
-  //             className="card-img-top"
-  //             alt={product.name}
-  //           ></img>
-  //           <div className="card-body">
-  //             <h5 className="card-title">{product.name}</h5>
-  //             {/* <p className="card-text">{product.desc}</p> */}
-  //             <a
-  //               href="#"
-  //               className={
-  //                 selectedIndex === index
-  //                   ? "btn btn-primary active"
-  //                   : "btn btn-primary"
-  //               }
-  //               onClick={() => {
-  //                 setSelectedIndex(index);
-  //                 console.log(product);
-  //                 navigate (`/api/products/${product.id}`);
-
-  //               }}
-  //             >
-  //               View Details
-  //             </a>
-  //           </div>
-  //         </div>
-  //       ))}
-  //     </div>
-  //   </>
-  // );
 
 //OLD STYLING CODE BELOW THIS LINE
       {/* <h2>All Items</h2>
