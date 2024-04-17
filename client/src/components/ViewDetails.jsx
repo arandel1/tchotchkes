@@ -8,6 +8,7 @@ const baseUrl = "http://localhost:8080/tchotchke";
 // const [cartItems, setCartItems] = useState();
 
 function ViewDetails({ products, user }) {
+
   const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
@@ -63,20 +64,3 @@ function ViewDetails({ products, user }) {
 }
 
 export default ViewDetails;
-
-// function ViewDetails() {
-//   const { id } = useParams();
-//   const product = product.find(p => p.id === parseInt(id,10));
-
-//   if(!product){
-//     return <div>Product not found</div>
-//   }
-
-//   return (
-//     <div>
-//       <h2>Product Name</h2>
-//     </div>
-//   );
-// }
-
-// export default ViewDetails();
