@@ -10,6 +10,7 @@ import ViewDetails from "./components/ViewDetails";
 import Stripe from "./components/Stripe";
 import Home from "./components/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles.scss";
 import "./App.css";
 
 const baseUrl = "http://localhost:8080/tchotchke";
