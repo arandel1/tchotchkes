@@ -91,7 +91,7 @@ function Login({ auth, updateUserId }) {
 
   return (
     <div className="login-form-container">
-      <h3 class="text-center text-uppercase">Login</h3>
+      <h3 className="text-center text-uppercase">Login</h3>
       <form className="form mx-auto" onSubmit={handleSubmit}>
         <div className="mb-3"> {/* Add margin-bottom for spacing */}
           <label for="email" className="form-label">Email:</label>
@@ -114,7 +114,7 @@ function Login({ auth, updateUserId }) {
             id="password"
             name="password"
             placeholder="Password"
-            value={formData.email}
+            value={formData.password}
             onChange={handleChange}
           />
         </div>
