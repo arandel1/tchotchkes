@@ -23,13 +23,16 @@ orderRouter.get("/:userId", async (req, res, next) => {
       },
     });
     const products = await Promise.all(userOrder.map(order=>{
-      return prisma.products.findUnique({
+    const product = prisma.products.findUnique({
         where: {
           id: parseInt(order.productsId),
         },
       });
+      product.orderId=order.id
+      return product
     }))
     console.log(products);
+
     res.send(products);
   } catch (ex) {
     next(ex);
