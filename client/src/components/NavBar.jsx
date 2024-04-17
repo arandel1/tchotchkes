@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import CategoryDropdown from "./CategoryDropdown";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import CategoryDropdown from "./CategoryDropdown";
 
 // OLD NAVBAR CODE COMMENTED OUT BELOW
 // const Search = styled("div")(({ theme }) => ({
@@ -136,7 +139,7 @@ export default function NavBar() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link to="/products" className="nav-link">
-                View All
+                View All Products
               </Link>
             </li>
             <li className="nav-item">
@@ -158,6 +161,7 @@ export default function NavBar() {
             </li>
             <li className="nav-item">
               <Link to="/cart" className="nav-link">
+                View Cart <i className="fas fa-shopping-cart"></i>
                 View Cart <i className="fas fa-shopping-cart"></i>
               </Link>
             </li>

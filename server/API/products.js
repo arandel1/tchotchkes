@@ -1,12 +1,21 @@
-const express = require("express")
-const productRouter = express.Router()
+const express = require("express");
+const productRouter = express.Router();
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-
 productRouter.get("/", async (req, res, next) => {
   try {
-    const products = await prisma.products.findMany();
+    const clause = req.query.category
+      ? {
+          where: {
+            category_name: decodeURIComponent(req.query.category).replace(
+              " + ",
+              "-"
+            ),
+          },
+        }
+      : {};
+    const products = await prisma.products.findMany(clause);
     res.send(products);
   } catch (ex) {
     next(ex);
@@ -49,4 +58,4 @@ productRouter.post("/", async (req, res, next) => {
   }
 });
 
-module.exports = productRouter
+module.exports = productRouter;

@@ -1,11 +1,3 @@
-// TO-DO:
-
-// import any queries from slices we create, if needed
-// Review specific inputs (lines 27-33 and lines 39-44) once we are aligned on those values / keys
-// This can all be changed later on, but starting with just requesting a username/email and password
-
-// -----------------------------
-// -----------------------------
 import React from "react";
 import { useState } from "react";
 
@@ -51,42 +43,94 @@ function Register() {
     }
   };
 
+  //OLD REGISTER CODE BELOW
+//   <div className="container">
+//   <h3> Sign Up </h3>
+//   <form onSubmit={ handleSubmit }>
+//     <label className="name">Name:</label>
+//       <input
+//         type="text"
+//         name="name"
+//         placeholder="Name"
+//         value={formData.name}
+//         onChange={ handleChange }
+//       />
+
+//     <br/>
+//     <label className="email">Email:</label>
+//       <input
+//         type="email"
+//         name="email"
+//         placeholder="Email"
+//         value={formData.email}
+//         onChange={ handleChange }
+//       />
+//     <br />
+
+//     <label className="password">Password:</label>
+//       <input
+//         type="password"
+//         name="password"
+//         placeholder="Password"
+//         value={formData.password}
+//         onChange={ handleChange }  
+//       />
+//     <br />
+
+//     <button type="submit">Sign Up</button>
+
+//     {errorMessage && <p className="error-message">{errorMessage}</p>}
+//     {successMessage && <p className="success-message">{successMessage}</p>}
+//   </form>
+// </div>
+
   return (
     <>
-      <div className="container">
-        <h3> Sign Up </h3>
-        <form onSubmit={ handleSubmit }>
-          <label className="name">Name:</label>
+      <div className="register-form-container"> {/* Update container class */}
+        <h3 class="text-center text-uppercase">Sign Up</h3>  {/* Update heading text */}
+        <form className="form mx-auto" onSubmit={handleSubmit}> {/* Consistent form classes */}
+          <div className="mb-3"> {/* Add margin-bottom for spacing */}
+            <label for="name" className="form-label">Name:</label>
             <input
               type="text"
+              className="form-control"
+              id="name"
               name="name"
               placeholder="Name"
               value={formData.name}
-              onChange={ handleChange }
+              onChange={handleChange}
             />
+          </div>
 
-          <br/>
-          <label className="email">Email:</label>
+          <div className="mb-3"> {/* Add margin-bottom for spacing */}
+            <label for="email" className="form-label">Email:</label>
             <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={ handleChange }
+                type="email"
+                className="form-control"
+                id="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
             />
-          <br />
+          </div>
 
-          <label className="password">Password:</label>
+          <div className="mb-3"> {/* Add margin-bottom for spacing */}
+            <label for="password" className="form-label">Password:</label>
             <input
               type="password"
+              className="form-control"
+              id="password"
               name="password"
               placeholder="Password"
               value={formData.password}
-              onChange={ handleChange }  
+              onChange={handleChange}
             />
-          <br />
+          </div>
 
-          <button type="submit">Sign Up</button>
+          <div className="d-flex justify-content-center">
+            <button type="submit" className="btn btn-dark">Sign Up</button>  {/* Update button text */}
+          </div>
 
           {errorMessage && <p className="error-message">{errorMessage}</p>}
           {successMessage && <p className="success-message">{successMessage}</p>}
