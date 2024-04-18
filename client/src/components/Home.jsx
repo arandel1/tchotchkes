@@ -7,8 +7,6 @@ import Cameo from '../assets/Carousel-Images/Cameo.png';
 import PollyGasNeon from '../assets/Carousel-Images/PollyGasNeon.png';
 
 
-const baseUrl = "http://localhost:8080/tchotchke";
-
 export default function Home () {
   return (
     <> 

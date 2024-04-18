@@ -79,7 +79,7 @@ function CategoryDropdown() {
   return (
     <Dropdown>
       <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-        View by Category
+        View by Category <i class="fa-solid fa-icons"></i>
       </Dropdown.Toggle>
 
       <Dropdown.Menu as={CustomMenu}>

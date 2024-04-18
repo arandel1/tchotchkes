@@ -16,13 +16,12 @@ body {
 
 .custom-carousel-container {
   background-color: lightblue;
-  border: 3px solid;
+  border: 10px double #7b3320;
   border-radius: 5px;
 }
 
 .custom-carousel {
   justify-content: center;
-  height: fit-content;
   margin: 0 auto;
   border-radius: 5px;
   padding: 5px;
@@ -36,7 +35,7 @@ body {
   text-align: center;
   font-weight: 800;
   font-style: normal;
-  font-size: 48px;
+  font-size: 40px;
 }
 
 .card {
@@ -106,10 +105,18 @@ body {
 
 .navbar {
   font-family: "Playfair Display", serif;
-  font-size: 16px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 100;
+  justify-content: center;
 }
+.navbar-nav {
+  line-height: 20px; /* Adjust the value as needed */
+}
+
+.navbar-nav.me-auto,
+.navbar-nav.ms-auto {
+  padding: 0; }
 
 .login-form-container {
   justify-content: center;
