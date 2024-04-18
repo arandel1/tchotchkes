@@ -74,7 +74,7 @@ function Login({ auth, updateUserId }) {
           />
         </div>
 
-        <div className="mb-3"> 
+        <div className="mb-3"> {/* Add margin-bottom for spacing */}
           <label for="password" className="form-label">Password:</label>
           <input
             type="password"
