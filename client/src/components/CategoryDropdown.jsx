@@ -83,7 +83,9 @@ function CategoryDropdown() {
       </Dropdown.Toggle>
 
       <Dropdown.Menu as={CustomMenu}>
-        <Dropdown.Item href="/products">Select</Dropdown.Item>
+        <Dropdown.Item href="/products">
+          <i>Select Category:</i>
+        </Dropdown.Item>
         {categories.map((cat) => {
           return (
             <Dropdown.Item
