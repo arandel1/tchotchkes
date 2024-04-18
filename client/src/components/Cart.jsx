@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import ViewDetails from "./ViewDetails";
 import RemoveItemFromCart from "./RemoveItemFromCart";
 
 export default function Cart({ auth, products }) {
@@ -28,30 +27,11 @@ export default function Cart({ auth, products }) {
         console.error("Error fetching products:", error);
       }
     }
-    getUserProducts();
-  }, []);
+    if (cartItems.length <= 0) {
+      getUserProducts();
+    }
+  }, [cartItems]);
 
-  // useEffect(() => {
-  //   async function getUserOrders() {
-  //     const baseUrl = "http://localhost:8080/tchotchke";
-  //     try {
-  //       const cartAuth = !auth.id ? JSON.parse(auth) : auth;
-  //       // console.log(cartAuth);
-  //       // console.log("Fetching orders...");
-
-  //       const response = await fetch(`${baseUrl}/orders/${cartAuth.id}`);
-  //       if (!response.ok) {
-  //         throw new Error("Failed to fetch order.");
-  //       }
-  //       const userOrders = await response.json();
-  //       console.log(userOrders);
-  //       setOrders(userOrders.data1);
-  //     } catch (error) {
-  //       console.error("Error fetching order:", error);
-  //     }
-  //   }
-  //   getUserOrders();
-  // }, []);
   console.log("cartItems.products", cartItems.products);
   console.log("cartItems.orders", cartItems.orders);
   return (
@@ -73,7 +53,11 @@ export default function Cart({ auth, products }) {
               <img height="100px" src={product.imgURL} alt={product.name}></img>
               <h5>{product.name}</h5>
               <h5>${product.price}</h5>
-              <RemoveItemFromCart orderId={orderId[0]} />
+              <RemoveItemFromCart
+                orderId={orderId[0]}
+                setCartItem={setCartItems}
+                cartItems={cartItems}
+              />
             </div>
           );
         })

@@ -3,7 +3,11 @@
 //
 import { useState } from "react";
 
-export default function RemoveItemFromCart({ orderId }) {
+export default function RemoveItemFromCart({
+  orderId,
+  setCartItem,
+  cartItems,
+}) {
   console.log(orderId, "orders");
   const [errorMessage, setErrorMessage] = useState();
 
@@ -16,6 +20,7 @@ export default function RemoveItemFromCart({ orderId }) {
           method: "DELETE",
         });
       }
+      setCartItem([]);
     } catch (error) {
       console.error("Error", error);
       setErrorMessage("An error occurred. Please try again later.");
