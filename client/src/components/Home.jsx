@@ -7,19 +7,19 @@ import Cameo from '../assets/Carousel-Images/Cameo.png';
 import PollyGasNeon from '../assets/Carousel-Images/PollyGasNeon.png';
 
 
-
+const baseUrl = "http://localhost:8080/tchotchke";
 
 export default function Home () {
   return (
     <> 
-      <h3 id="carouselHeading" className="carousel-heading text-uppercase">Featured Items</h3>
+      <h3 id="carouselHeading" className="carousel-heading text-uppercase">Featured Tchotchkes</h3>
       <div className="container custom-carousel-container">
         <Carousel className="custom-carousel" data-bs-theme="dark" style={{ display: 'flex', justifyContent: 'center', width: '75%', margin: '0 auto' }}> 
             <CarouselItem>
               <img className="d-block w-100 img-fluid py-5 px-3 mb-3 mt-0" 
               src={AeroTransistorRadio} 
               alt="Transistor Radio" />
-              <CarouselCaption className="carousel-caption d-block text-dark w-75 d-md-block d-none" style={{ position: 'absolute', bottom: '5px', left: '50%', transform: 'translateX(-50%)' }}>
+            <CarouselCaption className="carousel-caption d-block text-dark w-75 d-md-block d-none" style={{ position: 'absolute', bottom: '5px', left: '50%', transform: 'translateX(-50%)' }}>
                 <h3 className="font-weight-bold text-uppercase">Aero Transistor Radio</h3>
                 <p>Vintage Aero Transistor Radio, circa 1960s</p>
               </CarouselCaption>

@@ -41,27 +41,12 @@ function ViewDetails({ products, user }) {
       setErrorMessage("An error occurred. Please try again later.");
     }
   };
- //OLD Single Product code below
-      {/* <div className="single-product-container">
-        <h2>{product.name}</h2>
-        <h2>${product.price}</h2>
-        <p>{product.desc}</p>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        {successMessage && <p className="success-message">{successMessage}</p>}
 
-        <img
-          className="product-image"
-          src={product.imgURL}
-          alt="product image"
-        />
-        <button onClick={() => navigate(`/products/`)}>Back to All</button>
-        <button onClick={(e) => handleAddToCart(e)}>Add to Order</button>
-      </div> */}
   return (
     <>
         <div className="container single-product-container py-5 px-3 d-flex justify-content-center">
           <div className="col-md-6">
-            <div className="small-product-card"> {/* Wrap content in card */}
+            <div className="small-product-card"> 
               <img
                 className="card-img-top img-fluid product-image rounded border" 
                 src={product.imgURL}
@@ -75,7 +60,7 @@ function ViewDetails({ products, user }) {
                 {errorMessage && <p className="error-message">{errorMessage}</p>}
                 {successMessage && <p className="success-message">{successMessage}</p>}
 
-                <div className="d-flex justify-content-between mt-4"> {/* Flexbox for buttons */}
+                <div className="d-flex justify-content-between mt-4"> 
                   <button onClick={() => navigate(`/products/`)} className="btn btn-dark">Back to All</button>
                   <button onClick={(e) => handleAddToCart(e)} className="btn btn-dark">Add to Order</button>
                 </div>
