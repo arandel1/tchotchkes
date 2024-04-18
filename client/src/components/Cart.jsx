@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import ViewDetails from "./ViewDetails";
-import OrderTotal from "./OrderTotal";
 
 export default function Cart({ auth, products }) {
   console.log(auth);
