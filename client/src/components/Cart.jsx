@@ -84,6 +84,5 @@ export default function Cart({ auth, products }) {
         <p>Loading cart ...</p>
       ) */}
     </div>
-    </div>
   );
 }
