@@ -76,12 +76,14 @@ export default function Cart({ auth, products }) {
           <button onClick={() => removeProduct(id)}>Remove</button>
         </div>
       ))}
+      
       <h4>Cart Total: ${cartTotal}</h4>
       
       ) :  (
       
         <p>Loading cart ...</p>
       ) */}
+    </div>
     </div>
   );
 }
