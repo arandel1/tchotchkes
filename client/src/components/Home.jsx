@@ -16,7 +16,7 @@ export default function Home () {
         <h4>Antiques &#x2022; Collectibles &#x2022; Oddities </h4>
         <hr class="my-3"></hr> <br />
         <p class="lead">
-          <a class="btn btn-dark btn-lg" href="https://en.wikipedia.org/wiki/Tchotchke" role="button">What is a Tchotchke?</a>
+          <a class="btn btn-dark btn-lg" href="https://en.wikipedia.org/wiki/Tchotchke" role="button">Wait, What is a Tchotchke?</a>
         </p> <br />
       </div>
     </div>
