@@ -26,11 +26,16 @@ export default function NavBar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarCollapse">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <div className="collapse navbar-collapse justify-content-center" id="navbarCollapse">
+          <ul className="navbar-nav me-auto mb-2 mt-4 mb-lg-0">
+          <li className="nav-item">
+              <Link to="/" className="nav-link">
+                Home <i class="fa-solid fa-house"></i>
+              </Link>
+            </li>
             <li className="nav-item">
               <Link to="/products" className="nav-link">
-                View All Products
+                View All Products <i class="fa-solid fa-eye"></i>
               </Link>
             </li>
             <li className="nav-item">
@@ -42,12 +47,12 @@ export default function NavBar() {
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link to="/login" className="nav-link">
-                Login
+                Login <i class="fa-solid fa-user"></i>
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/register" className="nav-link">
-                Register
+                Register <i class="fa-solid fa-clipboard-check"></i>
               </Link>
             </li>
             <li className="nav-item">
