@@ -31,6 +31,13 @@ export default function Cart({ auth, products }) {
     getOrder();
   }, []);
 
+  //OrderTotal calculator
+  const priceArray = cartItems.map((order) => order.price);
+  if (cartItems.length === 0) {
+    <h4>Cart is empty.</h4>;
+  }
+  const cartTotal = priceArray.reduce((total, price) => total + price, 0);
+
   return (
     <div className="container">
       <h2>Your Cart</h2>
@@ -47,7 +54,7 @@ export default function Cart({ auth, products }) {
           </div>
         ))
       )}
-      {/* <h4>Cart Total: ${cartTotal}</h4> */}
+      <h4>Order Total: ${cartTotal}</h4>
 
       {/* ({cartItems.map((product) => (
         
@@ -61,6 +68,7 @@ export default function Cart({ auth, products }) {
           <button onClick={() => removeProduct(id)}>Remove</button>
         </div>
       ))}
+      
       <h4>Cart Total: ${cartTotal}</h4>
       
       ) :  (
