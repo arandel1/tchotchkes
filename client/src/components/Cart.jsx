@@ -4,47 +4,79 @@ import ViewDetails from "./ViewDetails";
 import RemoveItemFromCart from "./RemoveItemFromCart";
 
 export default function Cart({ auth, products }) {
-  console.log(auth);
+  //console.log(auth);
   const [cartItems, setCartItems] = useState([]);
+  const [orders, setOrders] = useState([]);
   // const [cartAuth, setCartAuth] = useState();
 
   useEffect(() => {
-    async function getOrder() {
+    async function getUserProducts() {
       const baseUrl = "http://localhost:8080/tchotchke";
       try {
         const cartAuth = !auth.id ? JSON.parse(auth) : auth;
-        console.log(cartAuth);
-        console.log("Fetching orders...");
+        // console.log(cartAuth);
+        // console.log("Fetching products...");
 
         const response = await fetch(`${baseUrl}/orders/${cartAuth.id}`);
         if (!response.ok) {
-          throw new Error("Failed to fetch order.");
+          throw new Error("Failed to fetch products.");
         }
-        const apiOrders = await response.json();
-        console.log(apiOrders);
-        setCartItems(apiOrders);
+        const ordersAndProducts = await response.json();
+        console.log(ordersAndProducts, "ordersAndProducts");
+        setCartItems(ordersAndProducts);
       } catch (error) {
-        console.error("Error fetching order:", error);
+        console.error("Error fetching products:", error);
       }
     }
-    getOrder();
+    getUserProducts();
   }, []);
 
+  // useEffect(() => {
+  //   async function getUserOrders() {
+  //     const baseUrl = "http://localhost:8080/tchotchke";
+  //     try {
+  //       const cartAuth = !auth.id ? JSON.parse(auth) : auth;
+  //       // console.log(cartAuth);
+  //       // console.log("Fetching orders...");
+
+  //       const response = await fetch(`${baseUrl}/orders/${cartAuth.id}`);
+  //       if (!response.ok) {
+  //         throw new Error("Failed to fetch order.");
+  //       }
+  //       const userOrders = await response.json();
+  //       console.log(userOrders);
+  //       setOrders(userOrders.data1);
+  //     } catch (error) {
+  //       console.error("Error fetching order:", error);
+  //     }
+  //   }
+  //   getUserOrders();
+  // }, []);
+  console.log("cartItems.products", cartItems.products);
+  console.log("cartItems.orders", cartItems.orders);
   return (
     <div className="container">
       <h2>Your Cart</h2>
-      {console.log("Cart items length:", cartItems.length)}
+      {/*{console.log("Cart items length:", cartItems.products.length)}*/}
       {cartItems.length === 0 ? (
         <p> Your cart is empty.</p>
       ) : (
-        cartItems.map((product) => (
-          <div key={product.orderId} className="product">
-            <img height="100px" src={product.imgURL} alt={product.name}></img>
-            <h5>{product.name}</h5>
-            <h5>${product.price}</h5>
-            <RemoveItemFromCart productId={product.orderId} />
-          </div>
-        ))
+        cartItems.products.map((product) => {
+          const orderId =
+            cartItems.orders &&
+            cartItems.orders
+              .filter((order) => order.productsId === product.id)
+              .map((order) => order.id);
+          console.log(orderId);
+          return (
+            <div key={product.orderId} className="product">
+              <img height="100px" src={product.imgURL} alt={product.name}></img>
+              <h5>{product.name}</h5>
+              <h5>${product.price}</h5>
+              <RemoveItemFromCart orderId={orderId[0]} />
+            </div>
+          );
+        })
       )}
       {/* <h4>Cart Total: ${cartTotal}</h4> */}
 

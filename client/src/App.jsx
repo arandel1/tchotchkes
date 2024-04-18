@@ -23,7 +23,7 @@ function App() {
   const updateUserId = (value) => {
     setUserId(value);
   };
-  
+
   // GET ALL PRODUCTS FROM API
   useEffect(() => {
     if (typeof auth === "string") {
@@ -46,7 +46,7 @@ function App() {
     getProducts();
   }, []);
 
-console.log(auth, "App.jsx")
+  //console.log(auth, "App.jsx")
   return (
     <>
       <BrowserRouter>
@@ -108,8 +108,10 @@ console.log(auth, "App.jsx")
           <Route path="/housewares">Housewares</Route>
           <Route path="/jewelryaccessories">Jewelry & Accessories</Route>
           <Route path="/miscellaneous">Miscellaneous</Route>
-
-          <Route path="/login" element={<Login auth={setAuth} updateUserId={updateUserId}/>}>
+          <Route
+            path="/login"
+            element={<Login auth={setAuth} updateUserId={updateUserId} />}
+          >
             {" "}
             Login{" "}
           </Route>
@@ -117,7 +119,10 @@ console.log(auth, "App.jsx")
             {" "}
             Register{" "}
           </Route>
-          <Route path="/cart" element={<Cart auth={auth} products = {products}/>}>
+          <Route
+            path="/cart"
+            element={<Cart auth={auth} products={products} />}
+          >
             {" "}
             View Cart{" "}
           </Route>

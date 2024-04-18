@@ -31,9 +31,13 @@ orderRouter.get("/:userId", async (req, res, next) => {
       product.orderId=order.id
       return product
     }))
+    const bothObjects = {
+      orders: userOrder,
+      products: products
+    }
+    console.log(userOrder);
     console.log(products);
-
-    res.send(products);
+    res.send(bothObjects);
   } catch (ex) {
     next(ex);
   }
