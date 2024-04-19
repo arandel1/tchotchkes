@@ -41,11 +41,11 @@ function Login({ auth, updateUserId }) {
         updateUserId(userId);
       } else {
         const errorData = await response.json();
-        setErrorMessage(errorData.message || "Login failed. Please try again.");
+        // setErrorMessage(errorData.message || "Login failed. Please try again.");
       }
     } catch (error) {
-      console.error("Error:", error);
-      setErrorMessage("Login failed. Check your username or password.");
+      // console.error("Error:", error);
+      // setErrorMessage("Login failed. Check your username or password.");
     }
   };
 

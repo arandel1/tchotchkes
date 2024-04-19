@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import RemoveItemFromCart from "./RemoveItemFromCart";
+import Stripe from "./Stripe";
 
 export default function Cart({ auth, products }) {
   const [cartItems, setCartItems] = useState([]);
@@ -29,7 +30,6 @@ export default function Cart({ auth, products }) {
   
   const productArray = cartItems.products || []
   const orderArray = cartItems.orders || []
-
   const priceArray = productArray.map((products) => products.price);
   const cartTotal = priceArray.reduce((total, price) => total + price, 0);
 
@@ -72,6 +72,7 @@ export default function Cart({ auth, products }) {
               </div>
             </div>
         </div>
+      </div>
     </>
   );
 }
