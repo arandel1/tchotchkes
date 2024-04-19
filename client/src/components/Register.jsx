@@ -43,53 +43,12 @@ function Register() {
     }
   };
 
-  //OLD REGISTER CODE BELOW
-//   <div className="container">
-//   <h3> Sign Up </h3>
-//   <form onSubmit={ handleSubmit }>
-//     <label className="name">Name:</label>
-//       <input
-//         type="text"
-//         name="name"
-//         placeholder="Name"
-//         value={formData.name}
-//         onChange={ handleChange }
-//       />
-
-//     <br/>
-//     <label className="email">Email:</label>
-//       <input
-//         type="email"
-//         name="email"
-//         placeholder="Email"
-//         value={formData.email}
-//         onChange={ handleChange }
-//       />
-//     <br />
-
-//     <label className="password">Password:</label>
-//       <input
-//         type="password"
-//         name="password"
-//         placeholder="Password"
-//         value={formData.password}
-//         onChange={ handleChange }  
-//       />
-//     <br />
-
-//     <button type="submit">Sign Up</button>
-
-//     {errorMessage && <p className="error-message">{errorMessage}</p>}
-//     {successMessage && <p className="success-message">{successMessage}</p>}
-//   </form>
-// </div>
-
   return (
     <>
-      <div className="register-form-container"> {/* Update container class */}
-        <h3 class="text-center text-uppercase">Sign Up</h3>  {/* Update heading text */}
-        <form className="form mx-auto" onSubmit={handleSubmit}> {/* Consistent form classes */}
-          <div className="mb-3"> {/* Add margin-bottom for spacing */}
+      <div className="register-form-container"> 
+        <h3 class="text-center text-uppercase">Sign Up</h3>  
+        <form className="form mx-auto" onSubmit={handleSubmit}> 
+          <div className="mb-3"> 
             <label for="name" className="form-label">Name:</label>
             <input
               type="text"
@@ -102,7 +61,7 @@ function Register() {
             />
           </div>
 
-          <div className="mb-3"> {/* Add margin-bottom for spacing */}
+          <div className="mb-3"> 
             <label for="email" className="form-label">Email:</label>
             <input
                 type="email"
@@ -115,7 +74,7 @@ function Register() {
             />
           </div>
 
-          <div className="mb-3"> {/* Add margin-bottom for spacing */}
+          <div className="mb-3"> 
             <label for="password" className="form-label">Password:</label>
             <input
               type="password"
@@ -129,7 +88,7 @@ function Register() {
           </div>
 
           <div className="d-flex justify-content-center">
-            <button type="submit" className="btn btn-dark">Sign Up</button>  {/* Update button text */}
+            <button type="submit" className="btn btn-dark">Sign Up</button> 
           </div>
 
           {errorMessage && <p className="error-message">{errorMessage}</p>}
