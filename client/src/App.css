@@ -14,31 +14,41 @@ body {
   height: 100vh; 
 }
 
+.jumbotron {
+  font-weight: 800;
+  margin: 10px;
+  padding: 10px;
+  text-shadow: 1px 1px 2px grey;
+}
+
 .custom-carousel-container {
   background-color: lightblue;
-  padding: 5px;
-  margin: 5px;
+  border: 10px double #7b3320;
+  border-radius: 5px;
+  box-shadow: 10px 2px 2px goldenrod;
+
 }
 
 .custom-carousel {
-  /* width: 50%; */
-  height: fit-content;
-  margin: 0 auto;
-  border: 3px solid;
+  justify-content: center;
+  margin: 0px;
   border-radius: 5px;
-  padding: 25px;
-  margin: 15px;
-  font-weight: 500;
+  padding: 5px;
+  font-weight: 400;
   font-style: normal;
+  text-shadow: 2px 1px 1px antiquewhite;
+
 }
 
 #carouselHeading {
-  padding: 20px;
-  border-radius: 1px;
+  padding: 5px;
+  margin: 0px;
   text-align: center;
-  font-weight: 800;
+  font-weight: 200;
   font-style: normal;
-  font-size: 42px;
+  text-shadow: 1px 1px 1px;
+
+  
 }
 
 .card {
@@ -49,6 +59,7 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: medium;
+  box-shadow: 10px 5px 5px goldenrod;
 }
 
 .all-items-header {
@@ -80,11 +91,12 @@ body {
   max-height: max-content;
   padding: .5em;
   margin: .5em;
-  border: 2px solid;
+  border: 3px solid;
   border-radius: 3px;
   font-weight: 400;
   font-style: normal;
   font-size: normal;
+  box-shadow: 10px 5px 5px goldenrod;
 }
 
 .card-body .d-flex .btn {
@@ -108,10 +120,18 @@ body {
 
 .navbar {
   font-family: "Playfair Display", serif;
-  font-size: 16px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 100;
+  justify-content: center;
 }
+.navbar-nav {
+  line-height: 20px; /* Adjust the value as needed */
+}
+
+.navbar-nav.me-auto,
+.navbar-nav.ms-auto {
+  padding: 0; }
 
 .login-form-container {
   justify-content: center;

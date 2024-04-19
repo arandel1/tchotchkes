@@ -14,6 +14,7 @@ export default function Cart({ auth, products }) {
       try {
         const cartAuth = !auth.id ? JSON.parse(auth) : auth;
         console.log(cartAuth.id);
+
         // console.log("Fetching products...");
 
         const response = await fetch(`${baseUrl}/orders/${cartAuth.id}`);
@@ -21,8 +22,7 @@ export default function Cart({ auth, products }) {
           throw new Error("Failed to fetch products.");
         }
         const ordersAndProducts = await response.json();
-        console.log(ordersAndProducts);
-
+        console.log(ordersAndProducts, "ordersAndProducts");
         setCartItems(ordersAndProducts);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -39,6 +39,8 @@ export default function Cart({ auth, products }) {
   }
   const cartTotal = priceArray.reduce((total, price) => total + price, 0);
 
+  console.log("cartItems.products", cartItems.products);
+  console.log("cartItems.orders", cartItems.orders);
   return (
     <div className="container">
       <h2>Your Cart</h2>
@@ -56,6 +58,7 @@ export default function Cart({ auth, products }) {
           //   cartItems.orders
           //     .filter((order) => order.productsId === product.id)
           //     .map((order) => order.id);
+
           return (
             <div key={product.orderId} className="product">
               <img height="100px" src={product.imgURL} alt={product.name}></img>
@@ -70,6 +73,22 @@ export default function Cart({ auth, products }) {
           );
         })
       )}
+
+      {/* <h4>Cart Total: ${cartTotal}</h4> */}
+
+      {/* ({cartItems.map((product) => (
+        
+        <div key={product.id} className="product">
+          <img height="100px" src={product.imgURL} alt="thumbnail"></img>
+          <h5>{product.name}</h5>
+          <h5>${product.price}</h5>
+          <button onClick={() => navigate(`/products/${product.id}`)}>
+            View Details
+          </button>
+          <button onClick={() => removeProduct(id)}>Remove</button>
+        </div>
+      ))}
+      
       <h4>Cart Total: ${cartTotal}</h4>
     </div>
   );
