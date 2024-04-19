@@ -33,6 +33,8 @@ export default function Cart({ auth, products }) {
     }
   }, [cartItems]);
 
+  console.log(cartItems)
+
   const priceArray = cartItems.map((order) => order.price);
   if (cartItems.length === 0) {
     <h4>Cart is empty.</h4>;
@@ -89,7 +91,7 @@ export default function Cart({ auth, products }) {
         </div>
       ))}
       
-      <h4>Cart Total: ${cartTotal}</h4>
+    <h4>Cart Total: ${cartTotal}</h4>*/}
     </div>
   );
 }
