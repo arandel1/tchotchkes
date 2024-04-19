@@ -4,6 +4,9 @@ Capstone Project
 Link to Trello Board:
 https://trello.com/b/PNUsHDcf/capstone-project
 
+Link to documentation:
+https://docs.google.com/spreadsheets/d/1tYqxJT_uP_ADT2LviBncoi75aRR_CYzKj5O136JIA7A/edit?usp=drive_web&ouid=104809665772122790445
+
 _Scrum Master Lineup:_
 
 - 3/21 - 3/31: Allison R.
