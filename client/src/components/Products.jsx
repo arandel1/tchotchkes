@@ -43,7 +43,6 @@ function Products() {
           style={{ display: "flex", flexWrap: "wrap" }}
         >
           {" "}
-          {/* Responsive grid for 3 cards */}
           {products.map((product) => (
             <div key={product.id} className="col">
               <div className="card" style={{ aspectRatio: "16/9" }}>

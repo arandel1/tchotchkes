@@ -4,23 +4,6 @@ import Form from "react-bootstrap/Form";
 import Products from "./Products";
 
 function CategoryDropdown() {
-  //   const [search, setSearch] = useState("");
-
-  //   const categories = [
-  //     "All",
-  //     "Books",
-  //     "Decor",
-  //     "Electronics",
-  //     "Games + Toys",
-  //     "Housewares",
-  //     "Jewelry + Accessories",
-  //     "Miscellaneous",
-  //   ];
-
-  //   let filteredItems =
-  //     categories.filter((category) =>
-  //       category.toLowerCase().includes(search.toLowerCase())
-  //     ) || [];
 
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
     <a
@@ -47,13 +30,6 @@ function CategoryDropdown() {
           className={className}
           aria-labelledby={labeledBy}
         >
-          {/* <Form.Control
-            autoFocus
-            className="mx-3 my-2 w-auto"
-            placeholder="Type to filter..."
-            onChange={(e) => setSearch(e.target.value)}
-            value={search}
-          /> */}
           <ul className="list-unstyled">
             <label htmlFor="category-select">
               {React.Children.toArray(children).filter((child) => (

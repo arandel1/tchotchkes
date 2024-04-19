@@ -1,8 +1,6 @@
 const express = require("express")
 const apiRouter = express.Router()
 
-// apiRouter.use("/", jwt({secret: "shhhhhhared-secret", algorithms: ['RS256']}));
-
 apiRouter.use("/products", require("./products"))
 module.exports = apiRouter
 

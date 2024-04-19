@@ -47,7 +47,6 @@ export default function NavBar({ auth }) {
               <CategoryDropdown />
               <span className="fas fa-search"></span> Search
             </li>
-            {/* Add more navigation links here */}
           </ul>
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">

@@ -8,7 +8,6 @@ export default function RemoveItemFromCart({
   setCartItem,
   cartItems,
 }) {
-  console.log(orderId, "orders");
   const [errorMessage, setErrorMessage] = useState();
 
   const baseUrl = "http://localhost:8080/tchotchke/orders";

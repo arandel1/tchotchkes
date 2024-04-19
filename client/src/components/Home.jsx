@@ -10,15 +10,15 @@ import PollyGasNeon from '../assets/Carousel-Images/PollyGasNeon.png';
 export default function Home () {
   return (
     <> 
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-4 text-uppercase">&#x2022; Welcome to Tchotchkes! &#x2022;</h1> <br />
-        <p class="lead">
-          <a class="btn btn-dark btn-lg" href="https://en.wikipedia.org/wiki/Tchotchke" role="button">Wait, What is a Tchotchke?</a>
-        </p>
-        <hr class="my-3"></hr>
+      <div className="jumbotron">
+        <div className="container">
+          <h1 className="display-4 text-uppercase">&#x2022; Welcome to Tchotchkes! &#x2022;</h1> <br />
+          <p className="lead">
+            <a className="btn btn-dark btn-lg" href="https://en.wikipedia.org/wiki/Tchotchke" role="button">Wait, What's a Tchotchke?</a>
+          </p>
+          <hr className="my-3"></hr>
+        </div>
       </div>
-    </div>
       <div className="container custom-carousel-container">
       <h4 id="carouselHeading" className="carousel-heading d-block mt-3">Check out some featured products below!</h4>
         <Carousel className="custom-carousel" data-bs-theme="dark" style={{ display: 'flex', justifyContent: 'center', width: '75%', margin: '0 auto' }}> 
