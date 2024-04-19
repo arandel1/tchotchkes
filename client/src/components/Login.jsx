@@ -62,7 +62,6 @@ function Login({ auth, updateUserId }) {
       <form className="form mx-auto" onSubmit={handleSubmit}>
         <div className="mb-3">
           {" "}
-          {/* Add margin-bottom for spacing */}
           <label for="email" className="form-label">
             Email:
           </label>
@@ -79,7 +78,6 @@ function Login({ auth, updateUserId }) {
 
         <div className="mb-3">
           {" "}
-          {/* Add margin-bottom for spacing */}
           <label for="password" className="form-label">
             Password:
           </label>
