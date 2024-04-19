@@ -45,7 +45,7 @@ function Login({ auth, updateUserId }) {
         setErrorMessage(errorData.message || "Login failed. Please try again.");
       }
     } catch (error) {
-      // console.error("Error:", error);
+      console.error("Error:", error);
       setErrorMessage("Login failed. Check your username or password.");
     }
   };

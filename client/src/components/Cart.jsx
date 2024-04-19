@@ -32,11 +32,11 @@ export default function Cart({ auth, products }) {
     }
   }, [cartItems]);
 
-  const priceArray = cartItems.map((order) => order.price);
-  if (cartItems.length === 0) {
-    <h4>Cart is empty.</h4>;
-  }
-  const cartTotal = priceArray.reduce((total, price) => total + price, 0);
+  // const priceArray = cartItems.map((order) => order.price);
+  // if (cartItems.length === 0) {
+  //   <h4>Cart is empty.</h4>;
+  // }
+  // const cartTotal = priceArray.reduce((total, price) => total + price, 0);
 
   return (
     <div className="container">
@@ -62,8 +62,7 @@ export default function Cart({ auth, products }) {
                 setCartItem={setCartItems}
                 cartItems={cartItems}
               />
-              <h4>Order Total: ${cartTotal}</h4>
-              <h4>Order Total: Get a calculator </h4>
+              {/* <h4>Order Total: ${cartTotal}</h4> */}
             </div>
           );
         })

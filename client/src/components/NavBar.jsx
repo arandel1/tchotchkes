@@ -51,7 +51,7 @@ export default function NavBar({ auth }) {
                 className="nav-link"
                 onClick={auth.id ? handleLogout : null}
               >
-                {auth.id ? "Logout" : "Login"}
+                {auth.id ? `Logout ${auth.name}` : "Login"}
               </Link>
             </li>
             <li className="nav-item">
