@@ -32,8 +32,12 @@ export default function Cart({ auth, products }) {
     }
   }, [cartItems]);
 
-  console.log("cartItems.products", cartItems.products);
-  console.log("cartItems.orders", cartItems.orders);
+  const priceArray = cartItems.map((order) => order.price);
+  if (cartItems.length === 0) {
+    <h4>Cart is empty.</h4>;
+  }
+  const cartTotal = priceArray.reduce((total, price) => total + price, 0);
+
   return (
     <div className="container">
       <h2>Your Cart</h2>
@@ -58,31 +62,12 @@ export default function Cart({ auth, products }) {
                 setCartItem={setCartItems}
                 cartItems={cartItems}
               />
+              <h4>Order Total: ${cartTotal}</h4>
+              <h4>Order Total: Get a calculator </h4>
             </div>
           );
         })
       )}
-      {/* <h4>Cart Total: ${cartTotal}</h4> */}
-
-      {/* ({cartItems.map((product) => (
-        
-        <div key={product.id} className="product">
-          <img height="100px" src={product.imgURL} alt="thumbnail"></img>
-          <h5>{product.name}</h5>
-          <h5>${product.price}</h5>
-          <button onClick={() => navigate(`/products/${product.id}`)}>
-            View Details
-          </button>
-          <button onClick={() => removeProduct(id)}>Remove</button>
-        </div>
-      ))}
-      
-      <h4>Cart Total: ${cartTotal}</h4>
-      
-      ) :  (
-      
-        <p>Loading cart ...</p>
-      ) */}
     </div>
   );
 }
