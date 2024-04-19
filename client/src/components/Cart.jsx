@@ -3,19 +3,14 @@ import { useEffect } from "react";
 import RemoveItemFromCart from "./RemoveItemFromCart";
 
 export default function Cart({ auth, products }) {
-  //console.log(auth);
   const [cartItems, setCartItems] = useState([]);
   const [orders, setOrders] = useState([]);
-  // const [cartAuth, setCartAuth] = useState();
 
   useEffect(() => {
     async function getUserProducts() {
       const baseUrl = "http://localhost:8080/tchotchke";
       try {
         const cartAuth = !auth.id ? JSON.parse(auth) : auth;
-        // console.log(cartAuth.id);
-
-        // console.log("Fetching products...");
 
         const response = await fetch(`${baseUrl}/orders/${cartAuth.id}`);
         if (!response.ok) {
@@ -32,9 +27,6 @@ export default function Cart({ auth, products }) {
       getUserProducts();
     }
   }, [cartItems]);  
-
-  // console.log("cartItems.products", cartItems.products);
-  // console.log("cartItems.orders", cartItems.orders);
   
   const productArray = cartItems.products || []
   const orderArray = cartItems.orders || []
@@ -53,7 +45,7 @@ export default function Cart({ auth, products }) {
             <div className="col-4">
               <div className="cart-card">
                 {cartItems.length === 0 ? (
-                  <p className="col"> Your cart is empty.</p>
+                  <p className="col"> Your cart is empty. </p>
                 ) : (
                   productArray.map((product) => {
                     const orderId =
@@ -81,7 +73,6 @@ export default function Cart({ auth, products }) {
                   })
                 )}
               </div> <br />
-      {/* Price Total Section */}
               <div className="price-total">
                 <h4>Cart Total: ${cartTotal}</h4>
               </div>
