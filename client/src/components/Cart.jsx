@@ -69,10 +69,13 @@ export default function Cart({ auth, products }) {
               </div> <br />
               <div className="price-total">
                 <h4>Cart Total: ${cartTotal}</h4>
+                <button className="StripeCheckout">
+                  {" "}
+                  <Stripe />{" "}
+                </button>
               </div>
             </div>
         </div>
-      </div>
     </>
   );
 }
