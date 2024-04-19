@@ -31,9 +31,7 @@ export default function Cart({ auth, products }) {
     if (cartItems.length <= 0) {
       getUserProducts();
     }
-  }, [cartItems]);
-
-  
+  }, [cartItems]);  
 
   // console.log("cartItems.products", cartItems.products);
   // console.log("cartItems.orders", cartItems.orders);
@@ -47,7 +45,6 @@ export default function Cart({ auth, products }) {
   console.log("price Array:", priceArray)
   const cartTotal = priceArray.reduce((total, price) => total + price, 0);
 
- 
 
   return (
     <>

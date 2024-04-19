@@ -23,8 +23,8 @@ function Login({ auth, updateUserId }) {
     e.preventDefault();
     try {
       const response = await fetch(`${baseUrl}/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
@@ -36,7 +36,6 @@ function Login({ auth, updateUserId }) {
         setSuccessMessage("You're logged in!");
         setFormData({ email: formData.email, password: "" });
         const token = user.token;
-        console.log(token);
         auth(user);
         localStorage.setItem("auth", JSON.stringify(user));
         updateUserId(userId);
@@ -61,8 +60,12 @@ function Login({ auth, updateUserId }) {
     <div className="login-form-container">
       <h3 className="text-center text-uppercase">Login</h3>
       <form className="form mx-auto" onSubmit={handleSubmit}>
-        <div className="mb-3"> 
-          <label for="email" className="form-label">Email:</label>
+        <div className="mb-3">
+          {" "}
+          {/* Add margin-bottom for spacing */}
+          <label for="email" className="form-label">
+            Email:
+          </label>
           <input
             type="email"
             className="form-control"
@@ -74,8 +77,12 @@ function Login({ auth, updateUserId }) {
           />
         </div>
 
-        <div className="mb-3"> {/* Add margin-bottom for spacing */}
-          <label for="password" className="form-label">Password:</label>
+        <div className="mb-3">
+          {" "}
+          {/* Add margin-bottom for spacing */}
+          <label for="password" className="form-label">
+            Password:
+          </label>
           <input
             type="password"
             className="form-control"
@@ -87,9 +94,15 @@ function Login({ auth, updateUserId }) {
           />
         </div>
 
-        <div className="d-flex justify-content-between"> {/* Flexbox for buttons */}
-          <button type="submit" className="btn btn-dark">Login</button>
-          <button onClick={handleLogout} className="btn btn-dark">Logout</button>
+        <div className="d-flex justify-content-between">
+          {" "}
+          {/* Flexbox for buttons */}
+          <button type="submit" className="btn btn-dark">
+            Login
+          </button>
+          <button onClick={handleLogout} className="btn btn-dark">
+            Logout
+          </button>
         </div>
 
         {errorMessage && <p className="error-message">{errorMessage}</p>}
