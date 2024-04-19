@@ -28,7 +28,6 @@ userRouter.post("/register", async (req, res, next) => {
         password: hashedPassword,
       },
     });
-    // console.log(register);
     const token = JWT.sign(register.id, defaultJWT);
     register.token = token;
     res.status(201).send(register);
@@ -40,7 +39,6 @@ userRouter.post("/register", async (req, res, next) => {
 userRouter.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
     const user = await prisma.users.findUnique({
       where: {
         email: req.body.email,
@@ -57,7 +55,6 @@ userRouter.post("/login", async (req, res, next) => {
       user.token = token;
       res.status(201).send(user);
     }
-    // console.log(user);
   } catch (ex) {
     next(ex);
   }
