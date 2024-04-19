@@ -16,7 +16,7 @@ export default function Home () {
         <p class="lead">
           <a class="btn btn-dark btn-lg" href="https://en.wikipedia.org/wiki/Tchotchke" role="button">Wait, What is a Tchotchke?</a>
         </p>
-        <hr class="my-3"></hr> <br />
+        <hr class="my-3"></hr>
       </div>
     </div>
       <div className="container custom-carousel-container">

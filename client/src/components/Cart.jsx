@@ -48,45 +48,50 @@ export default function Cart({ auth, products }) {
 
   return (
     <>
-      <div className="container">
-        <h2>Your Cart</h2>
-        {/*{console.log("Cart items length:", cartItems.products.length)}*/}
-        {cartItems.length === 0 ? (
-          <p> Your cart is empty.</p>
-        ) : (
-          productArray.map((product) => {
-            const orderId =
-              orderArray &&
-              orderArray
-                .filter((order) => order.productsId === product.id)
-                .map((order) => order.id);
-            console.log(orderId);
-            return (
-              <div key={product.orderId} className="product">
-                <img
-                  height="100px"
-                  src={product.imgURL}
-                  alt={product.name}
-                ></img>
-                <h5>{product.name}</h5>
-                <h5>${product.price}</h5>
-                <RemoveItemFromCart
-                  orderId={orderId[0]}
-                  setCartItem={setCartItems}
-                  cartItems={cartItems}
-                />
-              </div>
-            );
-          })
-        )}
-      </div>
-      <br />
-      <div className="price-total">
-        <h4>Cart Total: ${cartTotal}</h4>
-        <button>
-          {" "}
-          <Stripe />{" "}
-        </button>
+      <h3 className="text-center mt-5">Your Cart</h3> <br />
+      <div className="container cart-container py-5 px-3 d-flex justify-content-center">
+        <div className="col-4">
+          <div className="cart-card">
+            {cartItems.length === 0 ? (
+              <p className="col"> Your cart is empty.</p>
+            ) : (
+              productArray.map((product) => {
+                const orderId =
+                  orderArray &&
+                  orderArray
+                    .filter((order) => order.productsId === product.id)
+                    .map((order) => order.id);
+                console.log(orderId);
+                return (
+                  <div key={product.orderId} className="col">
+                    <img
+                      className="card-img-top img-fluid product-image rounded border"
+                      style={{ objectFit: "cover" }}
+                      src={product.imgURL}
+                      alt={product.name}
+                    ></img>
+                    <h5>{product.name}</h5>
+                    <h5>${product.price}</h5>
+                    <RemoveItemFromCart
+                      orderId={orderId[0]}
+                      setCartItem={setCartItems}
+                      cartItems={cartItems}
+                    />
+                  </div>
+                );
+              })
+            )}
+          </div>{" "}
+          <br />
+          {/* Price Total Section */}
+          <div className="price-total">
+            <h4>Cart Total: ${cartTotal}</h4>
+            <button>
+              {" "}
+              <Stripe />{" "}
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );
