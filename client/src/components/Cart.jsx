@@ -49,6 +49,7 @@ export default function Cart({ auth, products }) {
   return (
     <>
       <h3 className="text-center mt-5">Your Cart</h3> <br />
+
       <div className="container cart-container py-5 px-3 d-flex justify-content-center">
         <div className="col-4">
           <div className="cart-card">
@@ -91,6 +92,7 @@ export default function Cart({ auth, products }) {
               <Stripe />{" "}
             </button>
           </div>
+
         </div>
       </div>
     </>
