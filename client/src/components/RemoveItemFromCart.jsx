@@ -26,5 +26,5 @@ export default function RemoveItemFromCart({
       setErrorMessage("An error occurred. Please try again later.");
     }
   };
-  return <button onClick={handleRemoveItem}>Remove Item from Cart</button>;
+  return <button onClick={handleRemoveItem} className="btn btn-dark">Remove Item from Cart</button>;
 }

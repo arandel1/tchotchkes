@@ -12,12 +12,11 @@ export default function Home () {
     <> 
     <div class="jumbotron">
       <div class="container">
-        <h1 class="display-4 text-uppercase">Welcome to Tchotchkes!</h1>
-        <h4>Antiques &#x2022; Collectibles &#x2022; Oddities </h4>
-        <hr class="my-3"></hr> <br />
+        <h1 class="display-4 text-uppercase">&#x2022; Welcome to Tchotchkes! &#x2022;</h1> <br />
         <p class="lead">
           <a class="btn btn-dark btn-lg" href="https://en.wikipedia.org/wiki/Tchotchke" role="button">Wait, What is a Tchotchke?</a>
-        </p> <br />
+        </p>
+        <hr class="my-3"></hr>
       </div>
     </div>
       <div className="container custom-carousel-container">
