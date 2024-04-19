@@ -72,7 +72,6 @@ export default function Cart({ auth, products }) {
               </div>
             </div>
         </div>
-      </div>
     </>
   );
 }
