@@ -13,7 +13,8 @@ export default function Cart({ auth, products }) {
       const baseUrl = "http://localhost:8080/tchotchke";
       try {
         const cartAuth = !auth.id ? JSON.parse(auth) : auth;
-        // console.log(cartAuth);
+        console.log(cartAuth.id);
+
         // console.log("Fetching products...");
 
         const response = await fetch(`${baseUrl}/orders/${cartAuth.id}`);
@@ -32,6 +33,12 @@ export default function Cart({ auth, products }) {
     }
   }, [cartItems]);
 
+  const priceArray = cartItems.map((order) => order.price);
+  if (cartItems.length === 0) {
+    <h4>Cart is empty.</h4>;
+  }
+  const cartTotal = priceArray.reduce((total, price) => total + price, 0);
+
   console.log("cartItems.products", cartItems.products);
   console.log("cartItems.orders", cartItems.orders);
   return (
@@ -41,13 +48,17 @@ export default function Cart({ auth, products }) {
       {cartItems.length === 0 ? (
         <p> Your cart is empty.</p>
       ) : (
-        cartItems.products.map((product) => {
-          const orderId =
-            cartItems.orders &&
-            cartItems.orders
-              .filter((order) => order.productsId === product.id)
-              .map((order) => order.id);
-          console.log(orderId);
+        cartItems.map((product) => {
+          const orderFilter = cartItems.filter(
+            (order) => order.productsId === product.id
+          );
+          const orderId = orderFilter.map((order) => order.id);
+          // const orderId =
+          //   cartItems.orders &&
+          //   cartItems.orders
+          //     .filter((order) => order.productsId === product.id)
+          //     .map((order) => order.id);
+
           return (
             <div key={product.orderId} className="product">
               <img height="100px" src={product.imgURL} alt={product.name}></img>
@@ -62,6 +73,7 @@ export default function Cart({ auth, products }) {
           );
         })
       )}
+
       {/* <h4>Cart Total: ${cartTotal}</h4> */}
 
       {/* ({cartItems.map((product) => (
@@ -78,11 +90,6 @@ export default function Cart({ auth, products }) {
       ))}
       
       <h4>Cart Total: ${cartTotal}</h4>
-      
-      ) :  (
-      
-        <p>Loading cart ...</p>
-      ) */}
     </div>
   );
 }

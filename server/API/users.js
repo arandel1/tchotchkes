@@ -1,12 +1,12 @@
-const express = require("express")
-const userRouter = express.Router()
+const express = require("express");
+const userRouter = express.Router();
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-const bcrypt = require('bcrypt');
-const JWT = require('jsonwebtoken');
+const bcrypt = require("bcrypt");
+const JWT = require("jsonwebtoken");
 
-const defaultJWT = 'shhh';
-const JWTsecret = process.env.JWT || defaultJWT
+const defaultJWT = "shhh";
+const JWTsecret = process.env.JWT || defaultJWT;
 
 userRouter.get("/", async (req, res, next) => {
   try {
@@ -20,7 +20,7 @@ userRouter.get("/", async (req, res, next) => {
 userRouter.post("/register", async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 5)
+    const hashedPassword = await bcrypt.hash(password, 5);
     const register = await prisma.users.create({
       data: {
         name: req.body.name,
@@ -29,8 +29,8 @@ userRouter.post("/register", async (req, res, next) => {
       },
     });
     // console.log(register);
-    const token = JWT.sign(register.id, defaultJWT)
-    register.token = token
+    const token = JWT.sign(register.id, defaultJWT);
+    register.token = token;
     res.status(201).send(register);
   } catch (ex) {
     next(ex);
@@ -46,13 +46,15 @@ userRouter.post("/login", async (req, res, next) => {
         email: req.body.email,
       },
     });
-    const passwordValid = await bcrypt.compare(req.body.password, user.password)
-    if(!passwordValid || !user){
-      res.status(401).send('Not Authorized')
-    }
-    else{
-      const token = JWT.sign(user.id, defaultJWT)
-      user.token = token
+    const passwordValid = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    if (!passwordValid || !user) {
+      res.status(401).send("Not Authorized");
+    } else {
+      const token = JWT.sign(user.id, defaultJWT);
+      user.token = token;
       res.status(201).send(user);
     }
     // console.log(user);
@@ -61,4 +63,4 @@ userRouter.post("/login", async (req, res, next) => {
   }
 });
 
-module.exports = userRouter
+module.exports = userRouter;
