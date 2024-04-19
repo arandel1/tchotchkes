@@ -17,7 +17,6 @@ export default function Cart({ auth, products }) {
           throw new Error("Failed to fetch products.");
         }
         const ordersAndProducts = await response.json();
-        console.log(ordersAndProducts, "ordersAndProducts");
         setCartItems(ordersAndProducts);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -31,12 +30,8 @@ export default function Cart({ auth, products }) {
   const productArray = cartItems.products || []
   const orderArray = cartItems.orders || []
 
-  console.log(productArray)
-
   const priceArray = productArray.map((products) => products.price);
-  console.log("price Array:", priceArray)
   const cartTotal = priceArray.reduce((total, price) => total + price, 0);
-
 
   return (
     <>
@@ -53,7 +48,6 @@ export default function Cart({ auth, products }) {
                       orderArray
                         .filter((order) => order.productsId === product.id)
                         .map((order) => order.id);
-                    console.log(orderId);
                     return (
                       <div key={product.orderId} className="col">
                         <img 

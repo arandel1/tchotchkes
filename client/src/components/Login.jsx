@@ -39,7 +39,6 @@ function Login({ auth, updateUserId }) {
         auth(user);
         localStorage.setItem("auth", JSON.stringify(user));
         updateUserId(userId);
-        console.log("userId:", userId, "sourced from Login.jsx");
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message || "Login failed. Please try again.");
@@ -52,7 +51,6 @@ function Login({ auth, updateUserId }) {
 
   const Logout = (token) => {
     localStorage.removeItem("auth");
-    console.log(token);
     setSuccessMessage("You're logged out!");
   };
 
