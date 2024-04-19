@@ -89,8 +89,7 @@ function App() {
         <br />
         <br />
         <br />
-        <br />
-        <br />
+        
 
         {/* { auth.token ? <button>Welcome {auth.name}</button> : <Login login = { login } />} */}
 

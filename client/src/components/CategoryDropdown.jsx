@@ -79,11 +79,13 @@ function CategoryDropdown() {
   return (
     <Dropdown>
       <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-        View by Category
+        View by Category <i class="fa-solid fa-icons"></i>
       </Dropdown.Toggle>
 
       <Dropdown.Menu as={CustomMenu}>
-        <Dropdown.Item href="/products">Select</Dropdown.Item>
+        <Dropdown.Item href="/products">
+          <i>Select Category:</i>
+        </Dropdown.Item>
         {categories.map((cat) => {
           return (
             <Dropdown.Item

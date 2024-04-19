@@ -56,38 +56,6 @@ function Login({ auth, updateUserId }) {
     setSuccessMessage("You're logged out!");
   };
 
-  //OLD FORM CODE BELOW
-  // <div className="container">
-  //   <h3>Login</h3>
-  //   <form onSubmit={handleSubmit}>
-  //     <label className="email">Email:</label>
-  //     <input
-  //       type="email"
-  //       name="email"
-  //       placeholder="Email"
-  //       value={formData.email}
-  //       onChange={handleChange}
-  //     />
-  //     <br />
-
-  //     <label className="password">Password:</label>
-  //     <input
-  //       type="password"
-  //       name="password"
-  //       placeholder="Password"
-  //       value={formData.password}
-  //       onChange={handleChange}
-  //     />
-  //     <br />
-
-  //     <button type="submit">Login</button>
-  //     <button onClick={handleLogout}>Logout</button>
-
-  //     {errorMessage && <p className="error-message">{errorMessage}</p>}
-  //     {successMessage && <p className="success-message">{successMessage}</p>}
-  //   </form>
-  // </div>
-
   return (
     <div className="login-form-container">
       <h3 className="text-center text-uppercase">Login</h3>
