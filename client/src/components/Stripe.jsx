@@ -4,24 +4,6 @@ import React, { useState, useEffect } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import ViewDetails from "./ViewDetails";
 
-const ProductDisplay = () => (
-  <section>
-    <div className="product">
-      <img
-        src="https://i.imgur.com/EHyR2nP.png"
-        alt="The cover of Stubborn Attachments"
-      />
-      <div className="description">
-        <h3>Stubborn Attachments</h3>
-        <h5>$20.00</h5>
-      </div>
-    </div>
-    {/* <form action="/create-checkout-session" method="POST">
-      <button type="submit">Checkout</button>
-    </form> */}
-  </section>
-);
-
 const Message = ({ message }) => (
   <section>
     <p>{message}</p>
@@ -45,7 +27,6 @@ export default class TakeMoney extends React.Component {
   render() {
     return (
       <div>
-        <ProductDisplay />
         <StripeCheckout
           token={this.onToken}
           stripeKey="pk_test_51P5rYeKu8FwGD361m1RWer38xTSA4O4QOR3ousHgNIoCnNAa98ERfHW0CodfivDNtCiQjMDTJf4SwyU9lF2lTDCD00LwlZe2ce"
