@@ -9,4 +9,3 @@ module.exports = apiRouter;
 
 apiRouter.use("/orders", require("./orders"));
 module.exports = apiRouter;
-console.log("something dumb");
